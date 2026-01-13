@@ -1,0 +1,62 @@
+.navbar{
+    background-color: antiquewhite !important;
+    opacity: 1;
+    position:relative;
+    z-index: 1000;
+}
+.navbar-logo{
+    width: 3rem;
+    height:3rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.navbar-header h3{
+    font-size: 1rem;
+    
+}
+.navbar-header p{
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}
+.navbar-header{
+    line-height: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.btns{
+    
+    border-radius: 20px;
+    font-weight: 600;
+}
+.btn-danger{
+    background-color: rgb(214, 15, 15);
+}
+.nav-link{
+    color: #222 !important;
+    font-weight: 500;
+}
+
+
+.nav-hover {
+  position: relative;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.nav-hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 3px;
+  background-color: rgb(214, 15, 15); /* Yatra red */
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.nav-hover:hover::after {
+  width: 100%;
+}

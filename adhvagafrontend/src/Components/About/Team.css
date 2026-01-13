@@ -1,0 +1,309 @@
+.team-section {
+  padding: 8rem 0;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.team-bg-text {
+  position: absolute;
+  top: 5rem;
+  width: 100%;
+  text-align: center;
+  opacity: 0.02;
+  pointer-events: none;
+}
+
+.team-bg-text span {
+  font-size: 20rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+}
+
+.team-container {
+  max-width: 1280px;
+  margin: auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* Header */
+.team-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: 6rem;
+  flex-wrap: wrap;
+}
+
+.team-title {
+  max-width: 520px;
+}
+
+.team-label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.yellow-bar {
+  width: 48px;
+  height: 4px;
+  background: #facc15;
+}
+
+.team-label span {
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.5em;
+  color: #a1a1aa;
+}
+
+.team-title h2 {
+  font-size: 4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.team-title span {
+  color: #facc15;
+  font-style: italic;
+}
+
+.team-quote {
+  max-width: 360px;
+  text-align: right;
+  font-size: 1.125rem;
+  color: #71717a;
+  font-style: italic;
+}
+
+/* Grid */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+}
+
+/* Card */
+.team-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.team-card.offset {
+  margin-top: 3rem;
+}
+
+/* Image */
+.image-box {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 2.5rem;
+  overflow: hidden;
+  background: #e5e7eb;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.7s;
+}
+
+.team-card:hover .image-box {
+  box-shadow: 0 30px 60px rgba(250, 204, 21, 0.5);
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+  filter: grayscale(1);
+  transition: transform 0.7s, filter 0.7s;
+}
+
+.team-card:hover img {
+  transform: scale(1);
+  filter: grayscale(0);
+}
+
+/* Social */
+.social-icons {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  opacity: 0;
+  transform: translateX(1rem);
+  transition: all 0.5s;
+}
+
+.team-card:hover .social-icons {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.social-icons a {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.social-icons a:hover {
+  background: #facc15;
+  transform: scale(1.1);
+}
+
+/* Name Overlay */
+.name-overlay {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  transform: translateY(0.5rem);
+  transition: transform 0.5s;
+}
+
+.team-card:hover .name-overlay {
+  transform: translateY(0);
+}
+
+.name-overlay h3 {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.name-overlay p {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  color: #facc15;
+}
+
+/* Bio */
+.bio {
+  margin-top: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.team-card:hover .bio {
+  opacity: 1;
+}
+
+.bio p {
+  font-size: 0.875rem;
+  color: #71717a;
+  font-style: italic;
+}
+
+/* CTA */
+.cta-card .cta-box {
+  background: #18181b;
+  border-radius: 2.5rem;
+  aspect-ratio: 4 / 5;
+  padding: 2.5rem;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.5s;
+}
+
+.cta-card:hover .cta-box {
+  background: #facc15;
+}
+
+.cta-circle {
+  position: absolute;
+  top: -2.5rem;
+  right: -2.5rem;
+  width: 10rem;
+  height: 10rem;
+  background: #27272a;
+  border-radius: 50%;
+  transition: background 0.5s;
+}
+
+.cta-card:hover .cta-circle {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.cta-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid #3f3f46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 1.5rem;
+  transition: all 0.5s;
+}
+
+.cta-card:hover .cta-icon {
+  background: white;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.cta-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.cta-card:hover svg {
+  color: black;
+}
+
+.cta-box h3 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.cta-box p {
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
+  color: #a1a1aa;
+}
+
+.cta-card:hover p {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.cta-box button {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #3f3f46;
+  padding-bottom: 0.25rem;
+  color: white;
+  cursor: pointer;
+}
+
+.cta-card:hover button {
+  color: black;
+  border-color: black;
+}

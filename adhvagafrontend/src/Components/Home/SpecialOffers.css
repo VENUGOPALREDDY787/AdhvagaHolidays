@@ -1,0 +1,45 @@
+.card{
+    max-width: 420px !important;
+    height:217px;
+}
+.horizontal-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
+}
+
+.scroll-card {
+  min-width: 420px;   /* controls card width */
+  flex-shrink: 0;     /* prevents shrinking */
+  border-radius: 16px; 
+    overflow: hidden;  
+    flex: 0 0 calc((100% - 2rem) / 3);
+}
+
+
+@media(max-width: 992px){
+  .scroll-card {
+    flex: 0 0 calc((100% - 1rem)/2); /* 2 cards for tablet */
+  }
+}
+
+@media(max-width: 576px){
+  .scroll-card {
+    flex: 0 0 100%; /* 1 card for mobile */
+  }
+}
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+.offers{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.head{
+    padding: 0;
+}

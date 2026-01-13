@@ -1,0 +1,193 @@
+.milestones-section {
+  padding: 6rem 0;
+  background: white;
+  overflow: hidden;
+  position: relative;
+}
+
+.milestones-container {
+  max-width: 1280px;
+  margin: auto;
+  padding: 0 1.5rem;
+}
+
+/* Header */
+.milestones-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+
+.header-left {
+  max-width: 640px;
+}
+
+.header-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.yellow-bar {
+  width: 48px;
+  height: 4px;
+  background: #facc15;
+  border-radius: 999px;
+}
+
+.header-label span {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  color: #a1a1aa;
+}
+
+.milestones-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #18181b;
+}
+
+.milestones-title span {
+  color: #facc15;
+  font-style: italic;
+}
+
+.milestones-quote {
+  max-width: 260px;
+  font-size: 0.875rem;
+  font-style: italic;
+  color: #71717a;
+  line-height: 1.6;
+}
+
+/* Grid */
+.milestones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Card */
+.milestone-card {
+  position: relative;
+  background: #fafafa;
+  border: 1px solid #f4f4f5;
+  border-radius: 2rem;
+  padding: 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.milestone-card:hover {
+  background: white;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+  border-color: transparent;
+}
+
+/* Watermark */
+.watermark {
+  position: absolute;
+  right: -16px;
+  bottom: -16px;
+  font-size: 6rem;
+  font-weight: 900;
+  color: rgba(161, 161, 170, 0.4);
+  pointer-events: none;
+  transition: color 0.4s;
+}
+
+.milestone-card:hover .watermark {
+  color: rgba(250, 204, 21, 0.2);
+}
+
+/* Icon */
+.icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 1rem;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+  transition: all 0.4s ease;
+}
+
+.icon-box svg {
+  width: 24px;
+  height: 24px;
+  color: #a1a1aa;
+}
+
+.milestone-card:hover .icon-box {
+  background: #facc15;
+  transform: rotate(6deg);
+}
+
+.milestone-card:hover .icon-box svg {
+  color: black;
+}
+
+/* Text */
+.year {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 900;
+  color: #facc15;
+  margin-bottom: 0.5rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #18181b;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  transition: color 0.4s;
+}
+
+.milestone-card:hover .card-title {
+  color: #facc15;
+}
+
+.card-desc {
+  font-size: 0.875rem;
+  color: #71717a;
+  line-height: 1.6;
+  transition: color 0.4s;
+}
+
+.milestone-card:hover .card-desc {
+  color: #3f3f46;
+}
+
+/* Footer */
+.card-footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #f4f4f5;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #d4d4d8;
+  transition: all 0.4s;
+}
+
+.milestone-card:hover .card-footer {
+  border-color: #fef3c7;
+  color: #18181b;
+}

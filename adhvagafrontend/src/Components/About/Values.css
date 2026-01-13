@@ -1,0 +1,95 @@
+.values-section {
+  padding: 6rem 0;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.values-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Header */
+.values-header {
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto 4rem;
+}
+
+.values-title {
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  font-weight: 900;
+  color: #18181b;
+  margin-bottom: 1.5rem;
+}
+
+.values-subtitle {
+  color: #71717a;
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+/* Grid */
+.values-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .values-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Card */
+.value-card {
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background-color: #fafafa;
+  border: 1px solid #f4f4f5;
+  transition: all 0.3s ease;
+}
+
+.value-card:hover {
+  border-color: #f7cf3e;
+}
+
+/* Icon */
+.value-icon {
+  width: 4rem;
+  height: 4rem;
+  background-color: #f7cf3e;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: #000;
+  transition: transform 0.3s ease;
+}
+
+.value-card:hover .value-icon {
+  transform: scale(1.1);
+}
+
+/* Text */
+.value-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #18181b;
+}
+
+.value-description {
+  font-size: 0.875rem;
+  color: #71717a;
+  line-height: 1.7;
+}
