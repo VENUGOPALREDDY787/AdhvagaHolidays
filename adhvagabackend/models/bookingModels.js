@@ -12,7 +12,7 @@ const BookingSchema = new mongoose.Schema({
   },
   packageId: { 
     type: mongoose.Schema.Types.ObjectId, 
-    ref: "Package"
+    ref: Package
  },
   travelDate:{ 
     type:Date
@@ -31,3 +31,5 @@ const BookingSchema = new mongoose.Schema({
     type: Date, 
     default: Date.now }
 });
+const Booking=mongoose.model("Booking", BookingSchema);
+export default Booking;
