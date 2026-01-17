@@ -1,0 +1,62 @@
+.back-btn {
+  font-weight: bold;
+  text-decoration: none;
+  color: #666;
+}
+
+.back-btn:hover {
+  color: #000;
+}
+
+.success-icon {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #d1fae5;
+  color: #16a34a;
+  font-size: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.highlight-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid #eee;
+  font-weight: 600;
+}
+
+.itinerary-item {
+  border-left: 3px dashed #f5cf4a;
+  padding-left: 20px;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.itinerary-item::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: #000;
+  border-radius: 50%;
+  position: absolute;
+  left: -7px;
+  top: 5px;
+}
+
+.day-label {
+  font-size: 12px;
+  font-weight: bold;
+  color: #f5cf4a;
+  text-transform: uppercase;
+}
+
+.booking-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  top: 100px;
+}

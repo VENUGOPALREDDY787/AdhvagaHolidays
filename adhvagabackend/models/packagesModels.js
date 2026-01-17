@@ -4,6 +4,7 @@ const PackageSchema = new mongoose.Schema({
   title: {
     type: String
 },
+
   location: {
     type:String
 },
