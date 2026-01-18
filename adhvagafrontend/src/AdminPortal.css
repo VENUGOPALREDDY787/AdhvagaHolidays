@@ -1,0 +1,217 @@
+.admin-page {
+  min-height: 100vh;
+  background: #f9fafb;
+  padding-bottom: 5rem;
+}
+
+.admin-container {
+  max-width: 1280px;
+  margin: auto;
+  padding: 3rem 1rem;
+}
+
+/* Header */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.exit-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #71717a;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.exit-btn:hover {
+  color: #18181b;
+}
+
+.admin-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: #18181b;
+}
+
+.icon-yellow {
+  color: #facc15;
+}
+
+.admin-subtitle {
+  margin-top: 0.5rem;
+  color: #71717a;
+  font-weight: 500;
+}
+
+.add-btn {
+  background: #18181b;
+  color: #facc15;
+  padding: 1rem 2rem;
+  border-radius: 1.5rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.add-btn:hover {
+  transform: scale(1.02);
+}
+
+/* Stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 2rem;
+  border: 1px solid #f1f1f1;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #a1a1aa;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #18181b;
+}
+
+/* Table */
+.table-card {
+  background: white;
+  border-radius: 2.5rem;
+  border: 1px solid #f1f1f1;
+  overflow: hidden;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #18181b;
+  color: white;
+}
+
+th {
+  padding: 1.5rem 2rem;
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+td {
+  padding: 1.5rem 2rem;
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* Package cell */
+.package-cell {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.package-cell img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.pkg-title {
+  font-weight: 700;
+  color: #18181b;
+}
+
+.pkg-destination {
+  font-size: 0.75rem;
+  color: #a1a1aa;
+}
+
+/* Badge */
+.badge {
+  padding: 0.25rem 0.75rem;
+  background: #f4f4f5;
+  color: #52525b;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Price */
+.price {
+  font-size: 1.125rem;
+  font-weight: 900;
+  color: #18181b;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  background: white;
+  border: 1px solid #f1f1f1;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.icon-btn.edit:hover {
+  background: #facc15;
+  border-color: #facc15;
+  color: #18181b;
+}
+
+.icon-btn.delete:hover {
+  background: #ef4444;
+  border-color: #ef4444;
+  color: white;
+}
+
+.right {
+  text-align: right;
+}
