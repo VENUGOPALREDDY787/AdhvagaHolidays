@@ -24,24 +24,42 @@ function Navbar() {
               </li>
               <li className="nav-item ms-5 nav-hover">
                 <Link class="nav-link" to="/About">
-                  About us
+                  About Us
                 </Link>
               </li>
               <li className="nav-item ms-5 nav-hover">
                 <Link class="nav-link" to="/Packages">
-                  Tour Packages
+                  Domestic Holidays
                 </Link>
               </li>
                <li className="nav-item ms-5 nav-hover">
                 <Link class="nav-link" to="/Coustom">
-                  Coustum Packages
+                  International Holidays
                 </Link>
               </li>
-              <li className="nav-item me-5 ms-5 nav-hover">
+              {/* <li className="nav-item me-5 ms-5 nav-hover">
                 <Link class="nav-link" to="/Blogs">
                   Blogs
                 </Link>
-              </li>
+              </li> */}
+              <li class="nav-item dropdown me-5 ms-5 nav-hover">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Services
+          </a>
+          <ul class="dropdown-menu">
+            <li><Link class="dropdown-item" to="#">Air Tickets</Link></li>
+            <li><Link class="dropdown-item" to="#"> Domestic Holidays</Link></li>
+            <li><Link class="dropdown-item" to="#"> International Holidays</Link></li>
+            <li><Link class="dropdown-item" to="#"> Visa Assistance</Link></li>
+            <li><Link class="dropdown-item" to="#"> Travel Insurance </Link></li>
+            <li><Link class="dropdown-item" to="#"> Corporate Services</Link></li>
+            <li><Link class="dropdown-item" to="#"> Custom Services</Link></li>
+            <li><Link class="dropdown-item" to="#"> Car Rentals</Link></li>
+
+            {/* <li><hr class="dropdown-divider"></hr></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li> */}
+          </ul>
+        </li>
               <li class="nav-item ms-5">
                 <Link class="nav-link active" aria-current="page" to="/Support">
                   <button type="button" class="btn btn-success btns btn-sm">
