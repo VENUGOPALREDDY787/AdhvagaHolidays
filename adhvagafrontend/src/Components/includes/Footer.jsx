@@ -57,25 +57,9 @@ New York, NY 10001</a>
 We believe that travel is not just about reaching a destination, but about enjoying every moment of the journey with peace of mind and complete satisfaction.
 </p>
 
-<p>
-<strong>2.</strong> With extensive experience in the travel industry, Adhvaga Holidays offers a wide range of domestic and international tour packages designed to suit different travel preferences and budgets.<br />
-From scenic hill stations and relaxing beach holidays to cultural heritage tours and vibrant city escapes, our itineraries are carefully curated to deliver the best travel experiences.
-</p>
 
-<p>
-<strong>3.</strong> Customer satisfaction is at the heart of everything we do at Adhvaga Holidays.<br/>
-We provide end-to-end travel solutions including transportation, accommodation, sightseeing, and personalized assistance, ensuring a seamless and stress-free travel experience from start to finish.
-</p>
 
-<p>
-<strong>4.</strong> Adhvaga Holidays is known for its transparent pricing, reliable services, and strong network of travel partners.<br/>
-Whether it is a family vacation, honeymoon trip, group tour, corporate travel, or a solo adventure, we ensure safety, comfort, and quality service at every step of the journey.
-</p>
 
-<p>
-<strong>5.</strong> We also promote responsible and meaningful travel by encouraging travelers to explore destinations respectfully and support local communities.<br/>
-At Adhvaga Holidays, every trip is thoughtfully planned to create lasting memories, making your journey not just a tour, but a story worth remembering.
-</p>
 
            </div>
             </div>

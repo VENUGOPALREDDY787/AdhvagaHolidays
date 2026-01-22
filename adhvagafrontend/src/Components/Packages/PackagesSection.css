@@ -8,16 +8,20 @@
     --gray-600: #4b5563;
     --gray-900: #111827;
 }
+body {
+    margin: 0;
+}
+
 
 .packages-section {
-    padding: 6rem 0;
+    padding: 0;
     background-color: var(--gray-50);
 }
 
 .container {
     max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1rem;
+    margin: 0 auto;  
+    padding: 0;
 }
 
 .header-flex {

@@ -105,6 +105,21 @@ export const updatePackage = async (req, res) => {
   try {
     const updatedData = { ...req.body };
 
+    
+
+// 🔥 Parse itinerary JSON
+if (updatedData.itinerary) {
+  updatedData.itinerary = JSON.parse(updatedData.itinerary);
+}
+if (
+      updatedData.itinerary &&
+      !Array.isArray(updatedData.itinerary)
+    ) {
+      return res.status(400).json({
+        message: "Invalid itinerary format",
+      });
+    }
+
     // If image updated using multer
     if (req.file) {
       updatedData.image = req.file.path;

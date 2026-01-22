@@ -1,0 +1,201 @@
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  padding: 4rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.service-card:last-child {
+  border-bottom: none;
+}
+
+@media (min-width: 1024px) {
+  .service-card {
+    flex-direction: row;
+  }
+
+  .service-card.row-reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+/* Image Section */
+.image-wrapper {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .image-wrapper {
+    width: 50%;
+  }
+}
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  aspect-ratio: 16 / 10;
+}
+
+.service-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.image-container:hover .service-image {
+  transform: scale(1.1);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+}
+
+/* Badge */
+.image-badge {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: var(--adhvaga-yellow);
+  color: #000;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.image-badge span {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Content */
+.content-wrapper {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .content-wrapper {
+    width: 50%;
+  }
+}
+
+.icon-box {
+  display: inline-block;
+  padding: 0.75rem;
+  background: rgba(250, 204, 21, 0.2);
+  color: var(--adhvaga-yellow);
+  border-radius: 0.75rem;
+}
+
+.icon-box i {
+  font-size: 1.875rem;
+}
+
+.service-title {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #111827;
+  line-height: 1.2;
+}
+
+.service-description {
+  font-size: 1.25rem;
+  color: #6b7280;
+  line-height: 1.75;
+}
+
+/* Features */
+.features-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+@media (min-width: 640px) {
+  .features-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.features-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.check-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--adhvaga-yellow);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.check-icon i {
+  font-size: 10px;
+  color: #000;
+}
+
+/* Buttons */
+.button-group {
+  padding-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-primary {
+  background: #000;
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.btn-primary i {
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #1f2937;
+}
+
+.btn-primary:hover i {
+  transform: translateX(4px);
+}
+
+.btn-secondary {
+  border: 2px solid #000;
+  background: transparent;
+  color: #000;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: #f9fafb;
+}
