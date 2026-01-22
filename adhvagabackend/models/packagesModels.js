@@ -57,7 +57,7 @@ const PackageSchema = new mongoose.Schema({
   },
 
   images: {
-    type: [String],
+    type: String,
   },
 
   availableSeats: {

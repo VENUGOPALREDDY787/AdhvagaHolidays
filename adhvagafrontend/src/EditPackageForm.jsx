@@ -1,226 +1,5 @@
-// import React, { useState } from "react";
-// import "./EditPackageForm.css";
-// import {
-//   ArrowLeft,
-//   Save,
-//   X,
-//   Plus,
-//   Trash2,
-//   Image as ImageIcon,
-// } from "lucide-react";
-
-// const EditPackageForm = ({ pkg, onSave, onCancel, CATEGORIES }) => {
-//   const [formData, setFormData] = useState({
-//     ...pkg,
-//     itinerary: pkg.itinerary || [],
-//   });
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData((prev) => ({
-//       ...prev,
-//       [name]:
-//         name === "price" || name === "rating"
-//           ? parseFloat(value)
-//           : value,
-//     }));
-//   };
-
-//   const handleItineraryChange = (index, value) => {
-//     const updated = [...formData.itinerary];
-//     updated[index] = value;
-//     setFormData({ ...formData, itinerary: updated });
-//   };
-
-//   const addItineraryStep = () => {
-//     setFormData({
-//       ...formData,
-//       itinerary: [...formData.itinerary, ""],
-//     });
-//   };
-
-//   const removeItineraryStep = (index) => {
-//     setFormData({
-//       ...formData,
-//       itinerary: formData.itinerary.filter((_, i) => i !== index),
-//     });
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     onSave(formData);
-//   };
-
-//   return (
-//     <div className="page">
-//       <div className="container">
-//         <button className="back-btn" onClick={onCancel}>
-//           <ArrowLeft size={16} /> Cancel and Return
-//         </button>
-
-//         <form onSubmit={handleSubmit}>
-//           <div className="card">
-//             <div className="card-header">
-//               <h1>Edit Package Details</h1>
-//               <div className="package-id">Package ID: {pkg.id}</div>
-//             </div>
-
-//             <div className="grid">
-//               {/* Left */}
-//               <div>
-//                 <label>Package Title</label>
-//                 <input
-//                   name="title"
-//                   value={formData.title}
-//                   onChange={handleChange}
-//                   required
-//                 />
-
-//                 <label>Destination</label>
-//                 <input
-//                   name="destination"
-//                   value={formData.destination}
-//                   onChange={handleChange}
-//                   required
-//                 />
-
-//                 <div className="row">
-//                   <div>
-//                     <label>Price ($)</label>
-//                     <input
-//                       type="number"
-//                       name="price"
-//                       value={formData.price}
-//                       onChange={handleChange}
-//                       required
-//                     />
-//                   </div>
-//                   <div>
-//                     <label>Rating</label>
-//                     <input
-//                       type="number"
-//                       step="0.1"
-//                       min="0"
-//                       max="5"
-//                       name="rating"
-//                       value={formData.rating}
-//                       onChange={handleChange}
-//                       required
-//                     />
-//                   </div>
-//                 </div>
-
-//                 <label>Duration</label>
-//                 <input
-//                   name="duration"
-//                   value={formData.duration}
-//                   onChange={handleChange}
-//                   required
-//                 />
-//               </div>
-
-//               {/* Right */}
-//               <div>
-//                 <label>Cover Image URL</label>
-//                 <div className="image-input">
-//                   <ImageIcon size={20} />
-//                   <input
-//                     name="image"
-//                     value={formData.image}
-//                     onChange={handleChange}
-//                     required
-//                   />
-//                 </div>
-
-//                 <div className="image-preview">
-//                   {formData.image ? (
-//                     <img src={formData.image} alt="preview" />
-//                   ) : (
-//                     <span>Image Preview</span>
-//                   )}
-//                 </div>
-
-//                 <div className="row">
-//                   <div>
-//                     <label>Category</label>
-//                     <select
-//                       name="category"
-//                       value={formData.category}
-//                       onChange={handleChange}
-//                     >
-//                       {CATEGORIES.filter((c) => c !== "All").map((cat) => (
-//                         <option key={cat}>{cat}</option>
-//                       ))}
-//                     </select>
-//                   </div>
-
-//                   <div>
-//                     <label>Tag</label>
-//                     <input
-//                       name="tag"
-//                       value={formData.tag || ""}
-//                       onChange={handleChange}
-//                     />
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-
-//             <label>Description</label>
-//             <textarea
-//               name="description"
-//               rows="4"
-//               value={formData.description || ""}
-//               onChange={handleChange}
-//             />
-//           </div>
-
-//           {/* Itinerary */}
-//           <div className="card">
-//             <div className="card-header">
-//               <h2>Edit Itinerary</h2>
-//               <button type="button" className="add-btn" onClick={addItineraryStep}>
-//                 <Plus size={16} /> Add Day
-//               </button>
-//             </div>
-
-//             {formData.itinerary.length === 0 && (
-//               <div className="empty">No itinerary steps added yet.</div>
-//             )}
-
-//             {formData.itinerary.map((step, i) => (
-//               <div key={i} className="itinerary-row">
-//                 <div className="day">{i + 1}</div>
-//                 <input
-//                   value={step}
-//                   onChange={(e) =>
-//                     handleItineraryChange(i, e.target.value)
-//                   }
-//                 />
-//                 <button type="button" onClick={() => removeItineraryStep(i)}>
-//                   <Trash2 size={18} />
-//                 </button>
-//               </div>
-//             ))}
-//           </div>
-
-//           {/* Actions */}
-//           <div className="actions">
-//             <button type="submit" className="save">
-//               <Save size={18} /> Save Changes
-//             </button>
-//             <button type="button" className="cancel" onClick={onCancel}>
-//               <X size={18} /> Cancel
-//             </button>
-//           </div>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// // export default EditPackageForm;
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "./EditPackageForm.css";
 import {
   ArrowLeft,
@@ -231,27 +10,50 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 
-const EditPackageForm = ({
-  pkg = {},
-  onSave = () => {},
-  onCancel = () => {},
-  CATEGORIES = [],
-}) => {
-  const [formData, setFormData] = useState({
-    id: pkg.id || pkg._id || "",
-    title: pkg.title || "",
-    destination: pkg.destination || "",
-    price: pkg.price || 0,
-    rating: pkg.rating || 0,
-    duration: pkg.duration || "",
-    image: pkg.image || null, // File or existing URL
-    category: pkg.category || "",
-    tag: pkg.tag || "",
-    description: pkg.description || "",
-    itinerary: pkg.itinerary || [],
-  });
+const CATEGORIES = [
+  "Relaxation",
+  "Cultural",
+  "Adventure",
+  "Luxury",
+  "Family",
+  "Transport",
+];
 
-  /* ---------------- handlers ---------------- */
+const EditPackageForm = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState(null);
+
+  useEffect(() => {
+    const fetchPackage = async () => {
+      try {
+        const res = await fetch(`http://localhost:8080/api/packages/${id}`);
+        if (!res.ok) throw new Error("Failed to fetch");
+
+        const data = await res.json();
+
+        setFormData({
+          id: data._id,
+          title: data.title || "",
+          destination: data.destination || "",
+          price: data.price || 0,
+          rating: data.rating || 0,
+          duration: data.duration || "",
+          image: data.image || data.images?.[0] || null,
+          category: data.category || "",
+          tag: data.tag || "",
+          description: data.description || "",
+          itinerary: data.itinerary?.length
+            ? data.itinerary
+            : [{ day: 1, title: "", description: "" }],
+        });
+      } catch (err) {
+        alert("Failed to load package");
+      }
+    };
+
+    fetchPackage();
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -268,46 +70,44 @@ const EditPackageForm = ({
     setFormData({ ...formData, image: e.target.files[0] });
   };
 
-  const handleItineraryChange = (index, value) => {
+  const handleItineraryChange = (index, field, value) => {
     const updated = [...formData.itinerary];
-    updated[index] = value;
+    updated[index] = { ...updated[index], [field]: value };
     setFormData({ ...formData, itinerary: updated });
   };
 
   const addItineraryStep = () => {
     setFormData({
       ...formData,
-      itinerary: [...formData.itinerary, ""],
+      itinerary: [
+        ...formData.itinerary,
+        { day: formData.itinerary.length + 1, title: "", description: "" },
+      ],
     });
   };
 
   const removeItineraryStep = (index) => {
-    setFormData({
-      ...formData,
-      itinerary: formData.itinerary.filter((_, i) => i !== index),
-    });
-  };
+    const updated = formData.itinerary
+      .filter((_, i) => i !== index)
+      .map((item, idx) => ({ ...item, day: idx + 1 }));
 
-  /* ---------------- SUBMIT (API CALL) ---------------- */
+    setFormData({ ...formData, itinerary: updated });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const token = localStorage.getItem("token"); // JWT
+      const token = localStorage.getItem("token");
 
       const data = new FormData();
-      data.append("title", formData.title);
-      data.append("destination", formData.destination);
-      data.append("price", formData.price);
-      data.append("rating", formData.rating);
-      data.append("duration", formData.duration);
-      data.append("category", formData.category);
-      data.append("tag", formData.tag);
-      data.append("description", formData.description);
-      data.append("itinerary", JSON.stringify(formData.itinerary));
+      Object.entries(formData).forEach(([key, value]) => {
+        if (key === "itinerary") {
+          data.append("itinerary", JSON.stringify(value));
+        } else if (key !== "image") {
+          data.append(key, value);
+        }
+      });
 
-      // send image ONLY if user selected a new file
       if (formData.image instanceof File) {
         data.append("image", formData.image);
       }
@@ -316,170 +116,105 @@ const EditPackageForm = ({
         `http://localhost:8080/api/packages/${formData.id}`,
         {
           method: "PUT",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
           body: data,
         }
       );
 
-      if (!res.ok) {
-        throw new Error("Update failed");
-      }
-
-      const updatedPackage = await res.json();
-      onSave(updatedPackage);
-    } catch (error) {
-      console.error(error);
+      if (!res.ok) throw new Error("Update failed");
+      navigate(-1);
+    } catch {
       alert("Failed to update package");
     }
   };
 
-  /* ---------------- UI ---------------- */
+  if (!formData) return <p style={{ padding: 40 }}>Loading...</p>;
 
   return (
-    <div className="page">
-      <div className="container">
-        <button className="back-btn" onClick={onCancel}>
+    <div className="epf-page">
+      <div className="epf-container">
+        <button className="epf-back-btn" onClick={() => navigate(-1)}>
           <ArrowLeft size={16} /> Cancel and Return
         </button>
 
         <form onSubmit={handleSubmit}>
-          <div className="card">
-            <div className="card-header">
+          <div className="epf-card">
+            <div className="epf-card-header">
               <h1>Edit Package Details</h1>
-              <div className="package-id">Package ID: {formData.id}</div>
+              <div className="epf-package-id">Package ID: {formData.id}</div>
             </div>
 
-            <div className="grid">
-              {/* LEFT */}
+            <div className="epf-grid">
               <div>
                 <label>Package Title</label>
-                <input
-                  name="title"
-                  value={formData.title}
-                  onChange={handleChange}
-                  required
-                />
+                <input name="title" value={formData.title} onChange={handleChange} />
 
                 <label>Destination</label>
-                <input
-                  name="destination"
-                  value={formData.destination}
-                  onChange={handleChange}
-                  required
-                />
+                <input name="destination" value={formData.destination} onChange={handleChange} />
 
-                <div className="row">
+                <div className="epf-row">
                   <div>
                     <label>Price ($)</label>
-                    <input
-                      type="number"
-                      name="price"
-                      value={formData.price}
-                      onChange={handleChange}
-                      required
-                    />
+                    <input type="number" name="price" value={formData.price} onChange={handleChange} />
                   </div>
                   <div>
                     <label>Rating</label>
-                    <input
-                      type="number"
-                      step="0.1"
-                      min="0"
-                      max="5"
-                      name="rating"
-                      value={formData.rating}
-                      onChange={handleChange}
-                      required
-                    />
+                    <input type="number" step="0.1" min="0" max="5" name="rating" value={formData.rating} onChange={handleChange} />
                   </div>
                 </div>
 
                 <label>Duration</label>
-                <input
-                  name="duration"
-                  value={formData.duration}
-                  onChange={handleChange}
-                  required
-                />
+                <input name="duration" value={formData.duration} onChange={handleChange} />
               </div>
 
-              {/* RIGHT */}
               <div>
                 <label>Cover Image</label>
-                <div className="image-input">
+                <div className="epf-image-input">
                   <ImageIcon size={20} />
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                  />
+                  <input type="file" accept="image/*" onChange={handleImageChange} />
                 </div>
 
-                <div className="image-preview">
+                <div className="epf-image-preview">
                   {formData.image && !(formData.image instanceof File) && (
                     <img src={formData.image} alt="preview" />
                   )}
                 </div>
 
-                <div className="row">
+                <div className="epf-row">
                   <div>
                     <label>Category</label>
-                    <select
-                      name="category"
-                      value={formData.category}
-                      onChange={handleChange}
-                    >
-                      {CATEGORIES.filter((c) => c !== "All").map((cat) => (
-                        <option key={cat}>{cat}</option>
+                    <select name="category" value={formData.category} onChange={handleChange}>
+                      {CATEGORIES.map((cat) => (
+                        <option key={cat} value={cat}>{cat}</option>
                       ))}
                     </select>
                   </div>
 
                   <div>
                     <label>Tag</label>
-                    <input
-                      name="tag"
-                      value={formData.tag}
-                      onChange={handleChange}
-                    />
+                    <input name="tag" value={formData.tag} onChange={handleChange} />
                   </div>
                 </div>
               </div>
             </div>
 
             <label>Description</label>
-            <textarea
-              name="description"
-              rows="4"
-              value={formData.description}
-              onChange={handleChange}
-            />
+            <textarea rows="4" name="description" value={formData.description} onChange={handleChange} />
           </div>
 
-          {/* ITINERARY */}
-          <div className="card">
-            <div className="card-header">
+          <div className="epf-card">
+            <div className="epf-card-header">
               <h2>Edit Itinerary</h2>
-              <button type="button" className="add-btn" onClick={addItineraryStep}>
+              <button type="button" className="epf-add-btn" onClick={addItineraryStep}>
                 <Plus size={16} /> Add Day
               </button>
             </div>
 
-            {formData.itinerary.length === 0 && (
-              <div className="empty">No itinerary steps added yet.</div>
-            )}
-
             {formData.itinerary.map((step, i) => (
-              <div key={i} className="itinerary-row">
-                <div className="day">{i + 1}</div>
-                <input
-                  value={step}
-                  onChange={(e) =>
-                    handleItineraryChange(i, e.target.value)
-                  }
-                />
+              <div key={i} className="epf-itinerary-row">
+                <div className="epf-day">{i + 1}</div>
+                <input value={step.title} onChange={(e) => handleItineraryChange(i, "title", e.target.value)} />
+                <input value={step.description} onChange={(e) => handleItineraryChange(i, "description", e.target.value)} />
                 <button type="button" onClick={() => removeItineraryStep(i)}>
                   <Trash2 size={18} />
                 </button>
@@ -487,12 +222,11 @@ const EditPackageForm = ({
             ))}
           </div>
 
-          {/* ACTIONS */}
-          <div className="actions">
-            <button type="submit" className="save">
+          <div className="epf-actions">
+            <button type="submit" className="epf-save">
               <Save size={18} /> Save Changes
             </button>
-            <button type="button" className="cancel" onClick={onCancel}>
+            <button type="button" className="epf-cancel" onClick={() => navigate(-1)}>
               <X size={18} /> Cancel
             </button>
           </div>
@@ -503,315 +237,3 @@ const EditPackageForm = ({
 };
 
 export default EditPackageForm;
-
-
-
-
-// import React, { useState } from "react";
-// import "./EditPackageForm.css";
-// import {
-//   ArrowLeft,
-//   Save,
-//   X,
-//   Plus,
-//   Trash2,
-//   Image as ImageIcon,
-// } from "lucide-react";
-
-// const EditPackageForm = ({
-//   pkg = {},
-//   onSave = () => {},
-//   onCancel = () => {},
-//   CATEGORIES = [],
-// }) => {
-//   const [formData, setFormData] = useState({
-//     id: pkg.id || pkg._id || "",
-//     title: pkg.title || "",
-//     destination: pkg.destination || "",
-//     price: pkg.price || 0,
-//     rating: pkg.rating || 0,
-//     duration: pkg.duration || "",
-//     image: pkg.image || null,
-//     category: pkg.category || "",
-//     tag: pkg.tag || "",
-//     description: pkg.description || "",
-//     itinerary: pkg.itinerary?.length
-//       ? pkg.itinerary
-//       : [{ day: 1, title: "", description: "" }],
-//   });
-
-//   /* ---------------- handlers ---------------- */
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData((prev) => ({
-//       ...prev,
-//       [name]:
-//         name === "price" || name === "rating"
-//           ? parseFloat(value)
-//           : value,
-//     }));
-//   };
-
-//   const handleImageChange = (e) => {
-//     setFormData({ ...formData, image: e.target.files[0] });
-//   };
-
-//   /* ✅ FIXED itinerary handlers (object based) */
-
-//   const handleItineraryChange = (index, field, value) => {
-//     const updated = [...formData.itinerary];
-//     updated[index] = {
-//       ...updated[index],
-//       [field]: value,
-//     };
-//     setFormData({ ...formData, itinerary: updated });
-//   };
-
-//   const addItineraryStep = () => {
-//     setFormData({
-//       ...formData,
-//       itinerary: [
-//         ...formData.itinerary,
-//         {
-//           day: formData.itinerary.length + 1,
-//           title: "",
-//           description: "",
-//         },
-//       ],
-//     });
-//   };
-
-//   const removeItineraryStep = (index) => {
-//     const updated = formData.itinerary
-//       .filter((_, i) => i !== index)
-//       .map((item, idx) => ({ ...item, day: idx + 1 }));
-
-//     setFormData({ ...formData, itinerary: updated });
-//   };
-
-//   /* ---------------- SUBMIT (API CALL) ---------------- */
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     try {
-//       const token = localStorage.getItem("token");
-
-//       const data = new FormData();
-//       data.append("title", formData.title);
-//       data.append("destination", formData.destination);
-//       data.append("price", formData.price);
-//       data.append("rating", formData.rating);
-//       data.append("duration", formData.duration);
-//       data.append("category", formData.category);
-//       data.append("tag", formData.tag);
-//       data.append("description", formData.description);
-//       data.append("itinerary", JSON.stringify(formData.itinerary));
-
-//       if (formData.image instanceof File) {
-//         data.append("image", formData.image);
-//       }
-
-//       const res = await fetch(
-//         `http://localhost:8080/api/packages/${formData.id}`,
-//         {
-//           method: "PUT",
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//           },
-//           body: data,
-//         }
-//       );
-
-//       if (!res.ok) {
-//         throw new Error("Update failed");
-//       }
-
-//       const updatedPackage = await res.json();
-//       onSave(updatedPackage);
-//     } catch (error) {
-//       console.error(error);
-//       alert("Failed to update package");
-//     }
-//   };
-
-//   /* ---------------- UI ---------------- */
-
-//   return (
-//     <div className="page">
-//       <div className="container">
-//         <button className="back-btn" onClick={onCancel}>
-//           <ArrowLeft size={16} /> Cancel and Return
-//         </button>
-
-//         <form onSubmit={handleSubmit}>
-//           <div className="card">
-//             <div className="card-header">
-//               <h1>Edit Package Details</h1>
-//               <div className="package-id">Package ID: {formData.id}</div>
-//             </div>
-
-//             <div className="grid">
-//               {/* LEFT */}
-//               <div>
-//                 <label>Package Title</label>
-//                 <input
-//                   name="title"
-//                   value={formData.title}
-//                   onChange={handleChange}
-//                   required
-//                 />
-
-//                 <label>Destination</label>
-//                 <input
-//                   name="destination"
-//                   value={formData.destination}
-//                   onChange={handleChange}
-//                   required
-//                 />
-
-//                 <div className="row">
-//                   <div>
-//                     <label>Price ($)</label>
-//                     <input
-//                       type="number"
-//                       name="price"
-//                       value={formData.price}
-//                       onChange={handleChange}
-//                       required
-//                     />
-//                   </div>
-//                   <div>
-//                     <label>Rating</label>
-//                     <input
-//                       type="number"
-//                       step="0.1"
-//                       min="0"
-//                       max="5"
-//                       name="rating"
-//                       value={formData.rating}
-//                       onChange={handleChange}
-//                       required
-//                     />
-//                   </div>
-//                 </div>
-
-//                 <label>Duration</label>
-//                 <input
-//                   name="duration"
-//                   value={formData.duration}
-//                   onChange={handleChange}
-//                   required
-//                 />
-//               </div>
-
-//               {/* RIGHT */}
-//               <div>
-//                 <label>Cover Image</label>
-//                 <div className="image-input">
-//                   <ImageIcon size={20} />
-//                   <input
-//                     type="file"
-//                     accept="image/*"
-//                     onChange={handleImageChange}
-//                   />
-//                 </div>
-
-//                 <div className="image-preview">
-//                   {formData.image && !(formData.image instanceof File) && (
-//                     <img src={formData.image} alt="preview" />
-//                   )}
-//                 </div>
-
-//                 <div className="row">
-//                   <div>
-//                     <label>Category</label>
-//                     <select
-//                       name="category"
-//                       value={formData.category}
-//                       onChange={handleChange}
-//                     >
-//                       {CATEGORIES.filter((c) => c !== "All").map((cat) => (
-//                         <option key={cat}>{cat}</option>
-//                       ))}
-//                     </select>
-//                   </div>
-
-//                   <div>
-//                     <label>Tag</label>
-//                     <input
-//                       name="tag"
-//                       value={formData.tag}
-//                       onChange={handleChange}
-//                     />
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-
-//             <label>Description</label>
-//             <textarea
-//               name="description"
-//               rows="4"
-//               value={formData.description}
-//               onChange={handleChange}
-//             />
-//           </div>
-
-//           {/* ITINERARY */}
-//           <div className="card">
-//             <div className="card-header">
-//               <h2>Edit Itinerary</h2>
-//               <button type="button" className="add-btn" onClick={addItineraryStep}>
-//                 <Plus size={16} /> Add Day
-//               </button>
-//             </div>
-
-//             {formData.itinerary.length === 0 && (
-//               <div className="empty">No itinerary steps added yet.</div>
-//             )}
-
-//             {formData.itinerary.map((step, i) => (
-//               <div key={i} className="itinerary-row">
-//                 <div className="day">{i + 1}</div>
-
-//                 <input
-//                   value={step.title}
-//                   placeholder="Title"
-//                   onChange={(e) =>
-//                     handleItineraryChange(i, "title", e.target.value)
-//                   }
-//                 />
-
-//                 <input
-//                   value={step.description}
-//                   placeholder="Description"
-//                   onChange={(e) =>
-//                     handleItineraryChange(i, "description", e.target.value)
-//                   }
-//                 />
-
-//                 <button type="button" onClick={() => removeItineraryStep(i)}>
-//                   <Trash2 size={18} />
-//                 </button>
-//               </div>
-//             ))}
-//           </div>
-
-//           {/* ACTIONS */}
-//           <div className="actions">
-//             <button type="submit" className="save">
-//               <Save size={18} /> Save Changes
-//             </button>
-//             <button type="button" className="cancel" onClick={onCancel}>
-//               <X size={18} /> Cancel
-//             </button>
-//           </div>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default EditPackageForm;

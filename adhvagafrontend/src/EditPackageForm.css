@@ -1,19 +1,16 @@
-body {
+.epf-page {
+  min-height: 100vh;
   background: #f9fafb;
+  padding-bottom: 80px;
   font-family: Inter, sans-serif;
 }
 
-.page {
-  min-height: 100vh;
-  padding-bottom: 80px;
-}
-
-.container {
+.epf-container {
   margin: auto;
   padding: 48px 16px;
 }
 
-.back-btn {
+.epf-back-btn {
   background: none;
   border: none;
   color: #71717a;
@@ -26,7 +23,7 @@ body {
   gap: 6px;
 }
 
-.card {
+.epf-card {
   background: #fff;
   border-radius: 40px;
   padding: 48px;
@@ -34,57 +31,37 @@ body {
   margin-bottom: 32px;
 }
 
-.card-header {
+.epf-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.package-id {
+.epf-package-id {
   background: #facc15;
   padding: 12px 18px;
   border-radius: 16px;
   font-weight: 800;
 }
 
-.grid {
+.epf-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
 }
 
-label {
-  display: block;
-  margin-top: 18px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: #a1a1aa;
-}
-
-input,
-textarea,
-select {
-  width: 100%;
-  margin-top: 6px;
-  padding: 14px 18px;
-  border-radius: 18px;
-  border: 1px solid #e5e7eb;
-  font-weight: 700;
-}
-
-.row {
+.epf-row {
   display: flex;
   gap: 16px;
 }
 
-.image-input {
+.epf-image-input {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.image-preview {
+.epf-image-preview {
   margin-top: 16px;
   height: 120px;
   border-radius: 18px;
@@ -94,20 +71,20 @@ select {
   align-items: center;
 }
 
-.image-preview img {
+.epf-image-preview img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.itinerary-row {
+.epf-itinerary-row {
   display: flex;
   gap: 12px;
   align-items: center;
   margin-top: 12px;
 }
 
-.day {
+.epf-day {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -119,7 +96,7 @@ select {
   font-weight: 800;
 }
 
-.actions {
+.epf-actions {
   display: flex;
   justify-content: center;
   gap: 16px;
@@ -127,7 +104,7 @@ select {
   bottom: 20px;
 }
 
-.save {
+.epf-save {
   background: #18181b;
   color: #facc15;
   padding: 18px 36px;
@@ -135,7 +112,7 @@ select {
   font-weight: 900;
 }
 
-.cancel {
+.epf-cancel {
   background: #fff;
   border: 1px solid #e5e7eb;
   padding: 18px 36px;
