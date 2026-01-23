@@ -1,37 +1,49 @@
-
 import React, { useEffect, useState } from "react";
 import "./AdminPortal.css";
-import {
-  Edit2,
-  Trash2,
-  Plus,
-  ArrowLeft,
-  Settings,
-} from "lucide-react";
+import { Edit2, Trash2, Plus, ArrowLeft, Settings } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const AdminPortal = () => {
   const [packages, setPackages] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchPackages = async () => {
-      try {
-        const res = await fetch("http://localhost:8080/api/packages");
-        const data = await res.json();
-        setPackages(data);
-      } catch (error) {
-        console.error("Error fetching packages:", error);
-      }
-    };
+useEffect(() => {
+  const fetchPackages = async () => {
+    try {
+      const token = localStorage.getItem("token");
 
-    fetchPackages();
-  }, []);
+      if (!token) {
+        navigate("/admin/login");
+        return;
+      }
+
+      const res = await fetch("http://localhost:8080/api/packages", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error("Unauthorized");
+      }
+
+      const data = await res.json();
+      setPackages(data);
+    } catch (error) {
+      console.error("Error fetching packages:", error);
+      localStorage.removeItem("token");
+      navigate("/admin/login");
+    }
+  };
+
+  fetchPackages();
+}, [navigate]);
+
 
   const avgPrice =
     packages.length > 0
       ? Math.round(
-          packages.reduce((acc, p) => acc + p.price, 0) / packages.length
+          packages.reduce((acc, p) => acc + p.price, 0) / packages.length,
         )
       : 0;
 
@@ -39,47 +51,47 @@ const AdminPortal = () => {
     navigate(-1); // goes back to previous page
   };
 
- 
-const handleEdit = (id) => {
-  navigate(`/admin/edit/${id}`);
-};  
+  const handleEdit = (id) => {
+    navigate(`/admin/edit/${id}`);
+  };
 
-  const handleDelete = async(id) => {
-      if (!window.confirm("Are you sure you want to delete this package?")) return;
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this package?"))
+      return;
 
-  try {
-    const token = localStorage.getItem("token");
+    try {
+      const token = localStorage.getItem("token");
 
-    const res = await fetch(
-      `http://localhost:8080/api/packages/${id}`,
-      {
+      const res = await fetch(`http://localhost:8080/api/packages/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
         },
+      });
+
+      if (!res.ok) {
+        throw new Error("Delete failed");
       }
-    );
 
-    if (!res.ok) {
-      throw new Error("Delete failed");
+      setPackages((prev) => prev.filter((p) => p._id !== id));
+    } catch (error) {
+      console.error(error);
+      alert("Failed to delete package");
     }
-
-    setPackages((prev) => prev.filter((p) => p._id !== id));
-  } catch (error) {
-    console.error(error);
-    alert("Failed to delete package");
-  }
   };
-
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/admin/login");
+  };
   return (
     <div className="admin-page">
       <div className="admin-container">
         {/* Header */}
         <div className="admin-header">
           <div>
-            <button className="exit-btn" onClick={handleBack}>
+            <button className="exit-btn" onClick={handleLogout}>
               <ArrowLeft size={16} />
-              Exit Admin Mode
+              Logout
             </button>
 
             <h1 className="admin-title">
@@ -138,9 +150,7 @@ const handleEdit = (id) => {
                         <img src={pkg.image} alt="" />
                         <div>
                           <p className="pkg-title">{pkg.title}</p>
-                          <p className="pkg-destination">
-                            {pkg.destination}
-                          </p>
+                          <p className="pkg-destination">{pkg.destination}</p>
                         </div>
                       </div>
                     </td>
@@ -175,7 +185,10 @@ const handleEdit = (id) => {
 
                 {packages.length === 0 && (
                   <tr>
-                    <td colSpan="4" style={{ textAlign: "center", padding: "40px" }}>
+                    <td
+                      colSpan="4"
+                      style={{ textAlign: "center", padding: "40px" }}
+                    >
                       No packages found
                     </td>
                   </tr>

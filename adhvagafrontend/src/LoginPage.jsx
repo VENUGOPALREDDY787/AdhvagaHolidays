@@ -10,20 +10,38 @@ const LoginPage = ({ onLogin }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError("");
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsLoading(true);
+  setError("");
 
-    setTimeout(() => {
-      if (email === "admin@adhvaga.com" && password === "admin123") {
-        onLogin(email, "Senior Administrator");
-      } else {
-        setError("Invalid credentials. Please use admin@adhvaga.com / admin123");
-        setIsLoading(false);
-      }
-    }, 1500);
-  };
+  try {
+    const res = await fetch("http://localhost:8080/api/admin/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message || "Login failed");
+    }
+
+    // ✅ Save token
+    localStorage.setItem("token", data.token);
+
+    // ✅ Redirect
+    onLogin();
+  } catch (err) {
+    setError(err.message);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   return (
     <div className="login-wrapper">

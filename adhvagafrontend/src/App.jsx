@@ -10,7 +10,8 @@ import Support from "./Pages/Support";
 import TourPackages from "./Pages/tourpackages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminPortal from "./AdminPortal.jsx";
-import LoginPage from './Loginpage'
+import ProtectedRoute from "./ProtectedRoute";
+import LoginPage from "./Loginpage";
  import EditPackageForm from './EditPackageForm.jsx'
 // import DomesticPackages from './Components/Packages/DomesticPackages.jsx'
 // import VisaAssistant from './VisaAssistant.jsx'
@@ -22,15 +23,36 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/About" element={<AboutPage />} />
-        <Route path="/Blogs" element={<Blogs />} />
-        <Route path="/Coustom" element={<CostomPackages />} />
-        <Route path="/Home" element={<Home />} />
-        <Route path="/Support" element={<Support />} />
-        <Route path="/Packages" element={<TourPackages />} />
-        <Route path="/admin" element={<AdminPortal />} />
-     <Route path="/admin/edit/:id" element={<EditPackageForm />} />
-      </Routes>
+  <Route path="/About" element={<AboutPage />} />
+  <Route path="/Blogs" element={<Blogs />} />
+  <Route path="/Coustom" element={<CostomPackages />} />
+  <Route path="/Home" element={<Home />} />
+  <Route path="/Support" element={<Support />} />
+  <Route path="/Packages" element={<TourPackages />} />
+
+  {/* 🔐 Admin Auth */}
+  <Route path="/admin/login" element={<LoginPage onLogin={() => window.location.href = "/admin"} />} />
+
+  {/* 🔐 Protected Admin */}
+  <Route
+    path="/admin"
+    element={
+      <ProtectedRoute>
+        <AdminPortal />
+      </ProtectedRoute>
+    }
+  />
+
+  <Route
+    path="/admin/edit/:id"
+    element={
+      <ProtectedRoute>
+        <EditPackageForm />
+      </ProtectedRoute>
+    }
+  />
+</Routes>
+
       <Footer />
     </BrowserRouter>
   );
