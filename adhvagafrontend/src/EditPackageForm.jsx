@@ -132,12 +132,14 @@ const EditPackageForm = () => {
 
   return (
     <div className="epf-page">
-      <div className="epf-container">
-        <button className="epf-back-btn" onClick={() => navigate(-1)}>
+      <div className="container">
+        <button className="epf-back-btn pt-5" onClick={() => navigate(-1)}>
           <ArrowLeft size={16} /> Cancel and Return
         </button>
 
         <form onSubmit={handleSubmit}>
+          
+          <div className="row">
           <div className="epf-card">
             <div className="epf-card-header">
               <h1>Edit Package Details</h1>
@@ -146,32 +148,32 @@ const EditPackageForm = () => {
 
             <div className="epf-grid">
               <div>
-                <label>Package Title</label>
-                <input name="title" value={formData.title} onChange={handleChange} />
+                <label className="form-label"><b>Package Title</b></label>
+                <input name="title" value={formData.title} onChange={handleChange} className="form-control text-muted"/>
 
-                <label>Destination</label>
-                <input name="destination" value={formData.destination} onChange={handleChange} />
+                <label className="form-label">Destination</label>
+                <input name="destination" value={formData.destination} onChange={handleChange}  className="form-control text-muted"/>
 
                 <div className="epf-row">
                   <div>
-                    <label>Price ($)</label>
-                    <input type="number" name="price" value={formData.price} onChange={handleChange} />
+                    <label className="form-label">Price ($)</label>
+                    <input type="number" name="price" value={formData.price} onChange={handleChange}  className="form-control text-muted" />
                   </div>
                   <div>
-                    <label>Rating</label>
-                    <input type="number" step="0.1" min="0" max="5" name="rating" value={formData.rating} onChange={handleChange} />
+                    <label className="form-label">Rating</label>
+                    <input type="number" step="0.1" min="0" max="5" name="rating" value={formData.rating} onChange={handleChange}  className="form-control text-muted" />
                   </div>
                 </div>
 
-                <label>Duration</label>
-                <input name="duration" value={formData.duration} onChange={handleChange} />
+                <label className="form-label">Duration</label>
+                <input name="duration" value={formData.duration} onChange={handleChange}  className="form-control text-muted"/>
               </div>
 
               <div>
-                <label>Cover Image</label>
+                <label className="form-label">Cover Image</label>
                 <div className="epf-image-input">
                   <ImageIcon size={20} />
-                  <input type="file" accept="image/*" onChange={handleImageChange} />
+                  <input type="file" accept="image/*" onChange={handleImageChange}  className="form-control text-muted"/>
                 </div>
 
                 <div className="epf-image-preview">
@@ -182,8 +184,8 @@ const EditPackageForm = () => {
 
                 <div className="epf-row">
                   <div>
-                    <label>Category</label>
-                    <select name="category" value={formData.category} onChange={handleChange}>
+                    <label className="form-label">Category</label>
+                    <select name="category" value={formData.category} onChange={handleChange} className="form-control">
                       {CATEGORIES.map((cat) => (
                         <option key={cat} value={cat}>{cat}</option>
                       ))}
@@ -191,15 +193,15 @@ const EditPackageForm = () => {
                   </div>
 
                   <div>
-                    <label>Tag</label>
-                    <input name="tag" value={formData.tag} onChange={handleChange} />
+                    <label className="form-label">Tag</label>
+                    <input name="tag" value={formData.tag} onChange={handleChange}  className="form-control text-muted"/>
                   </div>
                 </div>
               </div>
             </div>
 
-            <label>Description</label>
-            <textarea rows="4" name="description" value={formData.description} onChange={handleChange} />
+            <label className="form-label">Description</label>
+            <textarea rows="4" name="description" value={formData.description} onChange={handleChange}  className="form-control text-muted" />
           </div>
 
           <div className="epf-card">
@@ -212,16 +214,17 @@ const EditPackageForm = () => {
 
             {formData.itinerary.map((step, i) => (
               <div key={i} className="epf-itinerary-row">
-                <div className="epf-day">{i + 1}</div>
-                <input value={step.title} onChange={(e) => handleItineraryChange(i, "title", e.target.value)} />
-                <input value={step.description} onChange={(e) => handleItineraryChange(i, "description", e.target.value)} />
+                <div className="epf-day m">{i + 1}</div>
+                <input value={step.title} onChange={(e) => handleItineraryChange(i, "title", e.target.value)}  className="form-control "/>
+                <input value={step.description} onChange={(e) => handleItineraryChange(i, "description", e.target.value)}   className="form-control"/>
                 <button type="button" onClick={() => removeItineraryStep(i)}>
                   <Trash2 size={18} />
                 </button>
               </div>
             ))}
           </div>
-
+          </div>
+          <div className="row">f
           <div className="epf-actions">
             <button type="submit" className="epf-save">
               <Save size={18} /> Save Changes
@@ -230,6 +233,8 @@ const EditPackageForm = () => {
               <X size={18} /> Cancel
             </button>
           </div>
+          </div>
+          
         </form>
       </div>
     </div>

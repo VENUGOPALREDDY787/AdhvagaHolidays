@@ -94,6 +94,7 @@
   align-items: center;
   justify-content: center;
   font-weight: 800;
+  flex-shrink: 0;
 }
 
 .epf-actions {
