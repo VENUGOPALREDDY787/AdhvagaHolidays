@@ -1,0 +1,152 @@
+.admin-topbar {
+  height: 80px;
+  background: #0a0a0a;
+  border-bottom: 1px solid rgba(210, 180, 140, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.topbar-content {
+  height: 100%;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.topbar-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.topbar-subtitle {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.625rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(210, 180, 140, 0.1);
+  transition: all 0.2s ease;
+}
+
+.search-container:focus-within {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(210, 180, 140, 0.3);
+}
+
+.search-container svg {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.search-container input {
+  background: none;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 0.875rem;
+  width: 200px;
+}
+
+.search-container input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.icon-button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon-button:hover {
+  background: rgba(210, 180, 140, 0.1);
+  color: #d2b48c;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
+  background: #d2b48c;
+  color: #0a0a0a;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.admin-profile:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #d2b48c 0%, #b8956a 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0a0a0a;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.profile-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.profile-role {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+}

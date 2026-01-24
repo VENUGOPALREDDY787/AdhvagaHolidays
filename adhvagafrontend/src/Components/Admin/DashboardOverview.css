@@ -1,0 +1,85 @@
+.dashboard-overview {
+  width: 100%;
+}
+
+.stats-overview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.overview-stat-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(210, 180, 140, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  transition: all 0.2s ease;
+}
+
+.overview-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(210, 180, 140, 0.1);
+  border-color: rgba(210, 180, 140, 0.2);
+}
+
+.stat-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.stat-change {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.stat-change.positive {
+  color: #10b981;
+}
+
+.dashboard-content-area {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(210, 180, 140, 0.1);
+  border-radius: 12px;
+  padding: 3rem;
+  text-align: center;
+}
+
+.welcome-section h1 {
+  font-size: 2rem;
+  color: #fff;
+  margin: 0 0 1rem 0;
+}
+
+.welcome-section p {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
