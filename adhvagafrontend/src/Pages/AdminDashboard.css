@@ -1,0 +1,31 @@
+.admin-dashboard {
+  display: flex;
+  min-height: 100vh;
+  background: #000;
+}
+
+.dashboard-main {
+  flex: 1;
+  margin-left: 260px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 2rem;
+  background: #050505;
+}
+
+.coming-soon {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 1px dashed rgba(210, 180, 140, 0.2);
+}
