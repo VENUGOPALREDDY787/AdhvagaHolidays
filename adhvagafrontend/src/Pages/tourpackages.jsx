@@ -1,4 +1,4 @@
-import PackagesSection from "../Components/Packages/PackagesSection";
+import PackagesSection from "../Components/Packages/InternationalPackages";
 function TourPackages() {
     return ( <>
     <PackagesSection/>

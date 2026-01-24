@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./InternationalPackages.css"; // reuse SAME CSS
+import "./InternationalPackages.css";
 import { BASE_URL } from "../../config/api";
 
-const DomesticPackages = () => {
+const PackagesSection = () => {
+  const navigate = useNavigate();
   const [packages, setPackages] = useState([]);
   const [filter, setFilter] = useState("All");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   const categories = [
     "All",
@@ -19,7 +19,7 @@ const DomesticPackages = () => {
     "Family",
   ];
 
-  // 🔹 FETCH PACKAGES
+  // 🔹 FETCH PACKAGES FROM BACKEND
   useEffect(() => {
     const fetchPackages = async () => {
       try {
@@ -28,15 +28,7 @@ const DomesticPackages = () => {
           throw new Error("Failed to fetch packages");
         }
         const data = await res.json();
-
-        // ✅ ONLY DOMESTIC PACKAGES
-        const domesticOnly = data.filter(
-          (pkg) => pkg.type === "Domestic", // 👈 change if needed
-          // OR pkg.country === "India"
-          // OR pkg.region === "Domestic"
-        );
-
-        setPackages(domesticOnly);
+        setPackages(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -51,15 +43,15 @@ const DomesticPackages = () => {
     filter === "All" ? packages : packages.filter((p) => p.category === filter);
 
   return (
-    <section id="domestic-packages" className="packages-section">
+    <section id="packages" className="packages-section">
       <div className="container">
         <div className="header-flex">
           <div className="header-text">
-            <span className="sub-heading">Explore India</span>
-            <h2 className="main-heading">Domestic Packages</h2>
+            <span className="sub-heading">Our Curated Collection</span>
+            <h2 className="main-heading">International Packages</h2>
             <p className="description">
-              Discover breathtaking destinations across India with expertly
-              crafted travel experiences.
+              Hand-picked destinations and itineraries designed for the
+              discerning traveler.
             </p>
           </div>
 
@@ -76,14 +68,13 @@ const DomesticPackages = () => {
           </div>
         </div>
 
-        {/* 🔹 Loading */}
+        {/* 🔹 Loading & Error (UI-safe) */}
         {loading && (
           <div className="empty-state">
-            <p>Loading domestic packages...</p>
+            <p>Loading packages...</p>
           </div>
         )}
 
-        {/* 🔹 Error */}
         {error && (
           <div className="empty-state">
             <p>{error}</p>
@@ -141,7 +132,6 @@ const DomesticPackages = () => {
                   </div>
 
                   <h3 className="package-title">{pkg.title}</h3>
-
                   <p className="destination-text">
                     <svg
                       className="icon"
@@ -168,7 +158,7 @@ const DomesticPackages = () => {
                   <div className="card-footer">
                     <div className="price-box">
                       <span className="starting-label">Starting from</span>
-                      <span className="price-amount">₹{pkg.price}</span>
+                      <span className="price-amount">${pkg.price}</span>
                     </div>
                     <button
                       className="book-button"
@@ -185,7 +175,7 @@ const DomesticPackages = () => {
 
         {!loading && filteredPackages.length === 0 && (
           <div className="empty-state">
-            <p>No domestic packages available yet.</p>
+            <p>No packages found in this category yet. Stay tuned!</p>
           </div>
         )}
       </div>
@@ -193,4 +183,4 @@ const DomesticPackages = () => {
   );
 };
 
-export default DomesticPackages;
+export default PackagesSection;

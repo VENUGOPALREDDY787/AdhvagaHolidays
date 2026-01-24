@@ -1,0 +1,178 @@
+/* ================= LAYOUT ================= */
+
+.pd-wrapper {
+  max-width: 1280px;
+  margin: auto;
+  padding: 48px 24px;
+  display: grid;
+  grid-template-columns: 1fr; /* mobile first */
+  gap: 48px;
+}
+
+/* Desktop layout (Tailwind lg:grid-cols-12 -> 8/4) */
+@media (min-width: 1024px) {
+  .pd-wrapper {
+    grid-template-columns: 8fr 4fr;
+    align-items: start;
+  }
+
+  /* 🔥 CRITICAL FIX: prevent right column from stretching */
+  .pd-right {
+    align-self: start;
+  }
+}
+
+/* ================= RIGHT COLUMN (STICKY LIKE TAILWIND) ================= */
+
+.pd-right {
+  width: 100%;
+  height: fit-content; /* ensures own space */
+}
+
+/* Sticky wrapper (equivalent to: sticky top-32) */
+@media (min-width: 1024px) {
+  .pd-sticky {
+    position: sticky;
+    top: 128px; /* navbar height */
+  }
+}
+
+/* Disable sticky on mobile */
+@media (max-width: 1023px) {
+  .pd-sticky {
+    position: static;
+  }
+}
+
+/* ================= CONTENT STYLES ================= */
+
+.pd-left h1 {
+  font-size: 48px;
+  font-weight: 900;
+  margin-bottom: 24px;
+}
+
+.pd-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.pd-price {
+  background: #f5cf4a;
+  padding: 8px 16px;
+  border-radius: 14px;
+  font-weight: 900;
+}
+
+.pd-pill {
+  border: 1px solid #eee;
+  padding: 8px 16px;
+  border-radius: 14px;
+  font-weight: 700;
+}
+
+.pd-hero {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 40px;
+  margin: 40px 0;
+}
+
+.pd-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.pd-highlight {
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid #eee;
+  font-weight: 700;
+}
+
+.pd-itinerary .pd-day {
+  border-left: 2px dashed #f5cf4a;
+  padding-left: 24px;
+  margin-bottom: 32px;
+}
+
+.pd-two-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px;
+}
+
+/* ================= BOOKING CARD ================= */
+
+.pd-booking {
+  background: white;
+  padding: 32px;
+  border-radius: 40px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+.pd-booking input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 18px;
+  background: #f4f4f4;
+  border: none;
+  margin-bottom: 16px;
+}
+
+.pd-form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.pd-total {
+  display: flex;
+  justify-content: space-between;
+  margin: 24px 0;
+  font-weight: 900;
+}
+
+.pd-booking button {
+  width: 100%;
+  background: #f5cf4a;
+  border: none;
+  padding: 18px;
+  border-radius: 22px;
+  font-weight: 900;
+}
+
+/* ================= HELP CARD ================= */
+
+.pd-help {
+  margin-top: 32px;
+  background: black;
+  color: white;
+  padding: 24px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ================= SUCCESS STATE ================= */
+
+.pd-success {
+  text-align: center;
+  padding: 80px 24px;
+}
+
+.pd-success-icon {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #d1fae5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  margin: auto;
+}
