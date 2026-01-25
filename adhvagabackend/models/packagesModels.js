@@ -25,6 +25,9 @@ const PackageSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  tag:{
+    type:String,
+  },
 
   description: {
     type: String,
