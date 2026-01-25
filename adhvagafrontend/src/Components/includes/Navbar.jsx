@@ -1,86 +1,89 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import LoginModal from "../Login/LoginModal";
 import logo from "../../assets/unnamed.jpg";
 import "./Navbar.css";
+
 function Navbar() {
-  const [showLogin, setShowLogin] =useState(false);
-  return (<>
-    <nav className="navbar navbar-expand-lg bg-body-tertiary py-2  border-bottom">
-      <div className="container-fluid">
-        <img src={logo} alt="no image" className="navbar-logo ms-5" />
-        <span className="navbar-header ms-3 mt-2">
-          <h3>ADHVAGA</h3>
-          <p>HOILDAYS</p>
-        </span>
+  const [showLogin, setShowLogin] = useState(false);
 
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <form class="d-flex ms-auto" role="search">
-            <ul class="navbar-nav ">
-              <li className="nav-item nav-hover">
-                <Link class="nav-link" to="/Home">
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item ms-5 nav-hover">
-                <Link class="nav-link" to="/About">
-                  About Us
-                </Link>
-              </li>
-              <li className="nav-item ms-5 nav-hover">
-                <Link class="nav-link" to="/Packages">
-                  Domestic Holidays
-                </Link>
-              </li>
-               <li className="nav-item ms-5 nav-hover">
-                <Link class="nav-link" to="/Coustom">
-                  International Holidays
-                </Link>
-              </li>
-              {/* <li className="nav-item me-5 ms-5 nav-hover">
-                <Link class="nav-link" to="/Blogs">
-                  Blogs
-                </Link>
-              </li> */}
-              <li class="nav-item dropdown me-5 ms-5 nav-hover">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Services
-          </a>
-          <ul class="dropdown-menu">
-            <li><Link class="dropdown-item" to="#">Air Tickets</Link></li>
-            <li><Link class="dropdown-item" to="#"> Domestic Holidays</Link></li>
-            <li><Link class="dropdown-item" to="#"> International Holidays</Link></li>
-            <li><Link class="dropdown-item" to="#"> Visa Assistance</Link></li>
-            <li><Link class="dropdown-item" to="#"> Travel Insurance </Link></li>
-            <li><Link class="dropdown-item" to="#"> Corporate Services</Link></li>
-            <li><Link class="dropdown-item" to="#"> Custom Services</Link></li>
-            <li><Link class="dropdown-item" to="#"> Car Rentals</Link></li>
+  return (
+    <>
+      <nav className="navbar navbar-expand-lg bg-body-tertiary py-2 border-bottom">
+        <div className="container-fluid">
+          <img src={logo} alt="no image" className="navbar-logo ms-5" />
 
-            {/* <li><hr class="dropdown-divider"></hr></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li> */}
-          </ul>
-        </li>
-              <li class="nav-item ms-5">
-                <Link class="nav-link active" aria-current="page" to="/Support">
-                  <button type="button" class="btn btn-success btns btn-sm">
-                    <i class="fa-solid fa-phone"></i>&nbsp;Support&nbsp;
-                    <i class="fa-solid fa-angle-down"></i>
-                  </button>
-                </Link>
-              </li>
-              <li class="nav-item me-5">
-                <a class="nav-link" href="#">
-                  <button type="button" class="btn btn-danger btn-sm" onClick={() => setShowLogin(!showLogin)}>Login/Signup</button>
-                 
-                </a>
-              </li>
-              
-            </ul>
-          </form>
+          <span className="navbar-header ms-3 mt-2">
+            <h3>ADHVAGA</h3>
+            <p>HOILDAYS</p>
+          </span>
+
+          <div className="collapse navbar-collapse" id="navbarNavDropdown">
+            <form className="d-flex ms-auto" role="search">
+              <ul className="navbar-nav">
+                <li className="nav-item nav-hover">
+                  <Link className="nav-link" to="/Home">
+                    Home
+                  </Link>
+                </li>
+
+                <li className="nav-item ms-5 nav-hover">
+                  <Link className="nav-link" to="/About">
+                    About Us
+                  </Link>
+                </li>
+
+                <li className="nav-item ms-5 nav-hover">
+                  <Link className="nav-link" to="/Domestic">
+                    Domestic Holidays
+                  </Link>
+                </li>
+
+                <li className="nav-item ms-5 nav-hover">
+                  <Link className="nav-link" to="/International">
+                    International Holidays
+                  </Link>
+                </li>
+
+                <li className="nav-item dropdown me-5 ms-5 nav-hover">
+                  <Link
+                    className="nav-link dropdown-toggle"
+                    to="/Services"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Services
+                  </Link>
+
+                  <ul className="dropdown-menu">
+                    <li><Link className="dropdown-item" to="/Services">Air Tickets</Link></li>
+                    <li><Link className="dropdown-item" to="/Domestic">Domestic Holidays</Link></li>
+                    <li><Link className="dropdown-item" to="/International">International Holidays</Link></li>
+                    <li><Link className="dropdown-item" to="/Services">Visa Assistance</Link></li>
+                    <li><Link className="dropdown-item" to="/Services">Travel Insurance</Link></li>
+                    <li><Link className="dropdown-item" to="/Services">Corporate Services</Link></li>
+                    <li><Link className="dropdown-item" to="/Coustom">Custom Services</Link></li>
+                    <li><Link className="dropdown-item" to="/Services">Car Rentals</Link></li>
+                  </ul>
+                </li>
+
+                <li className="nav-item ms-5">
+                  <Link className="nav-link active" to="/Support">
+                    <button type="button" className="btn btn-success btns btn-sm">
+                      <i className="fa-solid fa-phone"></i>&nbsp;Support&nbsp;
+                      <i className="fa-solid fa-angle-down"></i>
+                    </button>
+                  </Link>
+                </li>
+
+            
+
+              </ul>
+            </form>
+          </div>
         </div>
-      </div>
-    </nav>
-    {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}</>
+      </nav>
+    </>
   );
 }
 

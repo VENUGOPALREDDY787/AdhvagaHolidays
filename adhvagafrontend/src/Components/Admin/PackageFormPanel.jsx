@@ -10,30 +10,50 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
     price: pkg?.price || 0,
     duration: pkg?.duration || "",
     rating: pkg?.rating || 4.5,
-    category: pkg?.category || "Domestic",
+
+    // ✅ FIXED
+    category: pkg?.category || "Adventure", // enum field
+    type: pkg?.type || "Domestic", // Domestic / International
+
     description: pkg?.description || "",
     tag: pkg?.tag || "",
+
+    // ✅ FIXED (arrays)
+    highlights: pkg?.highlights || [],
+    includes: pkg?.includes || [],
+    excludes: pkg?.excludes || [],
+
+    // ✅ FIXED structure
     itinerary: pkg?.itinerary || [],
   });
 
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(
-    pkg?.image ? (pkg.image.startsWith("http") ? pkg.image : `${BASE_URL}/${pkg.image}`) : null
+    pkg?.image
+      ? pkg.image.startsWith("http")
+        ? pkg.image
+        : `${BASE_URL}/${pkg.image}`
+      : null,
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
   const fileInputRef = useRef(null);
 
   const categories = [
-    "Domestic",
-    "International"
+    "Relaxation",
+    "Cultural",
+    "Adventure",
+    "Luxury",
+    "Family",
+    "Transport",
   ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: name === "price" || name === "rating" ? parseFloat(value) || 0 : value,
+      [name]:
+        name === "price" || name === "rating" ? parseFloat(value) || 0 : value,
     }));
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: null }));
@@ -44,7 +64,10 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
     const file = e.target.files[0];
     if (file) {
       if (file.size > 5 * 1024 * 1024) {
-        setErrors((prev) => ({ ...prev, image: "Image must be less than 5MB" }));
+        setErrors((prev) => ({
+          ...prev,
+          image: "Image must be less than 5MB",
+        }));
         return;
       }
       setImageFile(file);
@@ -74,35 +97,42 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
   };
 
   const addItineraryDay = () => {
-    setFormData((prev) => ({
-      ...prev,
-      itinerary: [...prev.itinerary, ""],
-    }));
-  };
+  setFormData((prev) => ({
+    ...prev,
+    itinerary: [
+      ...prev.itinerary,
+      { day: prev.itinerary.length + 1, title: "", description: "" },
+    ],
+  }));
+};
 
-  const updateItineraryDay = (index, value) => {
-    setFormData((prev) => {
-      const updated = [...prev.itinerary];
-      updated[index] = value;
-      return { ...prev, itinerary: updated };
-    });
-  };
+const updateItineraryDay = (index, field, value) => {
+  setFormData((prev) => {
+    const updated = [...prev.itinerary];
+    updated[index] = { ...updated[index], [field]: value };
+    return { ...prev, itinerary: updated };
+  });
+};
 
-  const removeItineraryDay = (index) => {
-    setFormData((prev) => ({
-      ...prev,
-      itinerary: prev.itinerary.filter((_, i) => i !== index),
-    }));
-  };
+const removeItineraryDay = (index) => {
+  setFormData((prev) => ({
+    ...prev,
+    itinerary: prev.itinerary.filter((_, i) => i !== index),
+  }));
+};
+
 
   const validate = () => {
     const newErrors = {};
     if (!formData.title.trim()) newErrors.title = "Title is required";
-    if (!formData.destination.trim()) newErrors.destination = "Destination is required";
-    if (!formData.price || formData.price <= 0) newErrors.price = "Valid price is required";
+    if (!formData.destination.trim())
+      newErrors.destination = "Destination is required";
+    if (!formData.price || formData.price <= 0)
+      newErrors.price = "Valid price is required";
     if (!formData.duration.trim()) newErrors.duration = "Duration is required";
     // Only require image for new packages (when pkg is null/undefined and no image file selected)
-    if (!pkg && !imageFile && !imagePreview) newErrors.image = "Image is required for new cards";
+    if (!pkg && !imageFile && !imagePreview)
+      newErrors.image = "Image is required for new cards";
     return newErrors;
   };
 
@@ -133,20 +163,24 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
 
       if (imageFile) {
         data.append("image", imageFile);
-      } else if (pkg?.image) {
-        // Preserve existing image when no new upload
-        data.append("image", pkg.image);
-      }
+      } 
 
       const hasDbId = Boolean(pkg?._id);
-      const hasNonStaticId = Boolean(pkg?.id && !String(pkg.id).startsWith("static-"));
+      const hasNonStaticId = Boolean(
+        pkg?.id && !String(pkg.id).startsWith("static-"),
+      );
       const useUpdate = hasDbId || hasNonStaticId;
 
       const endpoint = useUpdate
         ? `${BASE_URL}/api/packages/${pkg._id || pkg.id}`
         : `${BASE_URL}/api/packages`;
 
-      console.log("Submitting to:", endpoint, "Method:", useUpdate ? "PUT" : "POST");
+      console.log(
+        "Submitting to:",
+        endpoint,
+        "Method:",
+        useUpdate ? "PUT" : "POST",
+      );
 
       const res = await fetch(endpoint, {
         method: useUpdate ? "PUT" : "POST",
@@ -198,7 +232,11 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
                   onDrop={handleDrop}
                 >
                   {imagePreview ? (
-                    <img src={imagePreview} alt="Preview" className="upload-preview" />
+                    <img
+                      src={imagePreview}
+                      alt="Preview"
+                      className="upload-preview"
+                    />
                   ) : (
                     <div className="upload-placeholder">
                       <Upload size={32} />
@@ -214,7 +252,9 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
                     style={{ display: "none" }}
                   />
                 </div>
-                {errors.image && <span className="error-text">{errors.image}</span>}
+                {errors.image && (
+                  <span className="error-text">{errors.image}</span>
+                )}
               </div>
 
               {/* Title */}
@@ -228,7 +268,9 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
                   className={errors.title ? "error" : ""}
                   placeholder="e.g., Luxury Maldives Escape"
                 />
-                {errors.title && <span className="error-text">{errors.title}</span>}
+                {errors.title && (
+                  <span className="error-text">{errors.title}</span>
+                )}
               </div>
 
               {/* Destination */}
@@ -242,7 +284,9 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
                   className={errors.destination ? "error" : ""}
                   placeholder="e.g., Maldives"
                 />
-                {errors.destination && <span className="error-text">{errors.destination}</span>}
+                {errors.destination && (
+                  <span className="error-text">{errors.destination}</span>
+                )}
               </div>
 
               {/* Price & Duration */}
@@ -257,7 +301,9 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
                     className={errors.price ? "error" : ""}
                     placeholder="2999"
                   />
-                  {errors.price && <span className="error-text">{errors.price}</span>}
+                  {errors.price && (
+                    <span className="error-text">{errors.price}</span>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -277,7 +323,11 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
               <div className="form-row">
                 <div className="form-group">
                   <label>Category</label>
-                  <select name="category" value={formData.category} onChange={handleChange}>
+                  <select
+                    name="category"
+                    value={formData.category}
+                    onChange={handleChange}
+                  >
                     {categories.map((cat) => (
                       <option key={cat} value={cat}>
                         {cat}
@@ -312,6 +362,36 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
                 />
               </div>
 
+              <div className="form-group">
+                <label>highlights (Optional)</label>
+                <input
+                  type="text"
+                  name="tahighlightsg"
+                  value={formData.highlights}
+                  onChange={handleChange}
+                  placeholder="e.g., Bestseller, New"
+                />
+              </div>
+              <div className="form-group">
+                <label>includes (Optional)</label>
+                <input
+                  type="text"
+                  name="tag"
+                  value={formData.inclueds}
+                  onChange={handleChange}
+                  placeholder="e.g., Bestseller, New"
+                />
+              </div>
+              <div className="form-group">
+                <label>excludes (Optional)</label>
+                <input
+                  type="text"
+                  name="tag"
+                  value={formData.exclueds}
+                  onChange={handleChange}
+                  placeholder="e.g., Bestseller, New"
+                />
+              </div>
               {/* Description */}
               <div className="form-group">
                 <label>Description</label>
@@ -328,7 +408,11 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
               <div className="form-group">
                 <div className="label-with-action">
                   <label>Itinerary</label>
-                  <button type="button" className="add-day-btn" onClick={addItineraryDay}>
+                  <button
+                    type="button"
+                    className="add-day-btn"
+                    onClick={addItineraryDay}
+                  >
                     <Plus size={16} /> Add Day
                   </button>
                 </div>
@@ -337,11 +421,23 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
                   <div key={index} className="itinerary-item">
                     <span className="day-number">Day {index + 1}</span>
                     <input
-                      type="text"
-                      value={day}
-                      onChange={(e) => updateItineraryDay(index, e.target.value)}
-                      placeholder="Describe activities..."
-                    />
+  type="text"
+  placeholder="Title"
+  value={day.title}
+  onChange={(e) =>
+    updateItineraryDay(index, "title", e.target.value)
+  }
+/>
+
+<input
+  type="text"
+  placeholder="Description"
+  value={day.description}
+  onChange={(e) =>
+    updateItineraryDay(index, "description", e.target.value)
+  }
+/>
+
                     <button
                       type="button"
                       className="remove-day-btn"
@@ -353,22 +449,32 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
                 ))}
               </div>
 
-              {errors.submit && <div className="submit-error">{errors.submit}</div>}
+              {errors.submit && (
+                <div className="submit-error">{errors.submit}</div>
+              )}
 
               {/* Actions */}
               <div className="form-actions">
                 <button type="button" className="cancel-btn" onClick={onClose}>
                   Cancel
                 </button>
-                <button type="submit" className="save-btn" disabled={isSubmitting}>
+                <button
+                  type="submit"
+                  className="save-btn"
+                  disabled={isSubmitting}
+                >
                   <Save size={18} />
-                  {isSubmitting ? "Saving..." : pkg ? "Update Card" : "Create Card"}
+                  {isSubmitting
+                    ? "Saving..."
+                    : pkg
+                      ? "Update Card"
+                      : "Create Card"}
                 </button>
               </div>
             </form>
 
             {/* Right: Live Preview */}
-            <div className="preview-section">
+            {/* <div className="preview-section">
               <h3>Live Preview</h3>
               <div className="preview-card">
                 {imagePreview && <img src={imagePreview} alt="Preview" />}
@@ -382,6 +488,99 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
                   </div>
                   {formData.description && (
                     <p className="preview-desc">{formData.description}</p>
+                  )}
+                </div>
+              </div>
+            </div> */}
+            <div className="preview-section">
+              <h3>Live Preview</h3>
+
+              <div className="preview-card">
+                {imagePreview && <img src={imagePreview} alt="Preview" />}
+
+                <div className="preview-content">
+                  <span className="preview-category">{formData.category}</span>
+
+                  <h4>{formData.title || "Untitled"}</h4>
+
+                  <p className="preview-dest">
+                    {formData.destination || "Destination"}
+                  </p>
+
+                  <div className="preview-meta">
+                    <span className="preview-price">
+                      ${formData.price || "0"}
+                    </span>
+                    <span className="preview-dur">
+                      {formData.duration || "Duration"}
+                    </span>
+                  </div>
+
+                  {formData.description && (
+                    <p className="preview-desc">{formData.description}</p>
+                  )}
+
+                  {/* ===== ADDED: HIGHLIGHTS ===== */}
+                  {/* Highlights */}
+                  <input
+                    type="text"
+                    value={formData.highlights.join(", ")}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        highlights: e.target.value
+                          .split(",")
+                          .map((s) => s.trim()),
+                      })
+                    }
+                  />
+
+                  {/* Includes */}
+                  <input
+                    type="text"
+                    value={formData.includes.join(", ")}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        includes: e.target.value
+                          .split(",")
+                          .map((s) => s.trim()),
+                      })
+                    }
+                  />
+
+                  {/* Excludes */}
+                  <input
+                    type="text"
+                    value={formData.excludes.join(", ")}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        excludes: e.target.value
+                          .split(",")
+                          .map((s) => s.trim()),
+                      })
+                    }
+                  />
+
+                  {/* ===== ADDED: ITINERARY ===== */}
+                  {formData.itinerary?.length > 0 && (
+                    <div className="preview-extra">
+                      <strong>Itinerary</strong>
+
+                      {formData.itinerary.map((day, index) => (
+                        <div key={index} className="preview-itinerary-day">
+                          <div className="it-day">
+                            Day {day.day || index + 1}:{" "}
+                            {day.title || "Untitled"}
+                          </div>
+
+                          {day.description && (
+                            <div className="it-desc">{day.description}</div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   )}
                 </div>
               </div>

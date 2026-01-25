@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./InternationalPackages.css"; // reuse SAME CSS
+import "./DomesticPackages.css"; // reuse SAME CSS
 import { BASE_URL } from "../../config/api";
 
 const DomesticPackages = () => {
@@ -51,7 +51,7 @@ const DomesticPackages = () => {
     filter === "All" ? packages : packages.filter((p) => p.category === filter);
 
   return (
-    <section id="domestic-packages" className="packages-section">
+    <section id="domestic-packages" className="packages-page packages-section">
       <div className="container">
         <div className="header-flex">
           <div className="header-text">
@@ -93,7 +93,7 @@ const DomesticPackages = () => {
         {!loading && !error && (
           <div className="packages-grid">
             {filteredPackages.map((pkg) => (
-              <div key={pkg.id} className="package-card">
+              <div key={pkg._id} className="package-card">
                 <div className="image-container">
                   <img
                     src={pkg.image}

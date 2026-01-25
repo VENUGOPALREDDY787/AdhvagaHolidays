@@ -1,47 +1,50 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import Logo from "./Logo";
 import { Eye, EyeOff, Lock, User, Plane, ArrowRight, Loader2 } from "lucide-react";
 
-const LoginPage = ({ onLogin }) => {
+const LoginPage = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  setIsLoading(true);
-  setError("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
 
-  try {
-    const res = await fetch("http://localhost:8080/api/admin/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const res = await fetch("http://localhost:8080/api/admin/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (!res.ok) {
-      throw new Error(data.message || "Login failed");
+      if (!res.ok) {
+        throw new Error(data.message || "Login failed");
+      }
+
+      // ✅ Save token
+      localStorage.setItem("token", data.token);
+
+      // ✅ Redirect to admin dashboard
+      navigate("/admin", { replace: true });
+
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
     }
-
-    // ✅ Save token
-    localStorage.setItem("token", data.token);
-
-    // ✅ Redirect
-    onLogin();
-  } catch (err) {
-    setError(err.message);
-  } finally {
-    setIsLoading(false);
-  }
-};
-
+  };
 
   return (
     <div className="login-wrapper">
@@ -76,10 +79,6 @@ const LoginPage = ({ onLogin }) => {
 
         {/* RIGHT PANEL */}
         <div className="login-right">
-          {/* <div className="mobile-logo">
-            <Logo size="md" />
-          </div> */}
-
           <h1>Welcome Back</h1>
           <p className="subtitle">
             Please enter your admin credentials to continue
@@ -128,7 +127,7 @@ const LoginPage = ({ onLogin }) => {
                 <input type="checkbox" />
                 Remember device
               </label>
-              <a href="#">Forgot password?</a>
+              <span className="forgot-text">Forgot password?</span>
             </div>
 
             <button className="submit-btn" disabled={isLoading}>

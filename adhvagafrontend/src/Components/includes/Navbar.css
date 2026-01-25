@@ -1,44 +1,70 @@
-.navbar{
-    background-color: antiquewhite !important;
-    opacity: 1;
-    position:relative;
-    z-index: 1000;
-}
-.navbar-logo{
-    width: 3rem;
-    height:3rem;
-    border-radius: 50%;
-    object-fit: cover;
-}
-.navbar-header h3{
-    font-size: 1rem;
-    
-}
-.navbar-header p{
-    font-size: 0.8rem;
-    margin-left: 0.5rem;
-}
-.navbar-header{
-    line-height: 0.3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.btns{
-    
-    border-radius: 20px;
-    font-weight: 600;
-}
-.btn-danger{
-    background-color: rgb(214, 15, 15);
-}
-.nav-link{
-    color: #222 !important;
-    font-weight: 500;
+/* ================= NAVBAR BASE ================= */
+.navbar {
+  background-color: antiquewhite !important;
+  opacity: 1;
+  position: relative;
+  z-index: 1000;
 }
 
+/* Ensure everything aligns in one row */
+.navbar .container-fluid {
+  display: flex;
+  align-items: center;
+}
 
+/* ================= LOGO ================= */
+.navbar-logo {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ================= BRAND TEXT ================= */
+.navbar-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1; /* 🔥 FIX double line issue */
+}
+
+.navbar-header h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.navbar-header p {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+/* ================= NAV LINKS ================= */
+.navbar-nav {
+  display: flex;
+  align-items: center; /* 🔥 keep items in single line */
+}
+
+.nav-link {
+  color: #222 !important;
+  font-weight: 500;
+  white-space: nowrap; /* 🔥 prevent text wrapping */
+  line-height: 1;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+/* ================= BUTTONS ================= */
+.btns {
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.btn-danger {
+  background-color: rgb(214, 15, 15);
+}
+
+/* ================= HOVER EFFECT ================= */
 .nav-hover {
   position: relative;
   cursor: pointer;
@@ -49,10 +75,10 @@
   content: "";
   position: absolute;
   left: 0;
-  bottom: -6px;
+  bottom: -2px; /* 🔥 FIX underline pushing content */
   width: 0%;
   height: 3px;
-  background-color: rgb(214, 15, 15); /* Yatra red */
+  background-color: rgb(214, 15, 15);
   transition: width 0.3s ease;
   border-radius: 2px;
 }

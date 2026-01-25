@@ -55,6 +55,9 @@ const PackageSchema = new mongoose.Schema({
     ],
     required: true
   },
+  type:{
+    type: String,
+  },
 
   image: {
     type: String,

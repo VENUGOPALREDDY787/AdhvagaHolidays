@@ -43,17 +43,18 @@ const PackagesSection = () => {
     filter === "All" ? packages : packages.filter((p) => p.category === filter);
 
   return (
-    <section id="packages" className="packages-section">
+    <section id="packages" className="packages-page packages-section">
       <div className="container">
-        <div className="header-flex">
-          <div className="header-text">
+        <div className="header-flex mt-5">
+          {/* <div className="header-text">
             <span className="sub-heading">Our Curated Collection</span>
             <h2 className="main-heading">International Packages</h2>
             <p className="description">
               Hand-picked destinations and itineraries designed for the
               discerning traveler.
             </p>
-          </div>
+          </div> */}
+          <div></div>
 
           <div className="filter-buttons">
             {categories.map((cat) => (
@@ -84,7 +85,7 @@ const PackagesSection = () => {
         {!loading && !error && (
           <div className="packages-grid">
             {filteredPackages.map((pkg) => (
-              <div key={pkg.id} className="package-card">
+              <div key={pkg._id} className="package-card">
                 <div className="image-container">
                   <img
                     src={pkg.image}

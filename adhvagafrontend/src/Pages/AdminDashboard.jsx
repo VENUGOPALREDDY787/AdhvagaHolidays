@@ -9,19 +9,22 @@ import "./AdminDashboard.css";
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState("packages");
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
 
+  /* ================= AUTH CHECK ================= */
   useEffect(() => {
+    const token = localStorage.getItem("token");
     if (!token) {
       navigate("/admin/login", { replace: true });
     }
-  }, [token, navigate]);
+  }, [navigate]);
 
+  /* ================= LOGOUT ================= */
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/admin/login", { replace: true });
   };
 
+  /* ================= SECTIONS ================= */
   const sections = {
     dashboard: {
       title: "Dashboard Overview",
