@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Plane,
@@ -155,12 +156,16 @@ export default function HomePage() {
             </p>
 
             <div className="hero-buttons">
+              <Link to="/International">
               <button className="btn-primary">
                 <Globe /> Explore World
               </button>
+              </Link>
+              <Link to="/Domestic">
               <button className="btn-outline">
                 <Map /> Explore India
               </button>
+              </Link>
             </div>
           </motion.div>
         </section>
@@ -187,6 +192,7 @@ export default function HomePage() {
 
           <div className="feature-grid">
             {features.map((f, i) => (
+              <Link to="/Services">
               <div key={i} className="feature-card">
                 <div className="feature-icon">
                   <f.icon />
@@ -194,6 +200,7 @@ export default function HomePage() {
                 <h3>{f.title}</h3>
                 <p>{f.description}</p>
               </div>
+              </Link>
             ))}
           </div>
         </section>
@@ -237,8 +244,12 @@ export default function HomePage() {
           </p>
 
           <div className="cta-buttons">
+            <Link to="/Support">
             <button className="btn-dark">Get Started Now</button>
+            </Link>
+            <Link to="/Domestic">
             <button className="btn-light">View Packages</button>
+            </Link>
           </div>
         </section>
       </div>

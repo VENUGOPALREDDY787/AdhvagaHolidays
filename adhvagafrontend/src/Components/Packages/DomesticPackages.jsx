@@ -52,16 +52,16 @@ const DomesticPackages = () => {
 
   return (
     <section id="domestic-packages" className="packages-page packages-section">
-      <div className="container">
-        <div className="header-flex">
-          <div className="header-text">
+      <div className="container mb-5">
+        <div className="header-flex mt-5">
+          {/* <div className="header-text">
             <span className="sub-heading">Explore India</span>
             <h2 className="main-heading">Domestic Packages</h2>
             <p className="description">
               Discover breathtaking destinations across India with expertly
               crafted travel experiences.
             </p>
-          </div>
+          </div> */}
 
           <div className="filter-buttons">
             {categories.map((cat) => (

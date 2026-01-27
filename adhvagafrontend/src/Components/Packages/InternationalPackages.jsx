@@ -44,7 +44,7 @@ const PackagesSection = () => {
 
   return (
     <section id="packages" className="packages-page packages-section">
-      <div className="container">
+      <div className="container mb-5">
         <div className="header-flex mt-5">
           {/* <div className="header-text">
             <span className="sub-heading">Our Curated Collection</span>
@@ -54,7 +54,7 @@ const PackagesSection = () => {
               discerning traveler.
             </p>
           </div> */}
-          <div></div>
+          
 
           <div className="filter-buttons">
             {categories.map((cat) => (

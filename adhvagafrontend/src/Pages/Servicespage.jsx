@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Plane, FileText, Shield, Car, Check, ArrowRight } from "lucide-react";
 import "./ServicesPage.css";
@@ -165,10 +166,11 @@ export default function ServicesPage() {
                     <span key={i}>{b}</span>
                   ))}
                 </div>
-
+                  <Link to="/Support">
                 <button className="primary-btn">
                   Get Started <ArrowRight />
                 </button>
+                </Link>
               </div>
             </div>
           ))}

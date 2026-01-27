@@ -62,9 +62,13 @@ const PackageSchema = new mongoose.Schema({
     type: String,
   },
 
-  image: {
-    type: String,
-  },
+ image: {
+  type: String,
+},
+
+imageId: {
+  type: String,
+},
 
   availableSeats: {
     type: Number,

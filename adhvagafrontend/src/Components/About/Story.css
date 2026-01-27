@@ -6,7 +6,7 @@
 }
 
 /* Background Pattern */
-.story-bg-pattern {
+.story-section .story-bg-pattern {
   position: absolute;
   inset: 0;
   opacity: 0.03;
@@ -16,7 +16,7 @@
 }
 
 /* Container */
-.story-container {
+.story-section .story-container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -24,14 +24,14 @@
   z-index: 10;
 }
 
-.story-content {
+.story-section .story-content {
   max-width: 56rem;
   margin: 0 auto;
   text-align: center;
 }
 
 /* Badge */
-.story-badge {
+.story-section .story-badge {
   display: inline-block;
   padding: 0.25rem 1rem;
   background-color: #f7cf3e;
@@ -46,7 +46,7 @@
 }
 
 /* Heading */
-.story-heading {
+.story-section .story-heading {
   font-size: clamp(3rem, 6vw, 4.5rem);
   font-weight: 900;
   color: #18181b;
@@ -56,13 +56,13 @@
   letter-spacing: -0.05em;
 }
 
-.story-highlight {
+.story-section .story-highlight {
   color: #f7cf3e;
   font-style: italic;
 }
 
 /* Text */
-.story-text {
+.story-section .story-text {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -72,14 +72,15 @@
   font-weight: 300;
 }
 
-.story-emphasis {
+.story-section .story-emphasis {
   color: #18181b;
   font-weight: 600;
   font-style: italic;
 }
 
-/* Stats */
-.story-stats {
+/* ================= STATS (SCOPED FIX) ================= */
+
+.story-section .story-stats {
   margin-top: 4rem;
   padding-top: 4rem;
   border-top: 1px solid #f4f4f5;
@@ -90,11 +91,11 @@
   gap: 3rem;
 }
 
-.stat-item {
+.story-section .stat-item {
   text-align: center;
 }
 
-.stat-number {
+.story-section .stat-number {
   display: block;
   font-size: 3rem;
   font-weight: 900;
@@ -102,7 +103,7 @@
   margin-bottom: 0.25rem;
 }
 
-.stat-label {
+.story-section .stat-label {
   font-size: 0.75rem;
   color: #a1a1aa;
   font-weight: 900;
@@ -110,8 +111,7 @@
   text-transform: uppercase;
 }
 
-/* Divider */
-.stat-divider {
+.story-section .stat-divider {
   display: none;
   width: 1px;
   height: 4rem;
@@ -120,7 +120,7 @@
 
 /* Responsive */
 @media (min-width: 768px) {
-  .stat-divider {
+  .story-section .stat-divider {
     display: block;
   }
 }
