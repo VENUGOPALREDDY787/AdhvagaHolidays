@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './BlogsPage.css';
 
 const BLOG_POSTS = [
@@ -165,9 +166,11 @@ const BlogsPage = () => {
             <h2 style={{ fontSize: '2rem', fontWeight: 900, color: 'black', marginBottom: '1rem' }}>WANT TO BE OUR NEXT <br /> SUCCESS STORY?</h2>
             <p style={{ color: 'rgba(0,0,0,0.7)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Your dream trip is just one custom plan away.</p>
           </div>
+          <Link to="/Coustom" >
           <button className="cta-button">
             START PLANNING NOW
           </button>
+          </Link>
         </div>
       </div>
     </div>
