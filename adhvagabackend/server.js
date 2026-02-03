@@ -6,6 +6,7 @@ import packageRoutes from "./routes/packageRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import inquiryRoutes from "./routes/inquiryRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
+import settingsRoutes from "./routes/settingsRoutes.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/packages", packageRoutes);  
 app.use("/api/inquiries", inquiryRoutes);
 app.use("/api/bookings", bookingRoutes);
+app.use("/api/settings", settingsRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`🚀 Server is running on port ${process.env.PORT}`);

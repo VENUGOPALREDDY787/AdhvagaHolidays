@@ -1,0 +1,15 @@
+# https://www.robotstxt.org/robotstxt.html
+# Adhvaga Holidays - SEO Robots Configuration
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin/*
+Disallow: /api/
+Disallow: /api/*
+
+# Sitemap location
+Sitemap: https://adhvagaholidays.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1

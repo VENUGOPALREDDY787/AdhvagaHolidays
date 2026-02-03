@@ -1,23 +1,62 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useSettings } from "../../context/SettingsContext";
 import logo from "../../assets/unnamed.jpg";
 import "./Navbar.css";
 
 function Navbar() {
+  const { settings } = useSettings();
   const [showLogin, setShowLogin] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down & past 100px
+        setScrolled(true);
+      } else {
+        // Scrolling up
+        setScrolled(false);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary py-2 border-bottom">
+      <nav className={`navbar navbar-expand-lg bg-body-tertiary py-2 border-bottom ${scrolled ? 'navbar-hidden' : ''}`} role="navigation" aria-label="Main navigation">
         <div className="container-fluid">
-          <img src={logo} alt="no image" className="navbar-logo ms-5" />
+          <img src={logo} alt="Adhvaga Holidays logo" className="navbar-logo ms-5" />
 
           <span className="navbar-header ms-3 mt-2">
-            <h3>ADHVAGA</h3>
-            <p>HOILDAYS</p>
+            <h3>{settings.agencyName?.split(' ')[0]?.toUpperCase() || 'ADHVAGA'}</h3>
+            <p>{settings.agencyName?.split(' ')[1]?.toUpperCase() || 'HOLIDAYS'}</p>
           </span>
 
-          <div className="collapse navbar-collapse" id="navbarNavDropdown">
+          <button
+            className="navbar-toggler"
+            type="button"
+            onClick={toggleMobileMenu}
+            aria-controls="navbarNavDropdown"
+            aria-expanded={isMobileMenuOpen}
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div className={`collapse navbar-collapse ${isMobileMenuOpen ? 'show' : ''}`} id="navbarNavDropdown">
             <form className="d-flex ms-auto" role="search">
               <ul className="navbar-nav">
                 <li className="nav-item nav-hover">
@@ -64,6 +103,7 @@ function Navbar() {
                     <li><Link className="dropdown-item" to="/Services">Corporate Services</Link></li>
                     <li><Link className="dropdown-item" to="/Coustom">Custom Services</Link></li>
                     <li><Link className="dropdown-item" to="/Services">Car Rentals</Link></li>
+                    <li><Link className="dropdown-item" to="/terms">Terms &amp; Conditions</Link></li>
                   </ul>
                 </li>
 

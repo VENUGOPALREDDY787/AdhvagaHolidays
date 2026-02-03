@@ -17,7 +17,7 @@ const Hero = () => {
       {/* Content */}
       <div className="hero-content">
         <h1 className="hero-title">
-          Beyond <span className="brand-text-yellow">Borders</span>
+          About <span className="brand-text-yellow">Adhvaga Holidays</span>
         </h1>
         <p className="hero-subtitle">
           Crafting extraordinary journeys for the modern nomad since 2015.

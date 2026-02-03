@@ -4,6 +4,7 @@ import AdminSidebar from "../Components/Admin/AdminSidebar";
 import AdminTopBar from "../Components/Admin/AdminTopBar";
 import TravelCardsManager from "../Components/Admin/TravelCardsManager";
 import DashboardOverview from "../Components/Admin/DashboardOverview";
+import Settings from "../Components/Admin/Settings";
 import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
@@ -49,7 +50,7 @@ const AdminDashboard = () => {
     settings: {
       title: "Settings",
       subtitle: "Configure your application settings",
-      component: <div className="coming-soon">Coming Soon</div>,
+      component: <Settings />,
     },
   };
 

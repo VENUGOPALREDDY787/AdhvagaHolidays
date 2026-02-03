@@ -12,7 +12,7 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
     rating: pkg?.rating || 4.5,
 
     // ✅ FIXED
-    category: pkg?.category || "Adventure", // enum field
+    category: pkg?.category || "Domestic", // enum field
     type: pkg?.type || "Domestic", // Domestic / International
 
     description: pkg?.description || "",
@@ -39,22 +39,22 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
   const [errors, setErrors] = useState({});
   const fileInputRef = useRef(null);
 
-  const categories = [
-    "Relaxation",
-    "Cultural",
-    "Adventure",
-    "Luxury",
-    "Family",
-    "Transport",
-  ];
+  const categories = ["Domestic", "International"];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]:
-        name === "price" || name === "rating" ? parseFloat(value) || 0 : value,
-    }));
+    setFormData((prev) => {
+      if (name === "type") {
+        return { ...prev, type: value, category: value };
+      }
+
+      return {
+        ...prev,
+        [name]:
+          name === "price" || name === "rating" ? parseFloat(value) || 0 : value,
+      };
+    });
+
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: null }));
     }
@@ -324,8 +324,8 @@ const removeItineraryDay = (index) => {
                 <div className="form-group">
                   <label>Category</label>
                   <select
-                    name="category"
-                    value={formData.category}
+                    name="type"
+                    value={formData.type}
                     onChange={handleChange}
                   >
                     {categories.map((cat) => (

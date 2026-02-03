@@ -1,18 +1,21 @@
 import React from 'react';
+import { useSettings } from '../../context/SettingsContext';
 import logo from "../../assets/unnamed.jpg";
 import './Footer.css'
 function Footer() {
+    const { settings } = useSettings();
+
     return ( 
-        <footer style={{backgroundColor:"antiquewhite"}}>
+        <footer style={{backgroundColor:"antiquewhite"}} role="contentinfo" aria-label="Footer">
         <div className="container pt-5">
             <div className="row">
                 <div className="col  pt-2">
-                    <img src={logo} alt="Adhvaga" className='footer-logo'/>
-                    <div className='social-icons ms-2 mt-3'>
-                        <i class="fa-brands fa-square-instagram"></i>
-                        <i class="fa-brands fa-square-youtube"></i>
-                        <i class="fa-brands fa-square-facebook"></i>
-                        <i class="fa-brands fa-square-whatsapp"></i>
+                    <img src={logo} alt="Adhvaga Holidays logo" className='footer-logo'/>
+                    <div className='social-icons ms-2 mt-3' aria-label="Social media links">
+                        {settings.instagram && <a href={settings.instagram} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-square-instagram" aria-label="Instagram"></i></a>}
+                        {settings.youtube && <a href={settings.youtube} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-square-youtube" aria-label="YouTube"></i></a>}
+                        {settings.facebook && <a href={settings.facebook} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-square-facebook" aria-label="Facebook"></i></a>}
+                        {settings.twitter && <a href={settings.twitter} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-square-twitter" aria-label="Twitter"></i></a>}
                     </div>
                 </div>
                 <div className="col ms-5 pt-2">
@@ -39,11 +42,10 @@ function Footer() {
                 </div>
                 <div className="col ms-5 mt-2">
                     <p>Contact Us</p>
-                    <a href="">📍 123 Travel Street, Suite 100 <br />
-New York, NY 10001</a>
-                    <a href="">📞 +1 (234) 567-890</a>
-                    <a href="">✉️ info@adhyagaholidays.com</a>
-                    <a href="">🕒 Mon-Sat: 9AM - 6PM</a>
+                    <a href="">📍 {settings.address}</a>
+                    <a href={`tel:${settings.contactNumber}`}>📞 {settings.contactNumber}</a>
+                    <a href={`mailto:${settings.email}`}>✉️ {settings.email}</a>
+                    <a href="">🕒 Mon-Sat: {settings.workingHoursStart} - {settings.workingHoursEnd}</a>
 
                 </div>
                 
@@ -53,7 +55,7 @@ New York, NY 10001</a>
                 
              <p>We are passionate about creating extraordinary travel experiences. With years of expertise and a commitment to excellence, we turn your travel dreams into reality.</p>
             <p>
-<strong>1.</strong> Adhvaga Holidays is a trusted tours and travels company committed to creating memorable, comfortable, and well-organized travel experiences for travelers across India and beyond.<br />
+<strong>1.</strong> {settings.agencyName} is a trusted tours and travels company committed to creating memorable, comfortable, and well-organized travel experiences for travelers across India and beyond.<br />
 We believe that travel is not just about reaching a destination, but about enjoying every moment of the journey with peace of mind and complete satisfaction.
 </p>
 

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { generateDestinationAlt } from "../../utils/seoHelpers";
 import "./InternationalPackages.css";
 import { BASE_URL } from "../../config/api";
 
@@ -19,11 +20,12 @@ const PackagesSection = () => {
     "Family",
   ];
 
-  // 🔹 FETCH PACKAGES FROM BACKEND
+  // 🔹 FETCH PACKAGES FROM BACKEND - Now with backend filtering for better performance
   useEffect(() => {
     const fetchPackages = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/api/packages`);
+        // ✅ Fetch ONLY international packages from backend (reduces data transfer)
+        const res = await fetch(`${BASE_URL}/api/packages?type=International`);
         if (!res.ok) {
           throw new Error("Failed to fetch packages");
         }
@@ -39,13 +41,17 @@ const PackagesSection = () => {
     fetchPackages();
   }, []);
 
-  const filteredPackages =
-    filter === "All" ? packages : packages.filter((p) => p.category === filter);
+  // 🔹 Memoize filtered packages to prevent unnecessary recalculations
+  const filteredPackages = useMemo(() => {
+    return filter === "All" 
+      ? packages 
+      : packages.filter((p) => p.category === filter);
+  }, [packages, filter]);
 
   return (
     <section id="packages" className="packages-page packages-section">
       <div className="container">
-        <div className="header-flex mt-5">
+        <div className="header-flex">
           {/* <div className="header-text">
             <span className="sub-heading">Our Curated Collection</span>
             <h2 className="main-heading">International Packages</h2>
@@ -85,12 +91,13 @@ const PackagesSection = () => {
         {!loading && !error && (
           <div className="packages-grid">
             {filteredPackages.map((pkg) => (
-              <div key={pkg._id} className="package-card">
+              <article key={pkg._id} className="package-card">
                 <div className="image-container">
                   <img
                     src={pkg.image}
-                    alt={pkg.title}
+                    alt={generateDestinationAlt(pkg.destination || pkg.title, "international holiday package")}
                     className="package-image"
+                    loading="lazy"
                   />
                   <div className="image-overlay"></div>
 
@@ -169,7 +176,7 @@ const PackagesSection = () => {
                     </button>
                   </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         )}

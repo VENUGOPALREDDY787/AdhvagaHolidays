@@ -4,7 +4,14 @@ import crypto from "crypto";
 
 export const getAllPackages = async (req, res) => {
   try {
-    const packages = await Package.find();
+    // 🔹 Allow filtering by type (Domestic/International) and category
+    const { type, category } = req.query;
+    
+    const filter = {};
+    if (type) filter.type = type;
+    if (category && category !== 'All') filter.category = category;
+    
+    const packages = await Package.find(filter);
     res.status(200).json(packages);
   } catch (error) {
     console.error("Error fetching packages:", error);

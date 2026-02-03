@@ -13,13 +13,14 @@
 
 .packages-page .packages-section {
   padding: 0;
-  background-color: var(--gray-50);
+  margin: 0;
+  background: linear-gradient(135deg, #1f1f1f 0%, #0a1a2f 100%);
 }
 
 .packages-page .container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0;
+  padding: 2rem 1.5rem 0 1.5rem;
 }
 
 /* Header */
@@ -28,7 +29,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 3rem;
+  margin: 0 0 2rem 0;
+  padding: 0;
   gap: 1.5rem;
 }
 
@@ -87,8 +89,8 @@
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
-  background-color: white;
-  color: var(--gray-600);
+  background: linear-gradient(135deg, #1f1f1f 0%, #0a1a2f 100%);
+  color: white;
 }
 
 .packages-page .filter-btn:hover {
@@ -105,41 +107,51 @@
 .packages-page .packages-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 2.5rem;
+  padding: 2rem 1.5rem;
 }
 
 @media (min-width: 640px) {
   .packages-page .packages-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 2rem 1rem;
   }
 }
 
 @media (min-width: 1024px) {
   .packages-page .packages-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    padding: 2rem 1.5rem;
   }
 }
 
 @media (min-width: 1280px) {
   .packages-page .packages-grid {
     grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+    padding: 2rem;
   }
 }
 
 /* Cards */
 .packages-page .package-card {
-  background-color: white;
+  background: linear-gradient(135deg, #1f1f1f 0%, #0a1a2f 100%);
   border-radius: 32px;
   overflow: hidden;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.5s ease;
-  border: 1px solid var(--gray-100);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .packages-page .package-card:hover {
-  transform: translateY(-0.5rem);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .packages-page .image-container {
@@ -206,7 +218,10 @@
 
 /* Content */
 .packages-page .card-content {
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .packages-page .content-meta {
@@ -223,14 +238,14 @@
 }
 
 .packages-page .duration-label {
-  color: var(--gray-400);
+  color: #d1d5db;
   font-size: 0.75rem;
 }
 
 .packages-page .package-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--gray-900);
+  color: #ffffff;
 }
 
 .packages-page .package-card:hover .package-title {
@@ -238,7 +253,7 @@
 }
 
 .packages-page .destination-text {
-  color: var(--gray-500);
+  color: #e5e7eb;
   font-size: 0.875rem;
 }
 
@@ -252,6 +267,7 @@
 .packages-page .price-amount {
   font-size: 1.5rem;
   font-weight: 900;
+  color: var(--adhvaga-yellow);
 }
 
 .packages-page .book-button {

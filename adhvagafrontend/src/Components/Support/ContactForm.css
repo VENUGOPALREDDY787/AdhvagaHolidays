@@ -1,7 +1,7 @@
 /* ContactForm.css */
 
 .contact-container {
-  background-color: white;
+  background: linear-gradient(135deg, #1f1f1f 0%, #0a1a2f 100%);
   padding: 2rem;
   border-radius: 1.5rem;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -59,7 +59,7 @@
   display: block;
   font-size: 0.875rem;
   font-weight: 700;
-  color: #374151;
+  color: #f4f4f5;
   margin-bottom: 0.5rem;
 }
 
@@ -96,7 +96,8 @@
 }
 
 .submit-button:hover:not(:disabled) {
-  background-color: #1f2937;
+  background-color: #facc15;
+  color: #000;
 }
 
 .submit-button:disabled {

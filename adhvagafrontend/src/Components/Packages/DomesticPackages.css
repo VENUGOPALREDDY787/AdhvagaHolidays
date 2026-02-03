@@ -15,7 +15,7 @@ body {
 
 .packages-section {
     padding: 0;
-    background-color: var(--gray-50);
+    background: linear-gradient(135deg, #1f1f1f 0%, #0a1a2f 100%);
 }
 
 .container {
@@ -87,8 +87,8 @@ body {
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
-    background-color: white;
-    color: var(--gray-600);
+    background: linear-gradient(135deg, #1f1f1f 0%, #0a1a2f 100%);
+    color: white;
 }
 
 .filter-btn:hover {
@@ -105,41 +105,51 @@ body {
 .packages-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 2.5rem;
+  padding: 2rem 1.5rem;
 }
 
 @media (min-width: 640px) {
   .packages-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 2rem 1rem;
   }
 }
 
 @media (min-width: 1024px) {
   .packages-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    padding: 2rem 1.5rem;
   }
 }
 
 @media (min-width: 1280px) {
   .packages-grid {
     grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+    padding: 2rem;
   }
 }
 
 /* Card Styling */
 .package-card {
-    background-color: white;
+    background: linear-gradient(135deg, #1f1f1f 0%, #0a1a2f 100%);
     border-radius: 32px;
     overflow: hidden;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transition: all 0.5s ease;
-    border: 1px solid var(--gray-100);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .package-card:hover {
-    transform: translateY(-0.5rem);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .image-container {
@@ -230,7 +240,10 @@ body {
 
 /* Card Content */
 .card-content {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .content-meta {
@@ -252,7 +265,7 @@ body {
 }
 
 .duration-label {
-    color: var(--gray-400);
+    color: #d1d5db;
     font-size: 0.75rem;
     font-weight: 500;
     display: flex;
@@ -263,7 +276,7 @@ body {
 .package-title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--gray-900);
+    color: #ffffff;
     margin-bottom: 0.25rem;
     transition: color 0.3s ease;
 }
@@ -273,7 +286,7 @@ body {
 }
 
 .destination-text {
-    color: var(--gray-500);
+    color: #e5e7eb;
     font-size: 0.875rem;
     margin-bottom: 1rem;
     display: flex;
@@ -296,7 +309,7 @@ body {
 
 .starting-label {
     font-size: 10px;
-    color: var(--gray-400);
+    color: #d1d5db;
     font-weight: 700;
     text-transform: uppercase;
     display: block;
@@ -306,7 +319,7 @@ body {
 .price-amount {
     font-size: 1.5rem;
     font-weight: 900;
-    color: var(--black);
+    color: var(--adhvaga-yellow);
 }
 
 .book-button {

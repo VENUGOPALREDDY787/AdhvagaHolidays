@@ -313,6 +313,7 @@
 
 // export default TravelCardsManager;
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Plus, Edit2, Trash2, Eye, Search, Filter } from "lucide-react";
 import { BASE_URL } from "../../config/api";
 import PackageFormPanel from "./PackageFormPanel";
@@ -326,6 +327,7 @@ const TravelCardsManager = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingPackage, setEditingPackage] = useState(null);
   const [previewPackage, setPreviewPackage] = useState(null);
+  const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
 
@@ -396,6 +398,7 @@ const TravelCardsManager = () => {
   };
 
   const handleSave = (savedPackage) => {
+    const wasEditing = Boolean(editingPackage);
     const raw = savedPackage?.data || savedPackage;
 
     if (!raw?._id && !raw?.id) {
@@ -423,6 +426,15 @@ const TravelCardsManager = () => {
 
     setIsFormOpen(false);
     setEditingPackage(null);
+
+    if (!wasEditing) {
+      const nextType = normalized.type?.toLowerCase();
+      if (nextType === "domestic") {
+        navigate("/Domestic");
+      } else if (nextType === "international") {
+        navigate("/International");
+      }
+    }
   };
 
   /* ================= HELPERS ================= */

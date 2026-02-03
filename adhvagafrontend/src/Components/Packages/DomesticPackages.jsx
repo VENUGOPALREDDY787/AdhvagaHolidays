@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { generateDestinationAlt } from "../../utils/seoHelpers";
 import "./DomesticPackages.css"; // reuse SAME CSS
 import { BASE_URL } from "../../config/api";
 
@@ -19,24 +20,17 @@ const DomesticPackages = () => {
     "Family",
   ];
 
-  // 🔹 FETCH PACKAGES
+  // 🔹 FETCH PACKAGES - Now with backend filtering for better performance
   useEffect(() => {
     const fetchPackages = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/api/packages`);
+        // ✅ Fetch ONLY domestic packages from backend (reduces data transfer)
+        const res = await fetch(`${BASE_URL}/api/packages?type=Domestic`);
         if (!res.ok) {
           throw new Error("Failed to fetch packages");
         }
         const data = await res.json();
-
-        // ✅ ONLY DOMESTIC PACKAGES
-        const domesticOnly = data.filter(
-          (pkg) => pkg.type === "Domestic", // 👈 change if needed
-          // OR pkg.country === "India"
-          // OR pkg.region === "Domestic"
-        );
-
-        setPackages(domesticOnly);
+        setPackages(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -47,8 +41,12 @@ const DomesticPackages = () => {
     fetchPackages();
   }, []);
 
-  const filteredPackages =
-    filter === "All" ? packages : packages.filter((p) => p.category === filter);
+  // 🔹 Memoize filtered packages to prevent unnecessary recalculations
+  const filteredPackages = useMemo(() => {
+    return filter === "All" 
+      ? packages 
+      : packages.filter((p) => p.category === filter);
+  }, [packages, filter]);
 
   return (
     <section id="domestic-packages" className="packages-page packages-section">
@@ -93,12 +91,13 @@ const DomesticPackages = () => {
         {!loading && !error && (
           <div className="packages-grid">
             {filteredPackages.map((pkg) => (
-              <div key={pkg._id} className="package-card">
+              <article key={pkg._id} className="package-card">
                 <div className="image-container">
                   <img
                     src={pkg.image}
-                    alt={pkg.title}
+                    alt={generateDestinationAlt(pkg.destination || pkg.title, "domestic holiday package")}
                     className="package-image"
+                    loading="lazy"
                   />
                   <div className="image-overlay"></div>
 
@@ -178,7 +177,7 @@ const DomesticPackages = () => {
                     </button>
                   </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         )}

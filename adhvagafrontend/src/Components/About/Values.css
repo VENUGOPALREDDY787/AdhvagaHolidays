@@ -1,6 +1,6 @@
 .values-section {
   padding: 6rem 0;
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #1f1f1f 0%, #0a1a2f 100%);
   position: relative;
 }
 
@@ -20,12 +20,12 @@
 .values-title {
   font-size: clamp(2.25rem, 4vw, 3rem);
   font-weight: 900;
-  color: #18181b;
+  color: #d5d5de;
   margin-bottom: 1.5rem;
 }
 
 .values-subtitle {
-  color: #71717a;
+  color: #efeff3;
   font-size: 1.125rem;
   line-height: 1.7;
 }
@@ -85,11 +85,11 @@
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #18181b;
+  color: #151519;
 }
 
 .value-description {
   font-size: 0.875rem;
-  color: #71717a;
+  color: #040443;
   line-height: 1.7;
 }

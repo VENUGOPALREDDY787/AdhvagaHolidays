@@ -36,9 +36,10 @@
 
 .hero-title {
   font-size: 5rem;
-  font-weight: 900;
+  font-weight: 400;
+  font-family: 'Stardom', serif;
   margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.08em;
   line-height: 1;
   text-transform: uppercase;
 }
@@ -55,7 +56,7 @@
   font-style: italic;
   max-width: 640px;
   margin: auto;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 1);
 }
 
 @media (min-width: 768px) {

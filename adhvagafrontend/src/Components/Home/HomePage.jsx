@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { useSettings } from "../../context/SettingsContext";
 import {
   Plane,
   Globe,
@@ -69,6 +71,9 @@ function PageTransition({ children }) {
 /* ================= HOME PAGE ================= */
 
 export default function HomePage() {
+  const navigate = useNavigate();
+  const { settings } = useSettings();
+
   const features = [
     {
       icon: Plane,
@@ -96,25 +101,25 @@ export default function HomePage() {
 
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      location: "New York, USA",
+      name: "Verified Customer",
+      location: "Bangalore, India",
       rating: 5,
       text:
-        "Adhvaga made my dream vacation to Europe seamless. Their visa assistance saved me so much time!",
+        "The agency arranged for a well-behaved and punctual driver for our trip. They were professional and made our journey comfortable.",
     },
     {
-      name: "Michael Chen",
-      location: "Singapore",
+      name: "Verified Customer",
+      location: "Bangalore, India",
       rating: 5,
       text:
-        "Best travel agency I've worked with. Professional service and great prices on flights.",
+        "They accommodated well for the change in plans during the trip. Very flexible and understanding service!",
     },
     {
-      name: "Emma Williams",
-      location: "London, UK",
+      name: "Verified Customer",
+      location: "Bangalore, India",
       rating: 5,
       text:
-        "The travel insurance they provided gave me complete peace of mind during my trip to Asia.",
+        "Helped with early check-in on early arrival at the hotel. Their attention to detail and customer service is excellent.",
     },
   ];
 
@@ -130,10 +135,15 @@ export default function HomePage() {
       <div className="adhvaga-home">
         {/* HERO */}
         <section className="hero">
-          <ImageWithFallback
-            src="https://images.unsplash.com/photo-1606225278453-eba097f60fc3"
-            alt="Travel destination"
+          <video
             className="hero-bg"
+            src="/Untitled video - Made with Clipchamp (4).mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            aria-label="Travel destination video background"
           />
           <div className="hero-overlay" />
 
@@ -144,21 +154,18 @@ export default function HomePage() {
             className="hero-content"
           >
             <h1>
-              Your Journey <br />
-              <span>Starts Here</span>
+              {settings.heroText || "Adhvaga Holidays – Your Trusted Travel Partner"}
             </h1>
 
             <p>
-              Experience the world with confidence. From local gems to
-              international wonders, we handle everything for your perfect
-              getaway.
+              {settings.tagline || "Experience the world with confidence. From local gems to international wonders, we handle everything for your perfect getaway."}
             </p>
 
             <div className="hero-buttons">
-              <button className="btn-primary">
+              <button className="btn-primary" onClick={() => navigate('/explore-globe')}>
                 <Globe /> Explore World
               </button>
-              <button className="btn-outline">
+              <button className="btn-outline" onClick={() => navigate('/india-globe')}>
                 <Map /> Explore India
               </button>
             </div>
@@ -224,6 +231,25 @@ export default function HomePage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* JustDial Reviews Link */}
+          <div className="justdial-section">
+            <p className="justdial-text">See what more customers say about us</p>
+            <a 
+              href="https://jsdl.in/DT-154FCRMP" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="justdial-button"
+            >
+              <div className="justdial-logo">
+                <Star className="justdial-icon" />
+              </div>
+              <div className="justdial-content">
+                <span className="justdial-title">View Reviews on</span>
+                <strong className="justdial-brand">JustDial</strong>
+              </div>
+            </a>
           </div>
         </section>
 

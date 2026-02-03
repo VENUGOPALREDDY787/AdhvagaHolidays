@@ -1,6 +1,6 @@
 .team-section {
   padding: 8rem 0;
-  background: white;
+  background: linear-gradient(135deg, #1f1f1f 0%, #0a1a2f 100%);
   position: relative;
   overflow: hidden;
 }
@@ -261,7 +261,7 @@
 }
 
 .cta-card:hover .cta-icon {
-  background: white;
+  background: #facc15;
   border-color: rgba(0, 0, 0, 0.2);
 }
 

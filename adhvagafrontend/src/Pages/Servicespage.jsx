@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Plane, FileText, Shield, Car, Check, ArrowRight } from "lucide-react";
+import SEOHead from "../Components/SEO/SEOHead";
+import StructuredData from "../Components/SEO/StructuredData";
+import { SEO_METADATA, generateBreadcrumbSchema, generateServiceSchema } from "../utils/seoHelpers";
 import "./ServicesPage.css";
 
 /* ================= PAGE TRANSITION (INLINE) ================= */
@@ -47,6 +50,20 @@ function ImageWithFallback({ src, alt, className, style, ...rest }) {
 
 /* ================= MAIN PAGE ================= */
 export default function ServicesPage() {
+  const metadata = SEO_METADATA.services;
+  const breadcrumbs = [
+    { name: "Home", url: "/home" },
+    { name: "Services", url: "/services" }
+  ];
+
+  // Generate service schemas for each service
+  const serviceSchemas = [
+    generateServiceSchema({ name: "Air Ticket Booking", description: "Book flights to over 120 destinations worldwide with competitive pricing." }),
+    generateServiceSchema({ name: "Visa Assistance", description: "Expert guidance through the visa application process with high approval rates." }),
+    generateServiceSchema({ name: "Travel Insurance", description: "Comprehensive travel insurance coverage to protect you during your journey." }),
+    generateServiceSchema({ name: "Car Rental Services", description: "Rent vehicles from economy to luxury at competitive rates." })
+  ];
+
   const services = [
     {
       icon: Plane,
@@ -132,18 +149,31 @@ export default function ServicesPage() {
 
   return (
     <PageTransition>
+      <SEOHead
+        title={metadata.title}
+        description={metadata.description}
+        keywords={metadata.keywords}
+        url="/services"
+        image={metadata.image}
+        structuredData={generateBreadcrumbSchema(breadcrumbs)}
+      />
+      <StructuredData schemas={serviceSchemas} />
+
       <div className="services-page">
-        <section className="services-hero">
-          <h1>Our Services</h1>
+        <section className="services-hero" role="banner" aria-label="Services hero section">
+          <h1>{metadata.h1}</h1>
           <p>Everything you need for a perfect journey</p>
         </section>
 
-        <section className="services-list">
+        <main className="services-list" role="main" aria-label="Main content">
           {services.map((service, index) => (
-            <div className={`service-row ${index % 2 ? "reverse" : ""}`} key={index}>
+            <article className={`service-row ${index % 2 ? "reverse" : ""}`} key={index}>
               <div className="service-image">
-                <ImageWithFallback src={service.image} alt={service.title} />
-                <div className="service-icon">
+                <ImageWithFallback 
+                  src={service.image} 
+                  alt={`${service.title} - Adhvaga Holidays travel service`}
+                />
+                <div className="service-icon" aria-hidden="true">
                   <service.icon />
                 </div>
               </div>
@@ -155,7 +185,7 @@ export default function ServicesPage() {
                 <ul className="features">
                   {service.features.map((f, i) => (
                     <li key={i}>
-                      <Check /> {f}
+                      <Check aria-hidden="true" /> {f}
                     </li>
                   ))}
                 </ul>
@@ -167,12 +197,12 @@ export default function ServicesPage() {
                 </div>
 
                 <button className="primary-btn">
-                  Get Started <ArrowRight />
+                  Get Started <ArrowRight aria-hidden="true" />
                 </button>
               </div>
-            </div>
+            </article>
           ))}
-        </section>
+        </main>
       </div>
     </PageTransition>
   );

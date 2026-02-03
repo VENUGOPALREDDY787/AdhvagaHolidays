@@ -8,8 +8,10 @@
   height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: center;
   color: white;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .hero-bg {
@@ -23,12 +25,14 @@
 .hero-overlay {
   position: absolute;
   inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  /* fallback for browsers that don't support gradients */
   background: linear-gradient(
     to right,
-    rgba(0, 0, 0, 0.8),
-    rgba(0, 0, 0, 0.4),
-    transparent
+    rgba(0, 0, 0, 0.7) 60%,
+    rgba(0, 0, 0, 0.3) 100%
   );
+  z-index: 1;
 }
 
 .hero-content {
@@ -41,25 +45,33 @@
 }
 
 .hero-content h1 {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(2rem, 6vw, 4rem);
   font-weight: 900;
+  line-height: 1.1;
+  font-family: 'Stardom', serif;
+  letter-spacing: 0.05em;
 }
 
 .hero-content h1 span {
   color: #facc15;
 }
 
-.hero-content p {
-  font-size: 1.3rem;
-  color: #d1d5db;
-  margin: 2rem 0;
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  padding: 0 5%;
+  align-items: center;
+  text-align: center;
 }
 
 .hero-buttons {
   display: flex;
   gap: 1.2rem;
   flex-wrap: wrap;
-  justify-content: center;
+  margin-top: 2rem;
 }
 
 .btn-primary {
@@ -69,8 +81,16 @@
   border-radius: 999px;
   font-weight: 700;
   display: flex;
+  align-items: center;
   gap: 0.6rem;
   border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #f59e0b;
+  transform: scale(1.05);
 }
 
 .btn-outline {
@@ -80,7 +100,15 @@
   padding: 1rem 2rem;
   border-radius: 999px;
   display: flex;
+  align-items: center;
   gap: 0.6rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 /* STATS */
@@ -122,7 +150,7 @@
 }
 
 .feature-card {
-  background: #f9fafb;
+  background: oklch(98.268% 0.00275 285.746);
   padding: 3rem;
   border-radius: 24px;
   transition: transform 0.3s ease;
@@ -157,7 +185,7 @@
 }
 
 .testimonial-card {
-  background: white;
+  background: linear-gradient(135deg, #1f1f1f 0%, #0a1a2f 100%);
   padding: 3rem;
   border-radius: 24px;
 }
@@ -174,6 +202,74 @@
   align-items: center;
 }
 
+/* JustDial Section */
+.justdial-section {
+  margin-top: 4rem;
+  text-align: center;
+  padding-top: 3rem;
+  border-top: 1px solid #ddd;
+}
+
+.justdial-text {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.justdial-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  color: white;
+  padding: 1.2rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.justdial-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+}
+
+.justdial-logo {
+  width: 45px;
+  height: 45px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.justdial-icon {
+  width: 24px;
+  height: 24px;
+  color: #ff6b35;
+  fill: #ff6b35;
+}
+
+.justdial-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+
+.justdial-title {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.justdial-brand {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
 /* CTA */
 .cta {
   padding: 6rem 5%;
@@ -188,6 +284,7 @@
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 2rem;
 }
 
 .btn-dark {
@@ -195,6 +292,15 @@
   color: white;
   padding: 1rem 2.5rem;
   border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-dark:hover {
+  background: #333;
+  transform: scale(1.05);
 }
 
 .btn-light {
@@ -202,4 +308,13 @@
   color: #111;
   padding: 1rem 2.5rem;
   border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-light:hover {
+  background: #f0f0f0;
+  transform: scale(1.05);
 }

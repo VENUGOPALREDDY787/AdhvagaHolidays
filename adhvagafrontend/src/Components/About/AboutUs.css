@@ -1,0 +1,69 @@
+.about-us-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+}
+
+.about-us-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-us-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.about-us-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  font-family: 'Stardom', serif;
+}
+
+.about-us-brand {
+  font-size: 1.1rem;
+  color: #facc15;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.about-us-content {
+  color: #333;
+  line-height: 1.8;
+}
+
+.about-us-paragraph {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+  color: #555;
+}
+
+.about-us-tagline {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-align: center;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 2px solid #facc15;
+}
+
+@media (max-width: 768px) {
+  .about-us-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .about-us-title {
+    font-size: 2rem;
+  }
+
+  .about-us-paragraph {
+    font-size: 0.95rem;
+  }
+
+  .about-us-tagline {
+    font-size: 1rem;
+  }
+}
