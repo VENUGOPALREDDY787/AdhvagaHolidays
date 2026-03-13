@@ -4,6 +4,7 @@ import AdminSidebar from "../Components/Admin/AdminSidebar";
 import AdminTopBar from "../Components/Admin/AdminTopBar";
 import TravelCardsManager from "../Components/Admin/TravelCardsManager";
 import DashboardOverview from "../Components/Admin/DashboardOverview";
+import BookingsManager from "../Components/Admin/BookingsManager";
 import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
@@ -36,11 +37,11 @@ const AdminDashboard = () => {
       subtitle: "Create, edit, and manage your travel offerings",
       component: <TravelCardsManager />,
     },
-    bookings: {
-      title: "Bookings",
-      subtitle: "Manage customer bookings and reservations",
-      component: <div className="coming-soon">Coming Soon</div>,
-    },
+   bookings: {
+  title: "Bookings",
+  subtitle: "Manage customer bookings and reservations",
+  component: <BookingsManager />,
+},
     users: {
       title: "Users",
       subtitle: "Manage customers and administrators",

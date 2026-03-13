@@ -55,10 +55,39 @@ const PackageDetails = () => {
   }
 
   /* ================= FORM SUBMIT ================= */
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch(`${BASE_URL}/api/bookings`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        customerName: formData.name,
+        email: formData.email,
+        phone: "", // optional for now
+        packageId: pkg._id,
+        travelDate: formData.date,
+        persons: formData.guests,
+        message: "",
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message || "Booking failed");
+    }
+
     setIsSubmitted(true);
-  };
+
+  } catch (error) {
+    console.error("Booking error:", error);
+    alert("Failed to submit booking");
+  }
+};
 
   /* ================= SUCCESS STATE ================= */
   if (isSubmitted) {
