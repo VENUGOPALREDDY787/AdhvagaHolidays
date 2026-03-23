@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
 
 export const adminLogin = async (req, res) => {
   try {
@@ -10,18 +9,8 @@ export const adminLogin = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    /**
-     * 👇 Hash the ENV password once and compare
-     * (simple approach for small projects)
-     */
-    const hashedEnvPassword = await bcrypt.hash(
-      process.env.ADMIN_PASSWORD,
-      10
-    );
-
-    const isMatch = await bcrypt.compare(password, hashedEnvPassword);
-
-    if (!isMatch) {
+    // ✅ FIX: Direct password comparison (no bcrypt here)
+    if (password !== process.env.ADMIN_PASSWORD) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 

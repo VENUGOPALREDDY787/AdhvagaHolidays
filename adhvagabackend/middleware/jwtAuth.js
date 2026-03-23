@@ -10,8 +10,11 @@ export const jwtAuth = (req, res, next) => {
   const token = authHeader.split(" ")[1];
 
   try {
-    jwt.verify(token, process.env.JWT_SECRET);
-    next(); // allow admin
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    req.user = decoded; // 🔥 ADD THIS
+
+    next();
   } catch {
     return res.status(401).json({ message: "Invalid token" });
   }

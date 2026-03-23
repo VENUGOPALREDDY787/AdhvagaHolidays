@@ -9,15 +9,38 @@ import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState("packages");
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  /* ================= AUTH CHECK ================= */
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
+useEffect(() => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    navigate("/admin/login", { replace: true });
+    setLoading(false); // 🔥 ADD THIS
+    return;
+  }
+
+  fetch("http://localhost:8080/api/admin/verify-admin", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Invalid token");
+      }
+      return res.json();
+    })
+    .then(() => {
+      setLoading(false);
+    })
+    .catch(() => {
+      localStorage.removeItem("token");
       navigate("/admin/login", { replace: true });
-    }
-  }, [navigate]);
+      setLoading(false); // 🔥 ADD THIS
+    });
+}, [navigate]);
 
   /* ================= LOGOUT ================= */
   const handleLogout = () => {
@@ -55,7 +78,9 @@ const AdminDashboard = () => {
   };
 
   const currentSection = sections[activeSection];
-
+if (loading) {
+  return <div>Checking authentication...</div>;
+}
   return (
     <div className="admin-dashboard">
       <AdminSidebar
