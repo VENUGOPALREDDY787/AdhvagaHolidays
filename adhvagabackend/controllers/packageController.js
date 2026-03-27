@@ -113,23 +113,26 @@ export const updatePackage = async (req, res) => {
   try {
     const updatedData = { ...req.body };
 
+    // ✅ itinerary parse
     if (updatedData.itinerary) {
       updatedData.itinerary = JSON.parse(updatedData.itinerary);
     }
 
-    if (
-      updatedData.itinerary &&
-      !Array.isArray(updatedData.itinerary)
-    ) {
-      return res.status(400).json({ message: "Invalid itinerary format" });
-    }
+    // ✅ FIX arrays
+    ["highlights", "includes", "excludes"].forEach((field) => {
+      if (updatedData[field]) {
+        updatedData[field] = Array.isArray(updatedData[field])
+          ? updatedData[field]
+          : updatedData[field].split(",").map((s) => s.trim());
+      }
+    });
 
     const pkg = await Package.findById(req.params.id);
     if (!pkg) {
       return res.status(404).json({ message: "Package not found" });
     }
 
-    // 🔄 Replace image in Cloudinary
+    // ✅ IMAGE UPDATE
     if (req.file) {
       if (pkg.imageId) {
         await cloudinary.uploader.destroy(pkg.imageId);
@@ -153,9 +156,10 @@ export const updatePackage = async (req, res) => {
       updatedData.imageId = uploaded.public_id;
     }
 
+    // 🔥 MAIN FIX
     const updatedPackage = await Package.findByIdAndUpdate(
       req.params.id,
-      updatedData,
+      { $set: updatedData },   // ✅ THIS FIXES RESET ISSUE
       { new: true }
     );
 

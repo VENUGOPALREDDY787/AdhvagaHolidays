@@ -921,7 +921,41 @@ const removePolicyItem = (field, index) => {
                     </div>
                   )}
 
-                  {/* Itinerary Preview */}
+                  {/* Includes */}
+                  <input
+                    type="text"
+                    value={formData.includes.join(", ")}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        includes: e.target.value
+                          .split(",")
+                          .map((s) => s.trim()),
+                      })
+                    }
+                  />
+
+                  {/* Excludes */}
+                  {formData.itinerary?.length > 0 && (
+                    <div className="preview-extra">
+                      <strong>Itinerary</strong>
+
+                      {formData.itinerary.map((day, index) => (
+                        <div key={index} className="preview-itinerary-day">
+                          <div className="it-day">
+                            Day {day.day || index + 1}:{" "}
+                            {day.title || "Untitled"}
+                          </div>
+
+                          {day.description && (
+                            <div className="it-desc">{day.description}</div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* ===== ADDED: ITINERARY ===== */}
                   {formData.itinerary?.length > 0 && (
                     <div className="preview-extra">
                       <strong>Itinerary</strong>
