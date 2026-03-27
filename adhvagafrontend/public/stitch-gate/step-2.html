@@ -1,0 +1,201 @@
+<html class="dark"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>advagadholidays.inc - Welcome &amp; Verification</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&amp;family=Bebas+Neue&amp;family=Dancing+Script:wght@400..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    (function () {
+        const originalWarn = console.warn;
+        console.warn = function (...args) {
+            const first = args[0];
+            if (typeof first === "string" && first.includes("cdn.tailwindcss.com should not be used in production")) {
+                return;
+            }
+            return originalWarn.apply(console, args);
+        };
+    })();
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-container": "#6da8fc",
+                        "tertiary": "#a7c8ff",
+                        "surface-variant": "#3a342a",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#004787",
+                        "secondary-container": "#594414",
+                        "inverse-on-surface": "#353026",
+                        "primary-fixed-dim": "#f7be3a",
+                        "outline": "#9c8f7a",
+                        "on-secondary-container": "#cfb178",
+                        "surface-container-highest": "#3a342a",
+                        "on-secondary-fixed": "#261900",
+                        "secondary-fixed-dim": "#e2c287",
+                        "secondary": "#e2c287",
+                        "on-tertiary": "#003060",
+                        "on-secondary-fixed-variant": "#594414",
+                        "background": "#211d11",
+                        "surface-container-lowest": "#120e06",
+                        "on-secondary": "#402d01",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#001c3b",
+                        "secondary-fixed": "#ffdea2",
+                        "surface-container-high": "#2f2920",
+                        "outline-variant": "#4f4634",
+                        "primary": "#d39e17",
+                        "on-background": "#ece1d3",
+                        "tertiary-fixed": "#d5e3ff",
+                        "tertiary-fixed-dim": "#a7c8ff",
+                        "inverse-surface": "#ece1d3",
+                        "on-primary-container": "#ffffff",
+                        "on-surface-variant": "#d3c5ae",
+                        "on-error": "#690005",
+                        "surface-dim": "#17130b",
+                        "surface-container-low": "#211d11",
+                        "inverse-primary": "#7a5900",
+                        "error": "#ffb4ab",
+                        "on-primary": "#000000",
+                        "surface-tint": "#d39e17",
+                        "primary-container": "#d39e17",
+                        "on-primary-fixed-variant": "#5c4200",
+                        "surface-container": "#241f16",
+                        "on-tertiary-container": "#003c74",
+                        "surface-bright": "#3e382e",
+                        "on-surface": "#ece1d3",
+                        "on-primary-fixed": "#261900",
+                        "surface": "#1a1710",
+                        "primary-fixed": "#ffdea2"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"],
+                        "display": ["Plus Jakarta Sans"],
+                        "accent": ["Bebas Neue", "sans-serif"],
+                        "signature": ["Dancing Script", "cursive"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .font-accent { font-family: 'Bebas Neue', sans-serif; }
+        .font-signature { font-family: 'Dancing Script', cursive; }
+        .tracking-widest-extreme { letter-spacing: 0.4em; }
+        .tracking-wider-custom { letter-spacing: 0.2em; }
+        
+        /* Custom Chrome Scrollbar for a premium feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: theme('colors.background');
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.surface-container-high');
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: theme('colors.primary');
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body antialiased min-h-screen flex flex-col overflow-hidden">
+<!-- Minimal Back Header for Focused Flow -->
+<header class="absolute top-0 w-full z-50 flex items-center justify-between p-8 bg-transparent">
+<button class="flex items-center gap-2 text-on-background/80 hover:text-primary transition-colors group cursor-pointer">
+<span class="material-symbols-outlined transition-transform group-hover:-translate-x-1" data-icon="arrow_back" style="font-variation-settings: 'wght' 300;">arrow_back</span>
+<span class="text-xs font-accent tracking-widest-extreme uppercase">Return</span>
+</button>
+<div class="flex items-center gap-2">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M39.998 35.764C39.9944 35.7463 39.9875 35.7155 39.9748 35.6706C39.9436 35.5601 39.8949 35.4259 39.8346 35.2825C39.8168 35.2403 39.7989 35.1993 39.7813 35.1602C38.5103 34.2887 35.9788 33.0607 33.7095 32.5189C30.9875 31.8691 27.6413 31.4783 24 31.4783C20.3587 31.4783 17.0125 31.8691 14.2905 32.5189C12.0012 33.0654 9.44505 34.3104 8.18538 35.1832C8.17384 35.2075 8.16216 35.233 8.15052 35.2592C8.09919 35.3751 8.05721 35.4886 8.02977 35.589C8.00356 35.6848 8.00039 35.7333 8.00004 35.7388C8.00004 35.739 8 35.7393 8.00004 35.7388C8.00004 35.7641 8.0104 36.0767 8.68485 36.6314C9.34546 37.1746 10.4222 37.7531 11.9291 38.2772C14.9242 39.319 19.1919 40 24 40C28.8081 40 33.0758 39.319 36.0709 38.2772C37.5778 37.7531 38.6545 37.1746 39.3151 36.6314C39.9006 36.1499 39.9857 35.8511 39.998 35.764ZM4.95178 32.7688L21.4543 6.30267C22.6288 4.4191 25.3712 4.41909 26.5457 6.30267L43.0534 32.777C43.0709 32.8052 43.0878 32.8338 43.104 32.8629L41.3563 33.8352C43.104 32.8629 43.1038 32.8626 43.104 32.8629L43.1051 32.865L43.1065 32.8675L43.1101 32.8739L43.1199 32.8918C43.1276 32.906 43.1377 32.9246 43.1497 32.9473C43.1738 32.9925 43.2062 33.0545 43.244 33.1299C43.319 33.2792 43.4196 33.489 43.5217 33.7317C43.6901 34.1321 44 34.9311 44 35.7391C44 37.4427 43.003 38.7775 41.8558 39.7209C40.6947 40.6757 39.1354 41.4464 37.385 42.0552C33.8654 43.2794 29.133 44 24 44C18.867 44 14.1346 43.2794 10.615 42.0552C8.86463 41.4464 7.30529 40.6757 6.14419 39.7209C4.99695 38.7775 3.99999 37.4427 3.99999 35.7391C3.99999 34.8725 4.29264 34.0922 4.49321 33.6393C4.60375 33.3898 4.71348 33.1804 4.79687 33.0311C4.83898 32.9556 4.87547 32.8935 4.9035 32.8471C4.91754 32.8238 4.92954 32.8043 4.93916 32.7889L4.94662 32.777L4.95178 32.7688ZM35.9868 29.004L24 9.77997L12.0131 29.004C12.4661 28.8609 12.9179 28.7342 13.3617 28.6282C16.4281 27.8961 20.0901 27.4783 24 27.4783C27.9099 27.4783 31.5719 27.8961 34.6383 28.6282C35.082 28.7342 35.5339 28.8609 35.9868 29.004Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<span class="text-xs font-accent tracking-widest-extreme uppercase text-on-background/60">advagadholidays.inc</span>
+</div>
+</header>
+<!-- Main Content Area with Cinematic Background -->
+<main class="relative flex-1 flex items-center justify-center w-full min-h-screen">
+<!-- Cinematic Background Image with Gradient Overlay -->
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-cover bg-center bg-no-repeat scale-[1.02] transform transition-transform duration-[20s] ease-linear hover:scale-100" data-alt="dramatic aerial view of a rugged mountain pass shrouded in morning mist, cinematic lighting, deep moody tones, evocative landscape" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCR9zDo5e6FrqDRq5S6hT8opDVGThTU0AjOz43uJI1A0vWEA4KZD34Ut990uzI-sCI_6lT9L81KBxVoj_cCuXLG-CCTfPahXxwFX5QmYBUXSaDGr-4-aLR8_6uJw3pQKYYsvMpwusViDfE4rwCWpC7wF18aR7XRYSqVkTyIBIo_6YU_hICqVs7KMnsDSVmOMVbKfVBs_6x5ZeOxvdGA-7RgZbH6AjaYd_Yd43Mf5bhYerYElAdbyWa6Qql5ox0ex6xwm1uQZZm9VNnB'); filter: grayscale(20%) brightness(60%);">
+</div>
+<!-- Radial and Linear Gradients for Depth and Text Legibility -->
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent z-10"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,theme('colors.background')_100%)] z-10 opacity-80"></div>
+</div>
+<!-- Foreground Content -->
+<div class="relative z-20 w-full max-w-4xl px-6 flex flex-col items-center justify-center mt-12">
+<!-- Hero Typography -->
+<div class="text-center mb-12 relative">
+<h1 class="font-accent text-[3rem] md:text-[5rem] lg:text-[7rem] leading-[0.85] text-on-background drop-shadow-2xl relative z-10">
+                    WELCOME <span class="text-primary/80">/</span> THE JOURNEY BEGINS
+                </h1>
+<p class="font-signature text-2xl md:text-4xl text-primary absolute -bottom-6 right-0 md:right-12 -rotate-3 opacity-90 drop-shadow-md z-20">
+                    Your passage awaits...
+                </p>
+</div>
+<!-- Glassmorphism Floating Card -->
+<div class="w-full max-w-md backdrop-blur-md bg-white/[0.03] border border-white/10 p-10 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] relative overflow-hidden group">
+<!-- Subtle Gradient Accent Line -->
+<div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+<div class="text-center mb-10">
+<p class="text-xs font-accent tracking-widest-extreme uppercase text-on-background/60 mb-2">Step 2 of 2</p>
+<h2 class="text-2xl font-display font-light text-on-background">Welcome Back, Traveler.</h2>
+<p class="text-sm text-on-surface-variant mt-2 font-light">Enter the 6-digit code sent to your device.</p>
+</div>
+<!-- OTP Verification Form -->
+<form class="flex flex-col gap-8">
+<!-- Minimalist OTP Inputs -->
+<div class="flex justify-center gap-3 md:gap-4">
+<input aria-label="Digit 1" class="w-10 h-14 md:w-12 md:h-16 text-center text-xl md:text-2xl font-display font-medium text-on-background bg-transparent border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-colors duration-300 px-0 placeholder:text-outline-variant/30" maxlength="1" placeholder="·" type="text"/>
+<input aria-label="Digit 2" class="w-10 h-14 md:w-12 md:h-16 text-center text-xl md:text-2xl font-display font-medium text-on-background bg-transparent border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-colors duration-300 px-0 placeholder:text-outline-variant/30" maxlength="1" placeholder="·" type="text"/>
+<input aria-label="Digit 3" class="w-10 h-14 md:w-12 md:h-16 text-center text-xl md:text-2xl font-display font-medium text-on-background bg-transparent border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-colors duration-300 px-0 placeholder:text-outline-variant/30" maxlength="1" placeholder="·" type="text"/>
+<input aria-label="Digit 4" class="w-10 h-14 md:w-12 md:h-16 text-center text-xl md:text-2xl font-display font-medium text-on-background bg-transparent border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-colors duration-300 px-0 placeholder:text-outline-variant/30" maxlength="1" placeholder="·" type="text"/>
+<input aria-label="Digit 5" class="w-10 h-14 md:w-12 md:h-16 text-center text-xl md:text-2xl font-display font-medium text-on-background bg-transparent border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-colors duration-300 px-0 placeholder:text-outline-variant/30" maxlength="1" placeholder="·" type="text"/>
+<input aria-label="Digit 6" class="w-10 h-14 md:w-12 md:h-16 text-center text-xl md:text-2xl font-display font-medium text-on-background bg-transparent border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-colors duration-300 px-0 placeholder:text-outline-variant/30" maxlength="1" placeholder="·" type="text"/>
+</div>
+<div class="flex flex-col items-center gap-4 mt-4">
+<!-- Primary CTA -->
+<button class="w-full bg-primary text-on-primary font-accent text-xl tracking-wider-custom py-4 rounded DEFAULT hover:bg-primary-fixed transition-colors duration-300 uppercase shadow-lg shadow-primary/20 flex justify-center items-center gap-2 group" type="button">
+<span>VERIFY &amp; ENTER</span>
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<!-- Resend Link -->
+<button class="text-sm font-display font-medium text-on-background/50 hover:text-primary transition-colors duration-300 uppercase tracking-widest mt-2" type="button">
+                            Resend Code
+                        </button>
+</div>
+</form>
+</div>
+</div>
+</main>
+<!-- Consistent Side Navigation Dots -->
+<nav class="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4 hidden md:flex">
+<a aria-label="Section 1" class="w-2 h-2 rounded-full bg-primary/30 hover:bg-primary/60 transition-all duration-300" href="#"></a>
+<a aria-label="Section 2 (Current)" class="w-3 h-3 rounded-full bg-primary transition-all duration-300 scale-125" href="#"></a>
+<a aria-label="Section 3" class="w-2 h-2 rounded-full bg-primary/30 hover:bg-primary/60 transition-all duration-300" href="#"></a>
+</nav>
+<!-- Ambient Gradient Overlay for the bottom edge -->
+<div class="fixed bottom-0 w-full h-24 bg-gradient-to-t from-background to-transparent pointer-events-none z-40"></div>
+<script>
+  (function () {
+    const primaryButton = document.querySelector('form button[type="button"]');
+    if (!primaryButton) return;
+
+    primaryButton.addEventListener('click', function () {
+      window.parent.postMessage('adhvaga-gate-step-2-complete', window.location.origin);
+    });
+  })();
+</script>
+</body></html>

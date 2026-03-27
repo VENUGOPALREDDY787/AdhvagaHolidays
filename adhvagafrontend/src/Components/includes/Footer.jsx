@@ -1,71 +1,86 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/unnamed.jpg";
-import './Footer.css'
+import "./Footer.css";
+
 function Footer() {
-    return ( 
-        <footer style={{backgroundColor:"antiquewhite"}}>
-        <div className="container pt-5">
-            <div className="row">
-                <div className="col  pt-2">
-                    <img src={logo} alt="Adhvaga" className='footer-logo'/>
-                    <div className='social-icons ms-2 mt-3'>
-                        <i class="fa-brands fa-square-instagram"></i>
-                        <i class="fa-brands fa-square-youtube"></i>
-                        <i class="fa-brands fa-square-facebook"></i>
-                        <i class="fa-brands fa-square-whatsapp"></i>
-                    </div>
-                </div>
-                <div className="col ms-5 pt-2">
-                    <div className='footer-quick-links'>
-                    <p className=''>Quick Links</p>
-                    
-                    <a href="">About Us</a><br />
-                    <a href="">Destinations</a><br />
-                    <a href="">Tour Packages</a><br />
-                    <a href="">Custom Tours</a><br />
-                    <a href="">Travel Blog</a><br />
-                    
-                    </div>
-                </div>
-                <div className="col ms-5 pt-2">
-                    <p>Top Destinations</p>
-                    
-                   <a href="">Paris, France</a><br />
-                   <a href="">Bali, Indonesia</a><br />
-                    <a href="">Dubai, UAE</a><br />
-                    <a href="">Santorini, Greece</a><br />
-                    <a href="">Maldives</a><br />
-                    
-                </div>
-                <div className="col ms-5 mt-2">
-                    <p>Contact Us</p>
-                    <a href="">📍 123 Travel Street, Suite 100 <br />
-New York, NY 10001</a>
-                    <a href="">📞 +1 (234) 567-890</a>
-                    <a href="">✉️ info@adhyagaholidays.com</a>
-                    <a href="">🕒 Mon-Sat: 9AM - 6PM</a>
+    const quickLinks = [
+        { label: "About Us", to: "/About" },
+        { label: "Domestic", to: "/Domestic" },
+        { label: "International", to: "/International" },
+        { label: "Services", to: "/Services" },
+        { label: "Support", to: "/Support" },
+    ];
 
+    const topDestinations = [
+        "Paris, France",
+        "Bali, Indonesia",
+        "Dubai, UAE",
+        "Santorini, Greece",
+        "Maldives",
+    ];
+
+    return (
+        <footer className="site-footer" role="contentinfo" aria-label="Footer">
+            <div className="site-footer-inner">
+                <div className="site-footer-grid">
+                    <section className="site-footer-brand">
+                        <img src={logo} alt="Adhvaga Holidays logo" className="footer-logo" />
+                        <h3>Adhvaga Holidays</h3>
+                        <p>
+                            Curating extraordinary travel experiences with comfort, precision,
+                            and complete peace of mind.
+                        </p>
+                        <div className="site-footer-social" aria-label="Social media links">
+                            <a href="https://instagram.com/adhvagaholidays" target="_blank" rel="noopener noreferrer">Instagram</a>
+                            <a href="https://facebook.com/adhvagaholidays" target="_blank" rel="noopener noreferrer">Facebook</a>
+                            <a href="https://twitter.com/adhvagaholidays" target="_blank" rel="noopener noreferrer">Twitter</a>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h4>Quick Links</h4>
+                        <nav className="site-footer-links" aria-label="Quick links">
+                            {quickLinks.map((item) => (
+                                <Link key={item.to} to={item.to}>
+                                    {item.label}
+                                </Link>
+                            ))}
+                        </nav>
+                    </section>
+
+                    <section>
+                        <h4>Top Destinations</h4>
+                        <div className="site-footer-links" aria-label="Top destinations">
+                            {topDestinations.map((place) => (
+                                <span key={place}>{place}</span>
+                            ))}
+                        </div>
+                    </section>
+
+                    <section>
+                        <h4>Contact Us</h4>
+                        <div className="site-footer-links" aria-label="Contact information">
+                            <span>JP Nagar 2nd Phase, Bangalore</span>
+                            <a href="tel:+919620421494">+91 96204 21494</a>
+                            <a href="mailto:adhvagaholidaysinc@gmail.com">adhvagaholidaysinc@gmail.com</a>
+                            <span>Mon-Sat: 09:00 - 18:00</span>
+                        </div>
+                    </section>
                 </div>
-                
+
+                <div className="site-footer-bottom">
+                    <p>
+                        We are passionate about creating memorable, comfortable, and
+                        well-organized travel experiences for travelers across India and beyond.
+                    </p>
+                    <p>
+                        Copyright {new Date().getFullYear()} Adhvaga Holidays. All rights reserved.
+                    </p>
+                </div>
             </div>
-            <div className="row">
-                <div className="mt-5 text-muted" style={{fontSize:"12px"}}>
-                
-             <p>We are passionate about creating extraordinary travel experiences. With years of expertise and a commitment to excellence, we turn your travel dreams into reality.</p>
-            <p>
-<strong>1.</strong> Adhvaga Holidays is a trusted tours and travels company committed to creating memorable, comfortable, and well-organized travel experiences for travelers across India and beyond.<br />
-We believe that travel is not just about reaching a destination, but about enjoying every moment of the journey with peace of mind and complete satisfaction.
-</p>
-
-
-
-
-
-           </div>
-            </div>
-        </div>
         </footer>
-     );
+    );
 }
 
 

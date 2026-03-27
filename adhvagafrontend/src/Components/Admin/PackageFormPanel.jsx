@@ -12,7 +12,7 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
     rating: pkg?.rating || 4.5,
 
     // ✅ FIXED
-    category: pkg?.category || "Adventure", // enum field
+    category: pkg?.category || "Domestic", // enum field
     type: pkg?.type || "Domestic", // Domestic / International
 
     description: pkg?.description || "",
@@ -25,6 +25,20 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
 
     // ✅ FIXED structure
     itinerary: pkg?.itinerary || [],
+
+    // ===== NEW FIELDS =====
+    durationDays: pkg?.durationDays || 0,
+    durationNights: pkg?.durationNights || 0,
+    travelSeason: pkg?.travelSeason || "",
+    validityStart: pkg?.validityStart ? pkg.validityStart.split('T')[0] : "",
+    validityEnd: pkg?.validityEnd ? pkg.validityEnd.split('T')[0] : "",
+    minGuests: pkg?.minGuests || 1,
+    maxGuests: pkg?.maxGuests || 10,
+    hotelCategoryPricing: pkg?.hotelCategoryPricing || [],
+    hotelDetails: pkg?.hotelDetails || [],
+    cancellationPolicy: pkg?.cancellationPolicy || [],
+    bookingPolicy: pkg?.bookingPolicy || [],
+    importantNotes: pkg?.importantNotes || [],
   });
 
   const [imageFile, setImageFile] = useState(null);
@@ -39,22 +53,22 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
   const [errors, setErrors] = useState({});
   const fileInputRef = useRef(null);
 
-  const categories = [
-    "Relaxation",
-    "Cultural",
-    "Adventure",
-    "Luxury",
-    "Family",
-    "Transport",
-  ];
+  const categories = ["Domestic", "International"];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]:
-        name === "price" || name === "rating" ? parseFloat(value) || 0 : value,
-    }));
+    setFormData((prev) => {
+      if (name === "type") {
+        return { ...prev, type: value, category: value };
+      }
+
+      return {
+        ...prev,
+        [name]:
+          name === "price" || name === "rating" ? parseFloat(value) || 0 : value,
+      };
+    });
+
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: null }));
     }
@@ -121,6 +135,81 @@ const removeItineraryDay = (index) => {
   }));
 };
 
+// ===== HOTEL CATEGORY PRICING HELPERS =====
+const addHotelCategoryPricing = () => {
+  setFormData((prev) => ({
+    ...prev,
+    hotelCategoryPricing: [
+      ...prev.hotelCategoryPricing,
+      { category: "A", pricePerPerson: 0, description: "" },
+    ],
+  }));
+};
+
+const updateHotelCategoryPricing = (index, field, value) => {
+  setFormData((prev) => {
+    const updated = [...prev.hotelCategoryPricing];
+    updated[index] = { ...updated[index], [field]: value };
+    return { ...prev, hotelCategoryPricing: updated };
+  });
+};
+
+const removeHotelCategoryPricing = (index) => {
+  setFormData((prev) => ({
+    ...prev,
+    hotelCategoryPricing: prev.hotelCategoryPricing.filter((_, i) => i !== index),
+  }));
+};
+
+// ===== HOTEL DETAILS HELPERS =====
+const addHotelDetail = () => {
+  setFormData((prev) => ({
+    ...prev,
+    hotelDetails: [
+      ...prev.hotelDetails,
+      { city: "", hotelName: "", category: "A", checkIn: "", checkOut: "", roomType: "", nights: 1 },
+    ],
+  }));
+};
+
+const updateHotelDetail = (index, field, value) => {
+  setFormData((prev) => {
+    const updated = [...prev.hotelDetails];
+    updated[index] = { ...updated[index], [field]: value };
+    return { ...prev, hotelDetails: updated };
+  });
+};
+
+const removeHotelDetail = (index) => {
+  setFormData((prev) => ({
+    ...prev,
+    hotelDetails: prev.hotelDetails.filter((_, i) => i !== index),
+  }));
+};
+
+// ===== POLICY HELPERS (for cancellation, booking, notes) =====
+const addPolicyItem = (field) => {
+  setFormData((prev) => ({
+    ...prev,
+    [field]: [...prev[field], ""],
+  }));
+};
+
+const updatePolicyItem = (field, index, value) => {
+  setFormData((prev) => {
+    const updated = [...prev[field]];
+    updated[index] = value;
+    return { ...prev, [field]: updated };
+  });
+};
+
+const removePolicyItem = (field, index) => {
+  setFormData((prev) => ({
+    ...prev,
+    [field]: prev[field].filter((_, i) => i !== index),
+  }));
+};
+
 
   const validate = () => {
     const newErrors = {};
@@ -153,8 +242,21 @@ const removeItineraryDay = (index) => {
       const token = localStorage.getItem("token");
       const data = new FormData();
 
+      // Fields that need JSON stringification
+      const jsonFields = [
+        'itinerary',
+        'highlights',
+        'includes',
+        'excludes',
+        'hotelCategoryPricing',
+        'hotelDetails',
+        'cancellationPolicy',
+        'bookingPolicy',
+        'importantNotes'
+      ];
+
       Object.keys(formData).forEach((key) => {
-        if (key === "itinerary") {
+        if (jsonFields.includes(key)) {
           data.append(key, JSON.stringify(formData[key]));
         } else {
           data.append(key, formData[key]);
@@ -324,8 +426,8 @@ const removeItineraryDay = (index) => {
                 <div className="form-group">
                   <label>Category</label>
                   <select
-                    name="category"
-                    value={formData.category}
+                    name="type"
+                    value={formData.type}
                     onChange={handleChange}
                   >
                     {categories.map((cat) => (
@@ -362,36 +464,319 @@ const removeItineraryDay = (index) => {
                 />
               </div>
 
+              {/* Duration Days/Nights */}
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Duration Days</label>
+                  <input
+                    type="number"
+                    name="durationDays"
+                    min="0"
+                    value={formData.durationDays}
+                    onChange={handleChange}
+                    placeholder="7"
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Duration Nights</label>
+                  <input
+                    type="number"
+                    name="durationNights"
+                    min="0"
+                    value={formData.durationNights}
+                    onChange={handleChange}
+                    placeholder="6"
+                  />
+                </div>
+              </div>
+
+              {/* Travel Season */}
               <div className="form-group">
-                <label>highlights (Optional)</label>
+                <label>Travel Season</label>
                 <input
                   type="text"
-                  name="tahighlightsg"
-                  value={formData.highlights}
+                  name="travelSeason"
+                  value={formData.travelSeason}
                   onChange={handleChange}
-                  placeholder="e.g., Bestseller, New"
+                  placeholder="e.g., Oct - Mar (Best Time)"
                 />
               </div>
+
+              {/* Validity Period */}
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Validity Start</label>
+                  <input
+                    type="date"
+                    name="validityStart"
+                    value={formData.validityStart}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Validity End</label>
+                  <input
+                    type="date"
+                    name="validityEnd"
+                    value={formData.validityEnd}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              {/* Number of Guests */}
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Min Guests</label>
+                  <input
+                    type="number"
+                    name="minGuests"
+                    min="1"
+                    value={formData.minGuests}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Max Guests</label>
+                  <input
+                    type="number"
+                    name="maxGuests"
+                    min="1"
+                    value={formData.maxGuests}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              {/* Highlights */}
               <div className="form-group">
-                <label>includes (Optional)</label>
-                <input
-                  type="text"
-                  name="tag"
-                  value={formData.inclueds}
-                  onChange={handleChange}
-                  placeholder="e.g., Bestseller, New"
-                />
+                <div className="label-with-action">
+                  <label>Highlights</label>
+                  <button type="button" className="add-day-btn" onClick={() => addPolicyItem('highlights')}>
+                    <Plus size={16} /> Add
+                  </button>
+                </div>
+                {formData.highlights.map((item, index) => (
+                  <div key={index} className="policy-item">
+                    <input
+                      type="text"
+                      value={item}
+                      onChange={(e) => updatePolicyItem('highlights', index, e.target.value)}
+                      placeholder="e.g., Beachfront Resort Stay"
+                    />
+                    <button type="button" className="remove-day-btn" onClick={() => removePolicyItem('highlights', index)}>
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                ))}
               </div>
+
+              {/* Includes */}
               <div className="form-group">
-                <label>excludes (Optional)</label>
-                <input
-                  type="text"
-                  name="tag"
-                  value={formData.exclueds}
-                  onChange={handleChange}
-                  placeholder="e.g., Bestseller, New"
-                />
+                <div className="label-with-action">
+                  <label>Inclusions</label>
+                  <button type="button" className="add-day-btn" onClick={() => addPolicyItem('includes')}>
+                    <Plus size={16} /> Add
+                  </button>
+                </div>
+                {formData.includes.map((item, index) => (
+                  <div key={index} className="policy-item">
+                    <input
+                      type="text"
+                      value={item}
+                      onChange={(e) => updatePolicyItem('includes', index, e.target.value)}
+                      placeholder="e.g., Breakfast included"
+                    />
+                    <button type="button" className="remove-day-btn" onClick={() => removePolicyItem('includes', index)}>
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                ))}
               </div>
+
+              {/* Excludes */}
+              <div className="form-group">
+                <div className="label-with-action">
+                  <label>Exclusions</label>
+                  <button type="button" className="add-day-btn" onClick={() => addPolicyItem('excludes')}>
+                    <Plus size={16} /> Add
+                  </button>
+                </div>
+                {formData.excludes.map((item, index) => (
+                  <div key={index} className="policy-item">
+                    <input
+                      type="text"
+                      value={item}
+                      onChange={(e) => updatePolicyItem('excludes', index, e.target.value)}
+                      placeholder="e.g., Airfare not included"
+                    />
+                    <button type="button" className="remove-day-btn" onClick={() => removePolicyItem('excludes', index)}>
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              {/* Hotel Category Pricing */}
+              <div className="form-group">
+                <div className="label-with-action">
+                  <label>Hotel Category Pricing</label>
+                  <button type="button" className="add-day-btn" onClick={addHotelCategoryPricing}>
+                    <Plus size={16} /> Add Category
+                  </button>
+                </div>
+                {formData.hotelCategoryPricing.map((item, index) => (
+                  <div key={index} className="hotel-pricing-item">
+                    <select
+                      value={item.category}
+                      onChange={(e) => updateHotelCategoryPricing(index, 'category', e.target.value)}
+                    >
+                      <option value="A">Category A (Luxury)</option>
+                      <option value="B">Category B (Standard)</option>
+                      <option value="C">Category C (Budget)</option>
+                    </select>
+                    <input
+                      type="number"
+                      value={item.pricePerPerson}
+                      onChange={(e) => updateHotelCategoryPricing(index, 'pricePerPerson', Number(e.target.value))}
+                      placeholder="Price per person"
+                    />
+                    <input
+                      type="text"
+                      value={item.description}
+                      onChange={(e) => updateHotelCategoryPricing(index, 'description', e.target.value)}
+                      placeholder="Description (e.g., 5-star hotels)"
+                    />
+                    <button type="button" className="remove-day-btn" onClick={() => removeHotelCategoryPricing(index)}>
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              {/* City-wise Hotel Details */}
+              <div className="form-group">
+                <div className="label-with-action">
+                  <label>City-wise Hotel Details</label>
+                  <button type="button" className="add-day-btn" onClick={addHotelDetail}>
+                    <Plus size={16} /> Add Hotel
+                  </button>
+                </div>
+                {formData.hotelDetails.map((hotel, index) => (
+                  <div key={index} className="hotel-detail-item">
+                    <div className="hotel-detail-row">
+                      <input
+                        type="text"
+                        value={hotel.city}
+                        onChange={(e) => updateHotelDetail(index, 'city', e.target.value)}
+                        placeholder="City"
+                      />
+                      <input
+                        type="text"
+                        value={hotel.hotelName}
+                        onChange={(e) => updateHotelDetail(index, 'hotelName', e.target.value)}
+                        placeholder="Hotel Name"
+                      />
+                      <select
+                        value={hotel.category}
+                        onChange={(e) => updateHotelDetail(index, 'category', e.target.value)}
+                      >
+                        <option value="A">Cat A</option>
+                        <option value="B">Cat B</option>
+                        <option value="C">Cat C</option>
+                      </select>
+                    </div>
+                    <div className="hotel-detail-row">
+                      <input
+                        type="text"
+                        value={hotel.roomType}
+                        onChange={(e) => updateHotelDetail(index, 'roomType', e.target.value)}
+                        placeholder="Room Type"
+                      />
+                      <input
+                        type="number"
+                        value={hotel.nights}
+                        onChange={(e) => updateHotelDetail(index, 'nights', Number(e.target.value))}
+                        placeholder="Nights"
+                        min="1"
+                      />
+                      <button type="button" className="remove-day-btn" onClick={() => removeHotelDetail(index)}>
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Cancellation Policy */}
+              <div className="form-group">
+                <div className="label-with-action">
+                  <label>Cancellation Policy</label>
+                  <button type="button" className="add-day-btn" onClick={() => addPolicyItem('cancellationPolicy')}>
+                    <Plus size={16} /> Add
+                  </button>
+                </div>
+                {formData.cancellationPolicy.map((item, index) => (
+                  <div key={index} className="policy-item">
+                    <input
+                      type="text"
+                      value={item}
+                      onChange={(e) => updatePolicyItem('cancellationPolicy', index, e.target.value)}
+                      placeholder="e.g., Free cancellation up to 7 days before"
+                    />
+                    <button type="button" className="remove-day-btn" onClick={() => removePolicyItem('cancellationPolicy', index)}>
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              {/* Booking Policy */}
+              <div className="form-group">
+                <div className="label-with-action">
+                  <label>Booking Policy</label>
+                  <button type="button" className="add-day-btn" onClick={() => addPolicyItem('bookingPolicy')}>
+                    <Plus size={16} /> Add
+                  </button>
+                </div>
+                {formData.bookingPolicy.map((item, index) => (
+                  <div key={index} className="policy-item">
+                    <input
+                      type="text"
+                      value={item}
+                      onChange={(e) => updatePolicyItem('bookingPolicy', index, e.target.value)}
+                      placeholder="e.g., 50% advance payment required"
+                    />
+                    <button type="button" className="remove-day-btn" onClick={() => removePolicyItem('bookingPolicy', index)}>
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              {/* Important Notes */}
+              <div className="form-group">
+                <div className="label-with-action">
+                  <label>Important Notes</label>
+                  <button type="button" className="add-day-btn" onClick={() => addPolicyItem('importantNotes')}>
+                    <Plus size={16} /> Add
+                  </button>
+                </div>
+                {formData.importantNotes.map((item, index) => (
+                  <div key={index} className="policy-item">
+                    <input
+                      type="text"
+                      value={item}
+                      onChange={(e) => updatePolicyItem('importantNotes', index, e.target.value)}
+                      placeholder="e.g., Passport validity 6 months required"
+                    />
+                    <button type="button" className="remove-day-btn" onClick={() => removePolicyItem('importantNotes', index)}>
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+
               {/* Description */}
               <div className="form-group">
                 <label>Description</label>
@@ -509,76 +894,56 @@ const removeItineraryDay = (index) => {
 
                   <div className="preview-meta">
                     <span className="preview-price">
-                      ${formData.price || "0"}
+                      ₹{formData.price || "0"}
                     </span>
                     <span className="preview-dur">
-                      {formData.duration || "Duration"}
+                      {formData.duration || `${formData.durationDays}D / ${formData.durationNights}N`}
                     </span>
                   </div>
+
+                  {formData.travelSeason && (
+                    <p className="preview-season">🌤 {formData.travelSeason}</p>
+                  )}
 
                   {formData.description && (
                     <p className="preview-desc">{formData.description}</p>
                   )}
 
-                  {/* ===== ADDED: HIGHLIGHTS ===== */}
-                  {/* Highlights */}
-                  <input
-                    type="text"
-                    value={formData.highlights.join(", ")}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        highlights: e.target.value
-                          .split(",")
-                          .map((s) => s.trim()),
-                      })
-                    }
-                  />
+                  {/* Highlights Preview */}
+                  {formData.highlights?.length > 0 && (
+                    <div className="preview-extra">
+                      <strong>Highlights</strong>
+                      <ul>
+                        {formData.highlights.map((h, i) => (
+                          <li key={i}>✔ {h}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
 
-                  {/* Includes */}
-                  <input
-                    type="text"
-                    value={formData.includes.join(", ")}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        includes: e.target.value
-                          .split(",")
-                          .map((s) => s.trim()),
-                      })
-                    }
-                  />
-
-                  {/* Excludes */}
-                  <input
-                    type="text"
-                    value={formData.excludes.join(", ")}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        excludes: e.target.value
-                          .split(",")
-                          .map((s) => s.trim()),
-                      })
-                    }
-                  />
-
-                  {/* ===== ADDED: ITINERARY ===== */}
+                  {/* Itinerary Preview */}
                   {formData.itinerary?.length > 0 && (
                     <div className="preview-extra">
                       <strong>Itinerary</strong>
-
                       {formData.itinerary.map((day, index) => (
                         <div key={index} className="preview-itinerary-day">
                           <div className="it-day">
-                            Day {day.day || index + 1}:{" "}
-                            {day.title || "Untitled"}
+                            Day {day.day || index + 1}: {day.title || "Untitled"}
                           </div>
-
                           {day.description && (
                             <div className="it-desc">{day.description}</div>
                           )}
                         </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Hotel Categories Preview */}
+                  {formData.hotelCategoryPricing?.length > 0 && (
+                    <div className="preview-extra">
+                      <strong>Hotel Pricing</strong>
+                      {formData.hotelCategoryPricing.map((cat, i) => (
+                        <div key={i}>Cat {cat.category}: ₹{cat.pricePerPerson}/person</div>
                       ))}
                     </div>
                   )}

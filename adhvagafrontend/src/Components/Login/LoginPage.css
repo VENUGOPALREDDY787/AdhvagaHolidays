@@ -53,7 +53,7 @@
 }
 
 .login-card {
-  background: #fff;
+  background: linear-gradient(135deg, #1f1f1f 0%, #0a1a2f 100%);
   border-radius: 24px;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -151,6 +151,30 @@
   justify-content: space-between;
   font-size: 14px;
   margin-bottom: 24px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.options input[type="checkbox"] {
+  accent-color: #fcd12a;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.forgot-text {
+  color: #fcd12a;
+  cursor: pointer;
+}
+
+.forgot-text:hover {
+  text-decoration: underline;
 }
 
 .submit-btn {
@@ -199,5 +223,56 @@
 @media (min-width: 768px) {
   .login-left {
     display: flex;
+  }
+}
+
+@media (max-width: 767px) {
+  .login-wrapper {
+    padding: 16px;
+  }
+
+  .circle-pattern {
+    width: 500px;
+    height: 500px;
+    top: -250px;
+    right: -250px;
+    border-width: 12px;
+  }
+
+  .login-card {
+    border-radius: 16px;
+  }
+
+  .login-right {
+    padding: 24px 20px;
+  }
+
+  .login-right h1 {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    margin-bottom: 24px;
+  }
+
+  .options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .plane,
+  .circle-pattern {
+    display: none;
+  }
+
+  .login-right {
+    padding: 20px 16px;
+  }
+
+  .input-wrapper {
+    padding: 12px;
   }
 }

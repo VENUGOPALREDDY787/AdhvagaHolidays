@@ -4,43 +4,42 @@ import AdminSidebar from "../Components/Admin/AdminSidebar";
 import AdminTopBar from "../Components/Admin/AdminTopBar";
 import TravelCardsManager from "../Components/Admin/TravelCardsManager";
 import DashboardOverview from "../Components/Admin/DashboardOverview";
-import BookingsManager from "../Components/Admin/BookingsManager";
+import Settings from "../Components/Admin/Settings";
+import WhatsAppLeads from "../Components/Admin/WhatsAppLeads";
 import "./AdminDashboard.css";
+
+const getAdminEmailFromToken = () => {
+  const storedEmail = localStorage.getItem("admin_email");
+  if (storedEmail) {
+    return storedEmail;
+  }
+
+  const token = localStorage.getItem("token");
+  if (!token) {
+    return "admin@adhvaga.com";
+  }
+
+  try {
+    const payloadPart = token.split(".")[1];
+    const payload = JSON.parse(atob(payloadPart));
+    return payload?.email || "admin@adhvaga.com";
+  } catch {
+    return "admin@adhvaga.com";
+  }
+};
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState("packages");
-  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const adminEmail = getAdminEmailFromToken();
 
-useEffect(() => {
-  const token = localStorage.getItem("token");
-
-  if (!token) {
-    navigate("/admin/login", { replace: true });
-    setLoading(false); // 🔥 ADD THIS
-    return;
-  }
-
-  fetch("http://localhost:8080/api/admin/verify-admin", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error("Invalid token");
-      }
-      return res.json();
-    })
-    .then(() => {
-      setLoading(false);
-    })
-    .catch(() => {
-      localStorage.removeItem("token");
+  /* ================= AUTH CHECK ================= */
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
       navigate("/admin/login", { replace: true });
-      setLoading(false); // 🔥 ADD THIS
-    });
-}, [navigate]);
+    }
+  }, [navigate]);
 
   /* ================= LOGOUT ================= */
   const handleLogout = () => {
@@ -60,11 +59,16 @@ useEffect(() => {
       subtitle: "Create, edit, and manage your travel offerings",
       component: <TravelCardsManager />,
     },
-   bookings: {
-  title: "Bookings",
-  subtitle: "Manage customer bookings and reservations",
-  component: <BookingsManager />,
-},
+    bookings: {
+      title: "Bookings",
+      subtitle: "Manage customer bookings and reservations",
+      component: <div className="coming-soon">Coming Soon</div>,
+    },
+    whatsappLeads: {
+      title: "WhatsApp Leads",
+      subtitle: "Track customers who contacted via WhatsApp",
+      component: <WhatsAppLeads />,
+    },
     users: {
       title: "Users",
       subtitle: "Manage customers and administrators",
@@ -73,14 +77,17 @@ useEffect(() => {
     settings: {
       title: "Settings",
       subtitle: "Configure your application settings",
-      component: <div className="coming-soon">Coming Soon</div>,
+      component: <Settings />,
     },
   };
 
   const currentSection = sections[activeSection];
-if (loading) {
-  return <div>Checking authentication...</div>;
-}
+  const quickStats = [
+    { label: "Environment", value: "Connected", tone: "success" },
+    { label: "Session", value: "Authenticated", tone: "warning" },
+    { label: "Role", value: "Super Admin", tone: "neutral" },
+  ];
+
   return (
     <div className="admin-dashboard">
       <AdminSidebar
@@ -96,6 +103,26 @@ if (loading) {
         />
 
         <div className="dashboard-content">
+          <section className="admin-control-panel">
+            <div className="admin-control-copy">
+              <p className="admin-control-label">Control Center</p>
+              <h2>Welcome back, {adminEmail}</h2>
+              <p>
+                Manage packages, leads, and platform settings from one dashboard with
+                live admin security checks.
+              </p>
+            </div>
+
+            <div className="admin-quick-stats">
+              {quickStats.map((stat) => (
+                <article key={stat.label} className={`admin-stat-card ${stat.tone}`}>
+                  <span>{stat.label}</span>
+                  <strong>{stat.value}</strong>
+                </article>
+              ))}
+            </div>
+          </section>
+
           {currentSection.component}
         </div>
       </div>

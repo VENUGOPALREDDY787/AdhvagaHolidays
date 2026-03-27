@@ -1,0 +1,343 @@
+.whatsapp-leads-container {
+  padding: 20px;
+}
+
+/* Stats Cards */
+.leads-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-left: 4px solid;
+}
+
+.stat-card.stat-total { border-color: #6366f1; }
+.stat-card.stat-accepted { border-color: #22c55e; }
+.stat-card.stat-pending { border-color: #f59e0b; }
+.stat-card.stat-contacted { border-color: #3b82f6; }
+.stat-card.stat-converted { border-color: #10b981; }
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* Filter Tabs */
+.leads-filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  background: #f9fafb;
+}
+
+.filter-btn.active {
+  background: #25D366;
+  color: white;
+  border-color: #25D366;
+}
+
+/* Table */
+.leads-table-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.leads-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leads-table th {
+  background: #f9fafb;
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.leads-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.leads-table tr:hover {
+  background: #f9fafb;
+  cursor: pointer;
+}
+
+.lead-name {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.lead-date {
+  color: #9ca3af;
+  font-size: 0.8rem;
+}
+
+.phone-link {
+  color: #25D366;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.phone-link:hover {
+  text-decoration: underline;
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.badge-pending { background: #fef3c7; color: #d97706; }
+.badge-contacted { background: #dbeafe; color: #2563eb; }
+.badge-converted { background: #d1fae5; color: #059669; }
+.badge-rejected { background: #fee2e2; color: #dc2626; }
+
+/* T&C Badge */
+.tc-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.tc-accepted { background: #d1fae5; color: #059669; }
+.tc-pending { background: #fee2e2; color: #dc2626; }
+
+/* Actions */
+.actions-cell {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.status-select {
+  padding: 6px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  background: white;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 1rem;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.delete-btn:hover {
+  opacity: 1;
+}
+
+/* No Leads State */
+.no-leads {
+  padding: 60px 20px;
+  text-align: center;
+  color: #9ca3af;
+}
+
+/* Loading */
+.leads-loading {
+  padding: 60px 20px;
+  text-align: center;
+  color: #6b7280;
+}
+
+/* Lead Detail Modal */
+.lead-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.lead-modal {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.lead-modal h3 {
+  margin: 0 0 20px;
+  font-size: 1.25rem;
+  color: #1f2937;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #9ca3af;
+}
+
+.lead-detail {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lead-detail label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+
+.lead-detail span,
+.lead-detail a {
+  font-size: 0.95rem;
+  color: #1f2937;
+}
+
+.lead-detail a {
+  color: #25D366;
+  text-decoration: none;
+}
+
+.lead-detail a:hover {
+  text-decoration: underline;
+}
+
+.lead-detail select {
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.text-green { color: #059669; }
+.text-red { color: #dc2626; }
+
+.modal-actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+}
+
+.whatsapp-btn {
+  flex: 1;
+  padding: 12px 20px;
+  background: #25D366;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.whatsapp-btn:hover {
+  background: #128C7E;
+}
+
+.delete-btn-large {
+  padding: 12px 20px;
+  background: #fee2e2;
+  color: #dc2626;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.delete-btn-large:hover {
+  background: #fecaca;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .leads-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .leads-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .leads-table-container {
+    overflow-x: auto;
+  }
+  
+  .leads-table {
+    min-width: 700px;
+  }
+}
+
+@media (max-width: 480px) {
+  .leads-stats {
+    grid-template-columns: 1fr;
+  }
+}

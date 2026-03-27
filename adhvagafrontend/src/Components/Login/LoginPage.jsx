@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../config/api";
 import "./LoginPage.css";
 import Logo from "./Logo";
 import { Eye, EyeOff, Lock, User, Plane, ArrowRight, Loader2 } from "lucide-react";
@@ -13,13 +14,44 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return;
+    }
+
+    let cancelled = false;
+
+    const verifySession = async () => {
+      try {
+        const response = await fetch(`${BASE_URL}/api/admin/me`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.ok && !cancelled) {
+          navigate("/admin", { replace: true });
+        }
+      } catch {
+        // Ignore and allow manual login.
+      }
+    };
+
+    verifySession();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
 
     try {
-      const res = await fetch("http://localhost:8080/api/admin/login", {
+      const res = await fetch(`${BASE_URL}/api/admin/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,12 +67,14 @@ const LoginPage = () => {
 
       // ✅ Save token
       localStorage.setItem("token", data.token);
+      localStorage.setItem("admin_email", data?.admin?.email || email);
 
       // ✅ Redirect to admin dashboard
       navigate("/admin", { replace: true });
 
     } catch (err) {
-      setError(err.message);
+      const fallbackMessage = "Unable to login. Please check backend URL and credentials.";
+      setError(err?.message || fallbackMessage);
     } finally {
       setIsLoading(false);
     }

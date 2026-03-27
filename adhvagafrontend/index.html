@@ -1,12 +1,163 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-IN">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <!-- Favicon & App Icons -->
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/icons/icon-76x76.png" />
+    
+    <!-- PWA Manifest & Theme -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#d97706" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Adhvaga Holidays" />
+    <meta name="application-name" content="Adhvaga Holidays" />
+    
+    <!-- Windows Tiles -->
+    <meta name="msapplication-TileColor" content="#d97706" />
+    <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    
+    <!-- DNS Prefetch & Preconnect -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts used across pages -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Lato:wght@300;400;700&family=Playfair+Display:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+      /* Sprat Font Family */
+      @font-face {
+        font-family: 'Sprat';
+        src: url('/fonts/Sprat-RegularThin.otf') format('opentype');
+        font-weight: 100;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Sprat';
+        src: url('/fonts/Sprat-Regularlight.otf') format('opentype');
+        font-weight: 300;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Sprat';
+        src: url('/fonts/Sprat-Regular.otf') format('opentype');
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Sprat';
+        src: url('/fonts/Sprat-RegularMedium.otf') format('opentype');
+        font-weight: 500;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Sprat';
+        src: url('/fonts/Sprat-RegularBold.otf') format('opentype');
+        font-weight: 700;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Sprat';
+        src: url('/fonts/Sprat-RegularBlack.otf') format('opentype');
+        font-weight: 900;
+        font-style: normal;
+      }
+
+      /* Apply Sprat font globally */
+      * {
+        font-family: 'Sprat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+      }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>adhvagafrontend</title>
+    
+    <!-- SEO Meta Tags - Base (overridden by React Helmet per page) -->
+    <title>Adhvaga Holidays Inc - Don't Be A Tourist, Be A Traveler | Best Travel Agency</title>
+    <meta name="description" content="Adhvaga Holidays Inc - India's trusted travel agency offering customized domestic & international tour packages. Expert visa assistance, flight bookings, travel insurance & 24/7 support. Destinations: Goa, Kerala, Kashmir, Dubai, Singapore, Bali, Maldives & more." />
+    <meta name="keywords" content="travel agency India, holiday packages, domestic tours India, international tours, Goa packages, Kerala tours, Kashmir trip, Dubai holidays, Singapore tour, Bali vacation, Maldives honeymoon, visa assistance, travel insurance, customized tours, family vacation, honeymoon packages, corporate travel, group tours, adventure travel" />
+    <meta name="author" content="Adhvaga Holidays Inc" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
+    <link rel="canonical" href="https://adhvagaholidays.com/" />
+    
+    <!-- Geo Targeting for India -->
+    <meta name="geo.region" content="IN" />
+    <meta name="geo.placename" content="India" />
+    <meta name="ICBM" content="20.5937, 78.9629" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="rating" content="General" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://adhvagaholidays.com/" />
+    <meta property="og:title" content="Adhvaga Holidays Inc - Don't Be A Tourist, Be A Traveler | Best Travel Agency" />
+    <meta property="og:description" content="India's trusted travel agency offering customized domestic & international tour packages. Expert visa assistance, flight bookings & 24/7 support." />
+    <meta property="og:site_name" content="Adhvaga Holidays Inc" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:image" content="https://adhvagaholidays.com/images/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Adhvaga Holidays - Explore World & India Tours" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://adhvagaholidays.com/" />
+    <meta name="twitter:title" content="Adhvaga Holidays Inc - Don't Be A Tourist, Be A Traveler | Best Travel Agency" />
+    <meta name="twitter:description" content="India's trusted travel agency offering customized domestic & international tour packages. Expert visa assistance & 24/7 support." />
+    <meta name="twitter:site" content="@adhvagaholidays" />
+    <meta name="twitter:creator" content="@adhvagaholidays" />
+    <meta name="twitter:image" content="https://adhvagaholidays.com/images/twitter-card.jpg" />
+    <meta name="twitter:image:alt" content="Adhvaga Holidays - Explore World & India Tours" />
+    
+    <!-- Structured Data - Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Adhvaga Holidays Inc",
+      "alternateName": "Adhvaga Holidays",
+      "url": "https://adhvagaholidays.com",
+      "logo": "https://adhvagaholidays.com/images/logo.png",
+      "description": "India's trusted travel agency offering customized domestic & international tour packages with expert visa assistance and 24/7 support.",
+      "slogan": "Don't Be A Tourist, Be A Traveler",
+      "foundingDate": "2020",
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "serviceType": ["Travel Planning", "Holiday Packages", "Visa Assistance", "Travel Insurance", "Flight Bookings", "Hotel Reservations"],
+      "priceRange": "$$",
+      "sameAs": [
+        "https://www.facebook.com/adhvagaholidays",
+        "https://www.instagram.com/adhvagaholidays",
+        "https://twitter.com/adhvagaholidays",
+        "https://www.linkedin.com/company/adhvagaholidays",
+        "https://www.youtube.com/@adhvagaholidays"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "availableLanguage": ["English", "Hindi"],
+        "areaServed": "IN"
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

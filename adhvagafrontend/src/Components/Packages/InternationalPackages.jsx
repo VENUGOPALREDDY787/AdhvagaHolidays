@@ -1,7 +1,117 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./InternationalPackages.css";
+import { generateDestinationAlt } from "../../utils/seoHelpers";
 import { BASE_URL } from "../../config/api";
+
+const INTERNATIONAL_TYPE = "international";
+
+const getPackageApiCandidates = (queryString) => {
+  const rawCandidates = [
+    BASE_URL ? `${BASE_URL}/api/packages${queryString}` : "",
+    `/api/packages${queryString}`,
+    `http://localhost:8080/api/packages${queryString}`,
+    `http://localhost:5000/api/packages${queryString}`,
+  ].filter(Boolean);
+
+  return Array.from(new Set(rawCandidates));
+};
+
+const fetchPackagesWithFallback = async (queryString) => {
+  const endpoints = getPackageApiCandidates(queryString);
+  let lastError = null;
+
+  for (const endpoint of endpoints) {
+    try {
+      const response = await fetch(endpoint);
+      if (!response.ok) {
+        lastError = new Error(`Package feed returned status ${response.status}`);
+        continue;
+      }
+
+      return await response.json();
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw lastError || new Error("Unable to load package feed");
+};
+
+const matchesPackageType = (pkg, typeLabel, includeLegacyUntyped = false) => {
+  const target = typeLabel.toLowerCase();
+  const pkgType = (pkg?.type || "").trim().toLowerCase();
+  const pkgCategory = (pkg?.category || "").trim().toLowerCase();
+
+  const categoryIsType = pkgCategory === "domestic" || pkgCategory === "international";
+  const hasExplicitType = Boolean(pkgType) || categoryIsType;
+
+  if (!hasExplicitType) {
+    return includeLegacyUntyped;
+  }
+
+  return pkgType === target || pkgCategory === target;
+};
+
+const formatInrPrice = (value) => {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) {
+    return value ? `Rs ${value}` : "On Request";
+  }
+
+  return `Rs ${parsed.toLocaleString("en-IN")}`;
+};
+
+const compactText = (value, fallback, limit = 110) => {
+  const text = (value || "").trim();
+  if (!text) {
+    return fallback;
+  }
+
+  if (text.length <= limit) {
+    return text;
+  }
+
+  return `${text.slice(0, limit).trimEnd()}...`;
+};
+
+const getDurationLabel = (pkg) => {
+  if (pkg.duration) {
+    return pkg.duration;
+  }
+
+  if (pkg.durationDays || pkg.durationNights) {
+    return `${pkg.durationNights || 0}N / ${pkg.durationDays || 0}D`;
+  }
+
+  return "Flexible Duration";
+};
+
+const getGuestLabel = (pkg) => {
+  const min = Number(pkg.minGuests);
+  const max = Number(pkg.maxGuests);
+
+  if (Number.isFinite(min) && Number.isFinite(max) && min > 0 && max > 0) {
+    return `${min}-${max} Guests`;
+  }
+
+  return "Custom Group Size";
+};
+
+const getCategoryTag = (pkg) => {
+  const rawCategory = (pkg.category || "").trim();
+  const normalized = rawCategory.toLowerCase();
+
+  if (!rawCategory || normalized === "domestic" || normalized === "international") {
+    return "Signature Route";
+  }
+
+  return rawCategory;
+};
+
+const getPackageId = (pkg) => {
+  const id = pkg?._id || pkg?.id;
+  return id ? String(id).trim() : "";
+};
 
 const PackagesSection = () => {
   const navigate = useNavigate();
@@ -10,27 +120,18 @@ const PackagesSection = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const categories = [
-    "All",
-    "Luxury",
-    "Adventure",
-    "Cultural",
-    "Relaxation",
-    "Family",
-  ];
+  const openPackageDetails = () => {
+    navigate("/packages/reference");
+  };
 
-  // 🔹 FETCH PACKAGES FROM BACKEND
   useEffect(() => {
     const fetchPackages = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/api/packages`);
-        if (!res.ok) {
-          throw new Error("Failed to fetch packages");
-        }
-        const data = await res.json();
+        // Fetch all packages so legacy records without `type` are still available.
+        const data = await fetchPackagesWithFallback("");
         setPackages(data);
-      } catch (err) {
-        setError(err.message);
+      } catch (_err) {
+        setError("PACKAGE_FEED_UNAVAILABLE");
       } finally {
         setLoading(false);
       }
@@ -39,144 +140,120 @@ const PackagesSection = () => {
     fetchPackages();
   }, []);
 
-  const filteredPackages =
-    filter === "All" ? packages : packages.filter((p) => p.category === filter);
+  const internationalPackages = useMemo(() => {
+    return packages.filter((pkg) => matchesPackageType(pkg, INTERNATIONAL_TYPE, true));
+  }, [packages]);
+
+  const categories = useMemo(() => {
+    const dynamicCategories = new Set();
+
+    internationalPackages.forEach((pkg) => {
+      const category = (pkg.category || "").trim();
+      if (!category) {
+        return;
+      }
+
+      const normalized = category.toLowerCase();
+      if (normalized === "domestic" || normalized === "international") {
+        return;
+      }
+
+      dynamicCategories.add(category);
+    });
+
+    return ["All", ...Array.from(dynamicCategories)];
+  }, [internationalPackages]);
+
+  const filteredPackages = useMemo(() => {
+    if (filter === "All") {
+      return internationalPackages;
+    }
+
+    const selected = filter.toLowerCase();
+    return internationalPackages.filter(
+      (pkg) => (pkg.category || "").trim().toLowerCase() === selected
+    );
+  }, [internationalPackages, filter]);
+
+  const hasLivePackages = !loading && !error && filteredPackages.length > 0;
 
   return (
-    <section id="packages" className="packages-page packages-section">
-      <div className="container mb-5">
-        <div className="header-flex mt-5">
-          {/* <div className="header-text">
-            <span className="sub-heading">Our Curated Collection</span>
-            <h2 className="main-heading">International Packages</h2>
-            <p className="description">
-              Hand-picked destinations and itineraries designed for the
-              discerning traveler.
-            </p>
-          </div> */}
-          
-
-          <div className="filter-buttons">
+    <section id="packages" className="cine-live-packages">
+      <div className="cine-container" data-reveal>
+        {hasLivePackages && (
+          <div className="cine-home-filters" role="list" aria-label="International package categories">
             {categories.map((cat) => (
               <button
                 key={cat}
+                type="button"
                 onClick={() => setFilter(cat)}
-                className={`filter-btn ${filter === cat ? "active" : ""}`}
+                className={filter === cat ? "active" : ""}
               >
                 {cat}
               </button>
             ))}
           </div>
-        </div>
-
-        {/* 🔹 Loading & Error (UI-safe) */}
-        {loading && (
-          <div className="empty-state">
-            <p>Loading packages...</p>
-          </div>
         )}
 
-        {error && (
-          <div className="empty-state">
-            <p>{error}</p>
-          </div>
-        )}
-
-        {!loading && !error && (
-          <div className="packages-grid">
+        {hasLivePackages && (
+          <div className="cine-live-card-grid">
             {filteredPackages.map((pkg) => (
-              <div key={pkg._id} className="package-card">
-                <div className="image-container">
-                  <img
-                    src={pkg.image}
-                    alt={pkg.title}
-                    className="package-image"
-                  />
-                  <div className="image-overlay"></div>
+              <article
+                key={getPackageId(pkg) || `${pkg.title || "package"}-${pkg.destination || "destination"}`}
+                className="cine-live-card"
+                role="button"
+                tabIndex={0}
+                onClick={() => openPackageDetails(pkg)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    openPackageDetails(pkg);
+                  }
+                }}
+              >
+                <img
+                  src={pkg.image}
+                  alt={generateDestinationAlt(pkg.destination || pkg.title, "international holiday package")}
+                  className="cine-live-card-image"
+                  loading="lazy"
+                />
 
-                  {pkg.tag && <span className="package-tag">{pkg.tag}</span>}
-
-                  <div className="hover-details">
-                    <span className="rating">
-                      <svg
-                        className="star-icon"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                      {pkg.rating}
-                    </span>
-                    <span className="view-details-pill">View Details</span>
-                  </div>
-                </div>
-
-                <div className="card-content">
-                  <div className="content-meta">
-                    <span className="category-label">{pkg.category}</span>
-                    <span className="duration-label">
-                      <svg
-                        className="icon"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                      {pkg.duration?.split("/")[0]}
-                    </span>
+                <div className="cine-live-card-body">
+                  <div className="cine-live-card-top">
+                    <span className="cine-live-card-tag">{getCategoryTag(pkg)}</span>
+                    {pkg.rating ? (
+                      <span className="cine-live-card-rating">{Number(pkg.rating).toFixed(1)}★</span>
+                    ) : null}
                   </div>
 
-                  <h3 className="package-title">{pkg.title}</h3>
-                  <p className="destination-text">
-                    <svg
-                      className="icon"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
-                    {pkg.destination}
+                  <h3>{pkg.title || "Untitled Package"}</h3>
+                  <p className="cine-live-card-route">{pkg.destination || pkg.location || "International Journey"}</p>
+                  <p className="cine-live-card-description">
+                    {compactText(pkg.description, "Premium route with immersive experiences and concierge-grade support.")}
                   </p>
 
-                  <div className="card-footer">
-                    <div className="price-box">
-                      <span className="starting-label">Starting from</span>
-                      <span className="price-amount">${pkg.price}</span>
-                    </div>
+                  <div className="cine-live-card-info">
+                    <span>{getDurationLabel(pkg)}</span>
+                    <span>{pkg.travelSeason || "All Season"}</span>
+                    <span>{getGuestLabel(pkg)}</span>
+                  </div>
+
+                  <div className="cine-live-card-footer">
+                    <strong>{formatInrPrice(pkg.price)}</strong>
                     <button
-                      className="book-button"
-                      onClick={() => navigate(`/packages/${pkg._id}`)}
+                      type="button"
+                      className="cine-explore-btn"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        openPackageDetails(pkg);
+                      }}
                     >
-                      Book Now
+                      Explore
                     </button>
                   </div>
                 </div>
-              </div>
+              </article>
             ))}
-          </div>
-        )}
-
-        {!loading && filteredPackages.length === 0 && (
-          <div className="empty-state">
-            <p>No packages found in this category yet. Stay tuned!</p>
           </div>
         )}
       </div>

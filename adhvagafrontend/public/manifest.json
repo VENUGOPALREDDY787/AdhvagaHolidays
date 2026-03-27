@@ -1,0 +1,17 @@
+{
+  "name": "Adhvaga Holidays",
+  "short_name": "Adhvaga",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1710",
+  "theme_color": "#d97706",
+  "description": "Adhvaga Holidays travel experiences and booking portal.",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

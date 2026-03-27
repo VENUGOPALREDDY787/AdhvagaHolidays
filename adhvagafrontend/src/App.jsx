@@ -1,6 +1,10 @@
-import reactLogo from "./assets/react.svg";
+import { useState, useEffect } from "react";
+import { HelmetProvider } from "react-helmet-async";
+import { AnimatePresence, motion } from "framer-motion";
+import { SettingsProvider } from "./context/SettingsContext";
 import Navbar from "./Components/includes/Navbar";
 import Footer from "./Components/includes/Footer";
+import LoadingScreen from "./Components/includes/LoadingScreen";
 import AboutPage from "./Pages/AboutPage";
 import Blogs from "./Pages/Blogs";
 import CostomPackages from "./Pages/CostomPackages";
@@ -9,67 +13,135 @@ import Support from "./Pages/Support";
 import International from "./Pages/InternationalPackages.jsx";
 import Domestic from "./Pages/DomesticPackages.jsx";
 import ServicesPage from "./Pages/Servicespage.jsx";
+import TermsPage from "./Pages/Terms";
 import {
   BrowserRouter,
   Routes,
   Route,
   useLocation,
+  Navigate,
 } from "react-router-dom";
 import ProtectedRoute from "./config/ProtectedRoute.jsx";
 import LoginPage from "./Components/Login/LoginPage.jsx";
 import PackageDetails from "./PackageDetails.jsx";
 import AdminDashboard from "./Pages/AdminDashboard";
+import ExploreGlobe from "./Pages/ExploreGlobe.jsx";
+import IndiaGlobe from "./Pages/IndiaGlobe.jsx";
+import ScrollToTop from "./Components/SEO/ScrollToTop.jsx";
+import { ScrollProgress } from "./Components/includes/ScrollAnimations.jsx";
+import "./Components/includes/ScrollAnimations.css";
 import "./App.css";
 
-/* 🔹 Layout controller */
+/* ��� Page Transition Wrapper */
+function PageTransition({ children }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ��� Layout controller */
 function Layout() {
   const location = useLocation();
 
   // Hide navbar & footer on admin routes
   const isAdminRoute = location.pathname.startsWith("/admin");
+  const cinematicRoutes = new Set([
+    "/home",
+    "/about",
+    "/domestic",
+    "/international",
+    "/support",
+  ]);
+  const isCinematicRoute = cinematicRoutes.has(location.pathname.toLowerCase());
+  const showGlobalChrome = !isAdminRoute;
 
   return (
     <>
-      {!isAdminRoute && <Navbar />}
+      {/* Scroll progress bar - shows reading progress */}
+      {showGlobalChrome && <ScrollProgress />}
 
-      <Routes>
-        {/* ================= PUBLIC ROUTES ================= */}
-        <Route path="/About" element={<AboutPage />} />
-        <Route path="/Blogs" element={<Blogs />} />
-        <Route path="/Coustom" element={<CostomPackages />} />
-        <Route path="/Home" element={<Home />} />
-        <Route path="/Support" element={<Support />} />
-        <Route path="/International" element={<International />} />
-        <Route path="/packages/:id" element={<PackageDetails />} />
-        <Route path="/Domestic" element={<Domestic />} />
-        <Route path="/Services" element={<ServicesPage/>} />
+      {/* Scroll to top on route change - essential for SEO and UX */}
+      <ScrollToTop />
 
-        {/* ================= ADMIN AUTH ================= */}
-        <Route path="/admin/login" element={<LoginPage />} />
+      {showGlobalChrome && <Navbar />}
 
-        {/* ================= PROTECTED ADMIN ================= */}
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute>
-              <AdminDashboard />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          {/* ================= DEFAULT ROUTE ================= */}
+          <Route path="/" element={<Navigate to="/Home" replace />} />
 
-      {!isAdminRoute && <Footer />}
+          {/* ================= PUBLIC ROUTES ================= */}
+          <Route path="/About" element={<PageTransition><AboutPage /></PageTransition>} />
+          <Route path="/Blogs" element={<PageTransition><Blogs /></PageTransition>} />
+          <Route path="/Coustom" element={<PageTransition><CostomPackages /></PageTransition>} />
+          <Route path="/Home" element={<PageTransition><Home /></PageTransition>} />
+          <Route path="/Support" element={<PageTransition><Support /></PageTransition>} />
+          <Route path="/International" element={<PageTransition><International /></PageTransition>} />
+          <Route path="/packages/:id" element={<PageTransition><PackageDetails /></PageTransition>} />
+          <Route path="/Domestic" element={<PageTransition><Domestic /></PageTransition>} />
+          <Route path="/Services" element={<PageTransition><ServicesPage /></PageTransition>} />
+          <Route path="/terms" element={<PageTransition><TermsPage /></PageTransition>} />
+          <Route path="/explore-globe" element={<PageTransition><ExploreGlobe /></PageTransition>} />
+          <Route path="/india-globe" element={<PageTransition><IndiaGlobe /></PageTransition>} />
+
+          {/* ================= ADMIN AUTH ================= */}
+          <Route path="/admin/login" element={<PageTransition><LoginPage /></PageTransition>} />
+
+          {/* ================= PROTECTED ADMIN ================= */}
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <PageTransition><AdminDashboard /></PageTransition>
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </AnimatePresence>
+
+      {showGlobalChrome && <Footer />}
     </>
   );
 }
 
+function AppContent({ loading }) {
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
+  return <Layout />;
+}
+
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Keep loading sequence.
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <BrowserRouter>
-      <Layout />
-    </BrowserRouter>
+    <HelmetProvider>
+      <SettingsProvider>
+        <BrowserRouter>
+          <AppContent
+            loading={loading}
+          />
+        </BrowserRouter>
+      </SettingsProvider>
+    </HelmetProvider>
   );
 }
 
 export default App;
-

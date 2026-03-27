@@ -56,3 +56,6 @@ tmp/
 
 # MongoDB local data (if any)
 data/
+node_modules/
+.env
+dist/

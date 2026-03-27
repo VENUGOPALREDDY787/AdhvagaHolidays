@@ -1,0 +1,408 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-dark: #0a0a0a;
+  --text-light: #ffffff;
+  --accent-gold: #d4af37;
+  --accent-teal: #2dd4bf;
+}
+
+.loading-page {
+  position: fixed;
+  inset: 0;
+  font-family: 'Archivo', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.airplane-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.airplane-widget {
+  --size: 22px;
+  position: absolute;
+  width: var(--size);
+  height: calc(var(--size) * 0.72);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
+  opacity: 0.72;
+}
+
+.airplane-widget::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #ffe8a5, #d4af37 60%, #7fa6b8);
+  clip-path: polygon(0 50%, 34% 36%, 62% 0, 58% 36%, 100% 42%, 100% 58%, 58% 64%, 62% 100%, 34% 64%);
+}
+
+.airplane-widget::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(var(--size) * -2.3);
+  width: calc(var(--size) * 2.1);
+  height: 1px;
+  background: linear-gradient(to left, rgba(212, 175, 55, 0.5), rgba(212, 175, 55, 0));
+}
+
+.plane-a {
+  top: 16%;
+  left: -8%;
+  animation: flyAcrossA 7s linear infinite;
+}
+
+.plane-b {
+  top: 68%;
+  left: -14%;
+  transform: scale(0.85);
+  animation: flyAcrossB 9s linear infinite 0.8s;
+}
+
+.plane-c {
+  top: 34%;
+  right: -12%;
+  transform: scale(0.92) rotate(180deg);
+  animation: flyAcrossC 8.6s linear infinite 1.7s;
+}
+
+.plane-d {
+  top: 82%;
+  right: -20%;
+  transform: scale(0.72) rotate(180deg);
+  animation: flyAcrossD 10s linear infinite 0.2s;
+}
+
+@keyframes flyAcrossA {
+  0% { transform: translateX(0) translateY(0) rotate(7deg); }
+  30% { transform: translateX(45vw) translateY(-1.8vh) rotate(2deg); }
+  60% { transform: translateX(88vw) translateY(2vh) rotate(10deg); }
+  100% { transform: translateX(118vw) translateY(-1vh) rotate(6deg); }
+}
+
+@keyframes flyAcrossB {
+  0% { transform: translateX(0) translateY(0) scale(0.85) rotate(-5deg); }
+  40% { transform: translateX(52vw) translateY(-3vh) scale(0.85) rotate(-11deg); }
+  100% { transform: translateX(124vw) translateY(1vh) scale(0.85) rotate(-4deg); }
+}
+
+@keyframes flyAcrossC {
+  0% { transform: translateX(0) translateY(0) scale(0.92) rotate(180deg); }
+  45% { transform: translateX(-56vw) translateY(2vh) scale(0.92) rotate(174deg); }
+  100% { transform: translateX(-126vw) translateY(-2.2vh) scale(0.92) rotate(184deg); }
+}
+
+@keyframes flyAcrossD {
+  0% { transform: translateX(0) translateY(0) scale(0.72) rotate(180deg); }
+  50% { transform: translateX(-62vw) translateY(-2vh) scale(0.72) rotate(171deg); }
+  100% { transform: translateX(-132vw) translateY(1.2vh) scale(0.72) rotate(188deg); }
+}
+
+/* Animated gradient background */
+.bg-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(45, 212, 191, 0.1) 0%, transparent 50%);
+  animation: gradientShift 5.5s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+/* Noise texture overlay */
+.noise {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+/* Main container */
+.loading-container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Main heading */
+.brand-name {
+  font-family: 'Archivo', sans-serif;
+  font-size: clamp(3rem, 12vw, 8rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.brand-name .word {
+  display: inline-block;
+  margin: 0 0.2em;
+}
+
+.brand-name .letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(120px) scale(0.8);
+  animation: revealLetter 0.52s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Stagger animation delays for each letter */
+.word:nth-child(1) .letter:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.word:nth-child(1) .letter:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.word:nth-child(1) .letter:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.word:nth-child(1) .letter:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+.word:nth-child(1) .letter:nth-child(5) {
+  animation-delay: 0.25s;
+}
+
+.word:nth-child(1) .letter:nth-child(6) {
+  animation-delay: 0.3s;
+}
+
+.word:nth-child(1) .letter:nth-child(7) {
+  animation-delay: 0.35s;
+}
+
+.word:nth-child(2) .letter:nth-child(1) {
+  animation-delay: 0.45s;
+}
+
+.word:nth-child(2) .letter:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.word:nth-child(2) .letter:nth-child(3) {
+  animation-delay: 0.55s;
+}
+
+.word:nth-child(2) .letter:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.word:nth-child(2) .letter:nth-child(5) {
+  animation-delay: 0.65s;
+}
+
+.word:nth-child(2) .letter:nth-child(6) {
+  animation-delay: 0.7s;
+}
+
+.word:nth-child(2) .letter:nth-child(7) {
+  animation-delay: 0.75s;
+}
+
+.word:nth-child(2) .letter:nth-child(8) {
+  animation-delay: 0.8s;
+}
+
+@keyframes revealLetter {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Tagline */
+.tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeInUp 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.95s forwards;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 3rem;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading spinner */
+.spinner-container {
+  opacity: 0;
+  animation: fadeIn 0.5s ease 1.2s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.spinner-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  border-top-color: var(--accent-gold);
+  border-radius: 50%;
+  animation: spin 1.05s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+.spinner-ring:nth-child(2) {
+  border-top-color: var(--accent-teal);
+  animation-delay: 0.15s;
+  animation-duration: 1.3s;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Percentage counter */
+.percentage {
+  font-family: 'Archivo', sans-serif;
+  font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin-top: 2rem;
+  opacity: 0;
+  animation: fadeIn 0.5s ease 1.35s forwards;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.loading-progress {
+  width: min(360px, 78vw);
+  height: 4px;
+  margin: 0.9rem auto 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.5s ease 1.45s forwards;
+}
+
+.loading-progress > span {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent-gold), var(--accent-teal));
+  transition: width 0.15s linear;
+}
+
+.loading-label {
+  margin-top: 0.7rem;
+  font-family: 'Archivo', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.52);
+  opacity: 0;
+  animation: fadeIn 0.5s ease 1.52s forwards;
+}
+
+/* Decorative elements */
+.decorative-line {
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  margin: 2rem auto;
+  opacity: 0;
+  animation: expandLine 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.72s forwards;
+}
+
+@keyframes expandLine {
+  from {
+    opacity: 0;
+    width: 0;
+  }
+
+  to {
+    opacity: 0.5;
+    width: 100px;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .loading-container {
+    padding: 1rem;
+  }
+
+  .spinner {
+    width: 50px;
+    height: 50px;
+  }
+
+  .airplane-widget {
+    --size: 18px;
+    opacity: 0.62;
+  }
+}
+
+/* Optional: Fade out animation when loading completes */
+.loading-complete {
+  animation: fadeOut 0.6s ease forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}

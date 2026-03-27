@@ -15,7 +15,84 @@
 .dashboard-content {
   flex: 1;
   padding: 2rem;
-  background: #050505;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(210, 180, 140, 0.12), transparent 45%),
+    #050505;
+}
+
+.admin-control-panel {
+  border: 1px solid rgba(210, 180, 140, 0.2);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(210, 180, 140, 0.06));
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-control-copy {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.admin-control-label {
+  margin: 0;
+  color: #d2b48c;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.admin-control-copy h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.2rem, 2.6vw, 1.8rem);
+}
+
+.admin-control-copy p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.68);
+  max-width: 780px;
+}
+
+.admin-quick-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.admin-stat-card {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  background: rgba(0, 0, 0, 0.26);
+  display: grid;
+  gap: 0.3rem;
+}
+
+.admin-stat-card span {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.admin-stat-card strong {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.admin-stat-card.success {
+  border-color: rgba(94, 200, 132, 0.5);
+}
+
+.admin-stat-card.warning {
+  border-color: rgba(210, 180, 140, 0.42);
+}
+
+.admin-stat-card.neutral {
+  border-color: rgba(122, 180, 255, 0.4);
 }
 
 .coming-soon {
@@ -28,4 +105,33 @@
   background: rgba(255, 255, 255, 0.02);
   border-radius: 12px;
   border: 1px dashed rgba(210, 180, 140, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .admin-dashboard {
+    flex-direction: column;
+  }
+
+  .dashboard-main {
+    margin-left: 0;
+  }
+
+  .dashboard-content {
+    padding: 1.25rem;
+  }
+
+  .admin-quick-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-content {
+    padding: 1rem;
+  }
+
+  .coming-soon {
+    height: 260px;
+    font-size: 1.1rem;
+  }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ScrollReveal } from '../includes/ScrollAnimations';
 import './BlogsPage.css';
 
 const BLOG_POSTS = [
@@ -99,23 +100,25 @@ const BlogsPage = () => {
         </div>
 
         <div className="testimonial-grid">
-          {TESTIMONIALS.map((t) => (
-            <div key={t.id} className="testimonial-card">
-              <div className="user-profile">
-                <img src={t.image} alt={t.name} className="profile-img" />
-                <div>
-                  <h4 style={{ fontWeight: 'bold', fontSize: '1.125rem' }}>{t.name}</h4>
-                  <p style={{ fontSize: '0.75rem', color: '#a8a29e', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t.location}</p>
+          {TESTIMONIALS.map((t, index) => (
+            <ScrollReveal key={t.id} animation="fade-up" delay={index * 150}>
+              <div className="testimonial-card scroll-card glow-on-scroll">
+                <div className="user-profile">
+                  <img src={t.image} alt={t.name} className="profile-img" />
+                  <div>
+                    <h4 style={{ fontWeight: 'bold', fontSize: '1.125rem' }}>{t.name}</h4>
+                    <p style={{ fontSize: '0.75rem', color: '#a8a29e', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t.location}</p>
+                  </div>
+                </div>
+                <div style={{ color: '#facc15', marginBottom: '1rem', display: 'flex', gap: '4px' }}>
+                  {[...Array(t.rating)].map((_, i) => <i key={i} className="fa-solid fa-star" style={{ fontSize: '0.75rem' }}></i>)}
+                </div>
+                <p style={{ color: '#57534e', fontStyle: 'italic', lineHeight: 1.6, marginBottom: '1.5rem' }}>"{t.comment}"</p>
+                <div style={{ marginTop: 'auto', paddingTop: '1.5rem', borderTop: '1px solid #f5f5f4', fontSize: '0.75rem', fontWeight: 900, textTransform: 'uppercase', color: '#a8a29e' }}>
+                  Trip: {t.trip}
                 </div>
               </div>
-              <div style={{ color: '#facc15', marginBottom: '1rem', display: 'flex', gap: '4px' }}>
-                {[...Array(t.rating)].map((_, i) => <i key={i} className="fa-solid fa-star" style={{ fontSize: '0.75rem' }}></i>)}
-              </div>
-              <p style={{ color: '#57534e', fontStyle: 'italic', lineHeight: 1.6, marginBottom: '1.5rem' }}>"{t.comment}"</p>
-              <div style={{ marginTop: 'auto', paddingTop: '1.5rem', borderTop: '1px solid #f5f5f4', fontSize: '0.75rem', fontWeight: 900, textTransform: 'uppercase', color: '#a8a29e' }}>
-                Trip: {t.trip}
-              </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </section>
@@ -128,50 +131,54 @@ const BlogsPage = () => {
         </h2>
 
         <div className="blog-grid">
-          {BLOG_POSTS.map((post) => (
-            <article key={post.id} className="blog-card">
-              <div className="blog-image-wrapper">
-                <img src={post.image} alt={post.title} />
-                <div style={{ position: 'absolute', top: '1rem', left: '1rem' }}>
-                  <span style={{ background: 'rgba(255,255,255,0.9)', padding: '0.25rem 1rem', borderRadius: '9999px', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase' }}>
-                    {post.category}
-                  </span>
+          {BLOG_POSTS.map((post, index) => (
+            <ScrollReveal key={post.id} animation="scale-up" delay={index * 100}>
+              <article className="blog-card scroll-card">
+                <div className="blog-image-wrapper">
+                  <img src={post.image} alt={post.title} />
+                  <div style={{ position: 'absolute', top: '1rem', left: '1rem' }}>
+                    <span style={{ background: 'rgba(255,255,255,0.9)', padding: '0.25rem 1rem', borderRadius: '9999px', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase' }}>
+                      {post.category}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="blog-content">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.75rem', fontWeight: 'bold', color: '#a8a29e', marginBottom: '1rem' }}>
-                  <span>{post.author}</span>
-                  <div style={{ width: '4px', height: '4px', backgroundColor: '#d6d3d1', borderRadius: '50%' }}></div>
-                  <span>{post.date}</span>
+                <div className="blog-content">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.75rem', fontWeight: 'bold', color: '#a8a29e', marginBottom: '1rem' }}>
+                    <span>{post.author}</span>
+                    <div style={{ width: '4px', height: '4px', backgroundColor: '#d6d3d1', borderRadius: '50%' }}></div>
+                    <span>{post.date}</span>
+                  </div>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: 900, marginBottom: '1rem', transition: 'color 0.3s' }}>
+                    {post.title}
+                  </h3>
+                  <p style={{ color: '#78716c', fontSize: '0.875rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                    {post.excerpt}
+                  </p>
+                  <button className="read-more-btn">
+                    Read Story <i className="fa-solid fa-arrow-right-long"></i>
+                  </button>
                 </div>
-                <h3 style={{ fontSize: '1.25rem', fontWeight: 900, marginBottom: '1rem', transition: 'color 0.3s' }}>
-                  {post.title}
-                </h3>
-                <p style={{ color: '#78716c', fontSize: '0.875rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                  {post.excerpt}
-                </p>
-                <button className="read-more-btn">
-                  Read Story <i className="fa-solid fa-arrow-right-long"></i>
-                </button>
-              </div>
-            </article>
+              </article>
+            </ScrollReveal>
           ))}
         </div>
       </section>
 
       {/* CTA Section */}
       <div className="max-width-wrapper">
-        <div className="cta-banner">
-          <div className="cta-text">
-            <h2 style={{ fontSize: '2rem', fontWeight: 900, color: 'black', marginBottom: '1rem' }}>WANT TO BE OUR NEXT <br /> SUCCESS STORY?</h2>
-            <p style={{ color: 'rgba(0,0,0,0.7)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Your dream trip is just one custom plan away.</p>
+        <ScrollReveal animation="zoom-in">
+          <div className="cta-banner glow-on-scroll">
+            <div className="cta-text">
+              <h2 style={{ fontSize: '2rem', fontWeight: 900, color: 'black', marginBottom: '1rem' }}>WANT TO BE OUR NEXT <br /> SUCCESS STORY?</h2>
+              <p style={{ color: 'rgba(0,0,0,0.7)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Your dream trip is just one custom plan away.</p>
+            </div>
+            <Link to="/Coustom" >
+            <button className="cta-button">
+              START PLANNING NOW
+            </button>
+            </Link>
           </div>
-          <Link to="/Coustom" >
-          <button className="cta-button">
-            START PLANNING NOW
-          </button>
-          </Link>
-        </div>
+        </ScrollReveal>
       </div>
     </div>
   );
