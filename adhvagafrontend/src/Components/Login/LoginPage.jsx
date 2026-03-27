@@ -24,7 +24,7 @@ const LoginPage = () => {
 
     const verifySession = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/api/admin/me`, {
+        const response = await fetch(`http://localhost:8080/api/admin/verify-admin`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -51,7 +51,7 @@ const LoginPage = () => {
     setError("");
 
     try {
-      const res = await fetch(`${BASE_URL}/api/admin/login`, {
+      const res = await fetch(`http://localhost:8080/api/admin/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

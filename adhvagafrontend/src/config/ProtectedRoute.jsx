@@ -20,7 +20,7 @@ const ProtectedRoute = ({ children }) => {
       }
 
       try {
-        const response = await fetch(`${BASE_URL}/api/admin/me`, {
+        const response = await fetch(`${BASE_URL}/api/admin/verify-admin`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
