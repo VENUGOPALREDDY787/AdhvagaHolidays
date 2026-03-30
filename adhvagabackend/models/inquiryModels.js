@@ -20,7 +20,14 @@ const inquirySchema = new mongoose.Schema({
 
   subject: {
     type: String,
-    default: "General Inquiry"
+    enum: [
+      "AIR TICKETS",
+      "VISA ASSISTANCE",
+      "TRAVEL ASSISTANCE",
+      "CORPORATE SERVICES",
+      "COUSTOM SERVICES",
+      "CAR RENTAL",
+    ]
   },
 
   message: {

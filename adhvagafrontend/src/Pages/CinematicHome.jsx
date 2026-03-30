@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import useCinematicEffects from "./useCinematicEffects";
 import {
   CinematicCursor,
@@ -52,6 +53,78 @@ const galleryImages = [
 
 export default function CinematicHome() {
   useCinematicEffects();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    setSuccess("");
+    setError("");
+
+    // basic validation
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.phone.trim() ||
+      !formData.subject.trim() ||
+      !formData.message.trim()
+    ) {
+      setError("Please fill all fields ❌");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const res = await fetch("http://localhost:8080/api/inquiries", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setSuccess("Inquiry sent successfully ✅");
+
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+
+        setTimeout(() => setSuccess(""), 3000);
+      } else {
+        setError(data.message || "Failed to send ❌");
+      }
+    } catch (err) {
+      console.error("ERROR:", err);
+      setError("Server error ❌");
+    }
+
+    setLoading(false);
+  };
 
   return (
     <div className="cinematic-page">
@@ -71,14 +144,17 @@ export default function CinematicHome() {
           />
           <div className="cine-overlay" />
 
-          <div
-            className="cine-hero-copy cine-home-scroll-copy cine-home-intro-block"
-          >
-            <h1 className="cine-title-main cine-home-signature-1 cine-home-hero-title">Ancient Ruins</h1>
-            <p className="cine-title-script cine-home-signature-2 cine-home-hero-script">Cinematic Adventure</p>
+          <div className="cine-hero-copy cine-home-scroll-copy cine-home-intro-block">
+            <h1 className="cine-title-main cine-home-signature-1 cine-home-hero-title">
+              Ancient Ruins
+            </h1>
+            <p className="cine-title-script cine-home-signature-2 cine-home-hero-script">
+              Cinematic Adventure
+            </p>
             <p className="cine-subtext">
-              Hand-crafted cinematic itineraries through heritage landscapes, hidden wilderness,
-              and dramatic coastlines with premium logistics from takeoff to return.
+              Hand-crafted cinematic itineraries through heritage landscapes,
+              hidden wilderness, and dramatic coastlines with premium logistics
+              from takeoff to return.
             </p>
             <div className="cine-cta-actions">
               <Link className="cine-btn" to="/explore-globe">
@@ -112,13 +188,18 @@ export default function CinematicHome() {
           </div>
         </section>
 
-        <section id="destinations" className="cine-section cine-section-dark cine-home-destinations">
+        <section
+          id="destinations"
+          className="cine-section cine-section-dark cine-home-destinations"
+        >
           <div className="cine-container" data-reveal>
             <p className="cine-heading-eyebrow">The Selection</p>
             <h2 className="cine-heading">Epic Landscapes</h2>
 
             <div className="cine-home-filters">
-              <button type="button" className="active">All Terrain</button>
+              <button type="button" className="active">
+                All Terrain
+              </button>
               <button type="button">Mountains</button>
               <button type="button">Jungle</button>
               <button type="button">Desert</button>
@@ -126,7 +207,10 @@ export default function CinematicHome() {
 
             <div className="cine-grid-3">
               {destinationCards.map((card) => (
-                <article key={card.title} className="cine-card cine-home-destination-card">
+                <article
+                  key={card.title}
+                  className="cine-card cine-home-destination-card"
+                >
                   <img
                     src={card.image}
                     alt={card.title}
@@ -146,8 +230,14 @@ export default function CinematicHome() {
           </div>
         </section>
 
-        <section id="packages" className="cine-section cine-section-light cine-home-packages">
-          <div className="cine-home-fixed-stage cine-home-packages-stage" data-scroll-section="true">
+        <section
+          id="packages"
+          className="cine-section cine-section-light cine-home-packages"
+        >
+          <div
+            className="cine-home-fixed-stage cine-home-packages-stage"
+            data-scroll-section="true"
+          >
             <div
               className="cine-home-fixed-bg"
               style={{
@@ -179,12 +269,16 @@ export default function CinematicHome() {
 
               <div>
                 <p className="cine-heading-eyebrow">Premium Expedition</p>
-                <h3 className="cine-heading" style={{ fontSize: "clamp(2rem, 3.8vw, 3.2rem)" }}>
+                <h3
+                  className="cine-heading"
+                  style={{ fontSize: "clamp(2rem, 3.8vw, 3.2rem)" }}
+                >
                   Patagonia Peaks
                 </h3>
                 <p>
-                  Experience the raw beauty of South America with curated luxury camps,
-                  private ground transfers, and photographers for summit moments.
+                  Experience the raw beauty of South America with curated luxury
+                  camps, private ground transfers, and photographers for summit
+                  moments.
                 </p>
                 <div className="cine-feature-list">
                   <span>12 Days Journey</span>
@@ -209,12 +303,16 @@ export default function CinematicHome() {
 
               <div>
                 <p className="cine-heading-eyebrow">Coastal Escape</p>
-                <h3 className="cine-heading" style={{ fontSize: "clamp(2rem, 3.8vw, 3.2rem)" }}>
+                <h3
+                  className="cine-heading"
+                  style={{ fontSize: "clamp(2rem, 3.8vw, 3.2rem)" }}
+                >
                   Mediterranean Odyssey
                 </h3>
                 <p>
-                  Sail through sapphire waters and hidden limestone caves. A refined blend of
-                  exploration and Mediterranean ease with premium on-ground support.
+                  Sail through sapphire waters and hidden limestone caves. A
+                  refined blend of exploration and Mediterranean ease with
+                  premium on-ground support.
                 </p>
                 <div className="cine-feature-list">
                   <span>8 Days Cruise</span>
@@ -233,8 +331,14 @@ export default function CinematicHome() {
           </div>
         </section>
 
-        <section id="about" className="cine-section cine-section-dark cine-home-about">
-          <div className="cine-home-fixed-stage cine-home-about-stage" data-scroll-section="true">
+        <section
+          id="about"
+          className="cine-section cine-section-dark cine-home-about"
+        >
+          <div
+            className="cine-home-fixed-stage cine-home-about-stage"
+            data-scroll-section="true"
+          >
             <div
               className="cine-home-fixed-bg"
               style={{
@@ -249,16 +353,26 @@ export default function CinematicHome() {
               data-rise-opacity-start="0.8"
               data-rise-opacity-end="1"
             >
-              <h2 className="cine-home-signature-1 cine-home-muted">Our Legacy</h2>
+              <h2 className="cine-home-signature-1 cine-home-muted">
+                Our Legacy
+              </h2>
             </div>
           </div>
 
           <div className="cine-container" data-reveal>
             <p className="cine-heading-eyebrow">Our Legacy</p>
             <h2 className="cine-heading">Decades Of Adventure</h2>
-            <p className="cine-subtext" style={{ marginInline: 0, maxWidth: "860px", color: "rgba(255,255,255,0.8)" }}>
-              Founded in 1994, Advaga Holidays evolved from a small trekking collective into a
-              full-scope travel design studio specializing in story-driven itineraries and high-touch support.
+            <p
+              className="cine-subtext"
+              style={{
+                marginInline: 0,
+                maxWidth: "860px",
+                color: "rgba(255,255,255,0.8)",
+              }}
+            >
+              Founded in 1994, Advaga Holidays evolved from a small trekking
+              collective into a full-scope travel design studio specializing in
+              story-driven itineraries and high-touch support.
             </p>
 
             <div className="cine-grid-4">
@@ -282,8 +396,14 @@ export default function CinematicHome() {
           </div>
         </section>
 
-        <section id="gallery" className="cine-section cine-section-dark cine-home-gallery">
-          <div className="cine-home-fixed-stage cine-home-gallery-stage" data-scroll-section="true">
+        <section
+          id="gallery"
+          className="cine-section cine-section-dark cine-home-gallery"
+        >
+          <div
+            className="cine-home-fixed-stage cine-home-gallery-stage"
+            data-scroll-section="true"
+          >
             <div
               className="cine-home-fixed-bg"
               style={{
@@ -306,13 +426,20 @@ export default function CinematicHome() {
           <div className="cine-container" data-reveal>
             <div className="cine-home-gallery-grid">
               {galleryImages.map((image, index) => (
-                <img key={`${image}-${index}`} src={image} alt={`Travel moment ${index + 1}`} />
+                <img
+                  key={`${image}-${index}`}
+                  src={image}
+                  alt={`Travel moment ${index + 1}`}
+                />
               ))}
             </div>
           </div>
         </section>
 
-        <section id="testimonials" className="cine-section cine-section-dark cine-home-testimonials">
+        <section
+          id="testimonials"
+          className="cine-section cine-section-dark cine-home-testimonials"
+        >
           <div
             className="cine-home-testimonials-bg"
             style={{
@@ -327,8 +454,9 @@ export default function CinematicHome() {
             <div className="cine-home-testimonial-grid">
               <article className="cine-glass">
                 <p className="cine-quote">
-                  "The attention to detail was beyond anything I've experienced. It felt like I was
-                  inside a cinematic masterpiece from start to finish."
+                  "The attention to detail was beyond anything I've experienced.
+                  It felt like I was inside a cinematic masterpiece from start
+                  to finish."
                 </p>
                 <strong>Elena Marek</strong>
                 <span>Swiss Alps Expedition</span>
@@ -336,8 +464,9 @@ export default function CinematicHome() {
 
               <article className="cine-glass cine-home-testimonial-featured">
                 <p className="cine-quote">
-                  "Advaga does not just plan trips; they curate life-changing moments. Standing on
-                  that ridge at sunrise was the highlight of my decade."
+                  "Advaga does not just plan trips; they curate life-changing
+                  moments. Standing on that ridge at sunrise was the highlight
+                  of my decade."
                 </p>
                 <strong>Julian West</strong>
                 <span>Patagonia Trek 2023</span>
@@ -347,7 +476,10 @@ export default function CinematicHome() {
         </section>
 
         <section id="contact" className="cine-home-contact">
-          <div className="cine-home-contact-visual cine-home-contact-stage" data-scroll-section="true">
+          <div
+            className="cine-home-contact-visual cine-home-contact-stage"
+            data-scroll-section="true"
+          >
             <div
               className="cine-home-fixed-bg"
               style={{
@@ -369,21 +501,66 @@ export default function CinematicHome() {
 
           <div className="cine-home-contact-form" data-reveal>
             <h2>Start Your Journey</h2>
-            <form>
-              <input type="text" placeholder="Full Name" />
-              <input type="email" placeholder="Email Address" />
-              <select defaultValue="">
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="name"
+                placeholder="Full Name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone Number"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+              />
+
+              <select
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+              >
                 <option value="" disabled>
-                  Preferred Destination
+                  Select Service
                 </option>
-                <option>Swiss Alps</option>
-                <option>Amazon Rainforest</option>
-                <option>Sahara Desert</option>
-                <option>Patagonia Peaks</option>
+                <option value="AIR TICKETS">Air Tickets</option>
+                <option value="VISA ASSISTANCE">Visa Assistance</option>
+                <option value="TRAVEL ASSISTANCE">Travel Assistance</option>
+                <option value="CORPORATE SERVICES">Corporate Services</option>
+                <option value="COUSTOM SERVICES">Custom Services</option>
+                <option value="CAR RENTAL">Car Rental</option>
               </select>
-              <textarea rows="4" placeholder="Your Message" />
-              <button type="button" className="cine-btn">
-                Send Inquiry
+
+              <textarea
+                rows="4"
+                name="message"
+                placeholder="Your Message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              />
+
+              {/* SUCCESS / ERROR (no UI break) */}
+              {success && <p style={{ color: "lightgreen" }}>{success}</p>}
+              {error && <p style={{ color: "red" }}>{error}</p>}
+
+              <button type="submit" className="cine-btn" disabled={loading}>
+                {loading ? "Sending..." : "Send Inquiry"}
               </button>
             </form>
           </div>

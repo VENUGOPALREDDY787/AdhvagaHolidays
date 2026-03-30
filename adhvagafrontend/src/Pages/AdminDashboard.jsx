@@ -69,11 +69,6 @@ const AdminDashboard = () => {
       subtitle: "Track customers who contacted via WhatsApp",
       component: <WhatsAppLeads />,
     },
-    users: {
-      title: "Users",
-      subtitle: "Manage customers and administrators",
-      component: <div className="coming-soon">Coming Soon</div>,
-    },
     settings: {
       title: "Settings",
       subtitle: "Configure your application settings",

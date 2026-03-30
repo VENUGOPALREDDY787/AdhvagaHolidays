@@ -330,3 +330,38 @@
   }
 
 }
+/* MATCH SELECT WITH INPUT STYLE */
+.support-form-shell select {
+  border: 0;
+  border-bottom: 2px solid #d9d1c3;
+  padding: 0.58rem 0.1rem;
+  background: transparent;
+  outline: none;
+  color: #221a0f;
+  font-family: 'Barlow', sans-serif;
+  font-size: 1rem;
+  border-radius: 0;
+
+  /* Remove default styles */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  cursor: pointer;
+
+  /* Custom arrow */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='%23645b4e' height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  background-size: 16px;
+}
+
+/* Focus effect SAME as input */
+.support-form-shell select:focus {
+  border-bottom-color: var(--support-primary);
+}
+
+/* Fix dropdown option color */
+.support-form-shell select option {
+  color: #221a0f;
+}
