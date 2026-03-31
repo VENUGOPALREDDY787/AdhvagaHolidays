@@ -5,6 +5,7 @@ import AdminTopBar from "../Components/Admin/AdminTopBar";
 import TravelCardsManager from "../Components/Admin/TravelCardsManager";
 import Settings from "../Components/Admin/Settings";
 import WhatsAppLeads from "../Components/Admin/WhatsAppLeads";
+import Inquiries from "../Components/Admin/Inquiries";
 import "./AdminDashboard.css";
 
 const getAdminEmailFromToken = () => {
@@ -47,23 +48,28 @@ const AdminDashboard = () => {
   };
 
   /* ================= SECTIONS ================= */
-  const sections = {
-    packages: {
-      title: "Travel Cards Management",
-      subtitle: "Create, edit, and manage your travel offerings",
-      component: <TravelCardsManager />,
-    },
-    whatsappLeads: {
-      title: "WhatsApp Leads",
-      subtitle: "Track customers who contacted via WhatsApp",
-      component: <WhatsAppLeads />,
-    },
-    settings: {
-      title: "Settings",
-      subtitle: "Configure your application settings",
-      component: <Settings />,
-    },
-  };
+ const sections = {
+  packages: {
+    title: "Travel Cards Management",
+    subtitle: "Create, edit, and manage your travel offerings",
+    component: <TravelCardsManager />,
+  },
+  whatsappLeads: {
+    title: "WhatsApp Leads",
+    subtitle: "Track customers who contacted via WhatsApp",
+    component: <WhatsAppLeads />,
+  },
+  inquiries: {   
+    title: "Customer Inquiries",
+    subtitle: "Manage and track user inquiries",
+    component: <Inquiries />,
+  },
+  settings: {
+    title: "Settings",
+    subtitle: "Configure your application settings",
+    component: <Settings />,
+  },
+};
 
   const currentSection = sections[activeSection];
   const quickStats = [

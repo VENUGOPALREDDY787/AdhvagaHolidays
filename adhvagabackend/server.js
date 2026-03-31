@@ -5,7 +5,7 @@ import connectDB from "./config/database.js";
 import packageRoutes from "./routes/packageRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import inquiryRoutes from "./routes/inquiryRoutes.js";
-import bookingRoutes from "./routes/bookingRoutes.js";
+
 import whatsappLeadRoutes from "./routes/whatsappLeadRoutes.js";
 
 dotenv.config();
@@ -18,7 +18,7 @@ connectDB();
 app.use("/api/admin", adminRoutes);
 app.use("/api/packages", packageRoutes);  
 app.use("/api/inquiries", inquiryRoutes);
-app.use("/api/bookings", bookingRoutes);
+
 app.use("/api/whatsapp-leads", whatsappLeadRoutes);
 
 app.listen(process.env.PORT, () => {

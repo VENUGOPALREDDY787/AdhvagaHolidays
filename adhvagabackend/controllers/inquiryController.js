@@ -14,11 +14,25 @@ export const createInquiry = async (req, res) => {
 };
 
 // Admin only - get all inquiries
+// ✅ FIXED
 export const getAllInquiries = async (req, res) => {
   try {
     const inquiries = await Inquiry.find().sort({ createdAt: -1 });
-    res.status(200).json(inquiries);
+
+    res.status(200).json({
+      data: inquiries   // ✅ wrap inside data
+    });
+
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch inquiries" });
+  }
+};
+
+export const deleteInquiry = async (req, res) => {
+  try {
+    await Inquiry.findByIdAndDelete(req.params.id);
+    res.json({ message: "Inquiry deleted" });
+  } catch (error) {
+    res.status(500).json({ message: "Delete failed" });
   }
 };

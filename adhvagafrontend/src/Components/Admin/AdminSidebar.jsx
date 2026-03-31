@@ -1,11 +1,12 @@
 import React from "react";
-import { Package, Settings, LogOut, MessageCircle } from "lucide-react";
+import { Package, MessageCircle, Settings, Mail, LogOut } from "lucide-react";
 import "./AdminSidebar.css";
 
 const AdminSidebar = ({ activeSection, onSectionChange, onLogout }) => {
   const menuItems = [
     { id: "packages", label: "Travel Cards", icon: Package },
     { id: "whatsappLeads", label: "WhatsApp Leads", icon: MessageCircle },
+    { id: "inquiries", label: "Inquiries", icon: Mail },
     { id: "settings", label: "Settings", icon: Settings },
   ];
 
@@ -36,7 +37,7 @@ const AdminSidebar = ({ activeSection, onSectionChange, onLogout }) => {
 
       <div className="sidebar-footer">
         <button className="nav-item logout-btn" onClick={onLogout}>
-          <LogOut size={20} />
+          <LogOut size={20} /> {/* ✅ FIXED */}
           <span>Logout</span>
         </button>
       </div>
