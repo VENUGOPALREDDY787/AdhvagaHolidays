@@ -220,9 +220,9 @@ export default function CinematicHome() {
                   <div className="cine-card-copy">
                     <p>{card.label}</p>
                     <h3>{card.title}</h3>
-                    <button type="button" className="cine-home-inline-btn">
+                    <Link to="/International" className="cine-home-inline-btn" style={{ textDecoration: 'none', display: 'inline-block' }}>
                       View Details
-                    </button>
+                    </Link>
                   </div>
                 </article>
               ))}
@@ -288,9 +288,9 @@ export default function CinematicHome() {
                 </div>
                 <div className="cine-price">
                   <strong>$4,250</strong>
-                  <button className="cine-btn" type="button">
+                  <a href="#contact" className="cine-btn" style={{ textDecoration: 'none' }}>
                     Book Now
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -322,9 +322,9 @@ export default function CinematicHome() {
                 </div>
                 <div className="cine-price">
                   <strong>$3,800</strong>
-                  <button className="cine-btn" type="button">
+                  <a href="#contact" className="cine-btn" style={{ textDecoration: 'none' }}>
                     Book Now
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

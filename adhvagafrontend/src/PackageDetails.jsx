@@ -7,7 +7,6 @@ import {
   generateBreadcrumbSchema,
   generateTourPackageSchema,
 } from "./utils/seoHelpers";
-import AccessGateFlow from "./Components/includes/AccessGateFlow";
 import "./PackageDetails.css";
 
 const PackageDetails = () => {
@@ -23,9 +22,6 @@ const PackageDetails = () => {
   });
 
   const [expandedDay, setExpandedDay] = useState(1);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [showAccessGate, setShowAccessGate] = useState(false);
-
   /* ================= FETCH ================= */
   useEffect(() => {
     const fetchPackage = async () => {
@@ -74,8 +70,9 @@ const PackageDetails = () => {
         ];
 
   const formatPrice = (price) => {
-    if (!price) return "On Request";
-    return `₹${price.toLocaleString("en-IN")}`;
+    const numericPrice = Number(price);
+    if (!Number.isFinite(numericPrice) || numericPrice <= 0) return "On Request";
+    return `₹${numericPrice.toLocaleString("en-IN")}`;
   };
 
   const durationLabel = pkg.duration || "Flexible";
@@ -102,22 +99,8 @@ const PackageDetails = () => {
   /* ================= FORM ================= */
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowAccessGate(true);
+    navigate("/thank-you");
   };
-
-  const handleAccessComplete = () => {
-    setShowAccessGate(false);
-    setIsSubmitted(true);
-  };
-
-  if (isSubmitted) {
-    return (
-      <div className="pd-shell pd-success">
-        <h2>Booking Requested!</h2>
-        <button onClick={() => navigate(-1)}>Back</button>
-      </div>
-    );
-  }
 
   /* ================= UI ================= */
   return (
@@ -244,8 +227,14 @@ const PackageDetails = () => {
         </section>
 
         {/* PRICE */}
-        <section className="pd-pricing">
-          <strong>{formatPrice(pkg.price)}</strong>
+        <section className="pd-pricing" aria-label="Package pricing">
+          <p className="pd-pricing-label">Starting From</p>
+          <div className="pd-pricing-amount-wrap">
+            <strong className="pd-pricing-amount">{formatPrice(pkg.price)}</strong>
+            <span className="pd-pricing-note">
+              {pkg.price ? "Per Person" : "Talk to us for the best quote"}
+            </span>
+          </div>
         </section>
 
         {/* FORM */}
@@ -275,9 +264,6 @@ const PackageDetails = () => {
         </section>
       </div>
 
-      {showAccessGate && (
-        <AccessGateFlow onComplete={handleAccessComplete} />
-      )}
     </>
   );
 };

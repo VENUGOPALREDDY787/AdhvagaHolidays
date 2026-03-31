@@ -14,6 +14,7 @@ import International from "./Pages/InternationalPackages.jsx";
 import Domestic from "./Pages/DomesticPackages.jsx";
 import ServicesPage from "./Pages/Servicespage.jsx";
 import TermsPage from "./Pages/Terms";
+import ThankYou from "./Pages/ThankYou";
 import {
   BrowserRouter,
   Routes,
@@ -88,6 +89,7 @@ function Layout() {
           <Route path="/Domestic" element={<PageTransition><Domestic /></PageTransition>} />
           <Route path="/Services" element={<PageTransition><ServicesPage /></PageTransition>} />
           <Route path="/terms" element={<PageTransition><TermsPage /></PageTransition>} />
+          <Route path="/thank-you" element={<PageTransition><ThankYou /></PageTransition>} />
           <Route path="/explore-globe" element={<PageTransition><ExploreGlobe /></PageTransition>} />
           <Route path="/india-globe" element={<PageTransition><IndiaGlobe /></PageTransition>} />
 

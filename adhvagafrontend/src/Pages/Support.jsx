@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import SEOHead from "../Components/SEO/SEOHead";
 import { SEO_METADATA, generateBreadcrumbSchema } from "../utils/seoHelpers";
 import { CinematicHeader } from "./CinematicLayout";
 import WhatsAppModal from "../Components/Support/WhatsAppModal";
-import AccessGateFlow from "../Components/includes/AccessGateFlow";
 import { useSettings } from "../context/SettingsContext";
 import "./Support.css";
 
@@ -56,7 +55,6 @@ function Support() {
   const location = useLocation();
   const navigate = useNavigate();
   const [isWhatsAppOpen, setIsWhatsAppOpen] = useState(false);
-  const [showAccessGate, setShowAccessGate] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
   const [selectedService] = useState(location.state?.serviceName || "");
   const metadata = SEO_METADATA.support;
@@ -68,26 +66,11 @@ function Support() {
     Array.isArray(settings?.faqItems) && settings.faqItems.length > 0
       ? settings.faqItems.filter((item) => item?.question && item?.answer)
       : defaultFaqItems;
-
-  useEffect(() => {
-    if (!location.state?.fromServiceBooking) {
-      return;
-    }
-
-    const timer = setTimeout(() => {
-      setShowAccessGate(true);
-    }, 350);
-
-    // Clear transient route state so refresh/back does not replay the gate.
-    navigate(location.pathname, { replace: true });
-
-    return () => clearTimeout(timer);
-  }, [location.pathname, location.state, navigate]);
   const [formData, setFormData] = useState({
   name: "",
   email: "",
   phone: "",
-  subject: "",
+  subject: selectedService,
   message: ""
 });
 
@@ -130,6 +113,8 @@ const handleSubmit = async (e) => {
         subject: "",
         message: ""
       });
+
+      navigate("/thank-you");
     } else {
       setError(data.message || "Failed to submit inquiry ❌");
     }
@@ -333,9 +318,6 @@ const handleSubmit = async (e) => {
         onClose={() => setIsWhatsAppOpen(false)}
       />
 
-      {showAccessGate && (
-        <AccessGateFlow onComplete={() => setShowAccessGate(false)} />
-      )}
     </>
   );
 }
