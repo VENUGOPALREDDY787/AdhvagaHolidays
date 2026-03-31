@@ -1,29 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700;800&family=Bebas+Neue&display=swap');
+
 .whatsapp-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
   padding: 20px;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
 }
 
 .whatsapp-modal {
-  background: #ffffff;
+  background: #211d11;
+  border: 1px solid rgba(211, 158, 23, 0.2);
   border-radius: 20px;
   max-width: 450px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
   animation: modalSlideIn 0.3s ease;
-  color: #000000;
+  color: #ece1d3;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 @keyframes modalSlideIn {
@@ -41,10 +45,10 @@
   position: absolute;
   top: 15px;
   right: 15px;
-  background: none;
-  border: none;
-  font-size: 28px;
-  color: #666;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 24px;
+  color: #ece1d3;
   cursor: pointer;
   width: 36px;
   height: 36px;
@@ -52,80 +56,93 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: background-color 0.2s;
+  transition: all 0.2s;
+  z-index: 10;
 }
 
 .modal-close:hover {
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: rgba(211, 158, 23, 0.15);
+  color: #d39e17;
+  border-color: rgba(211, 158, 23, 0.4);
 }
 
 .modal-header {
   text-align: center;
-  padding: 30px 30px 20px;
-  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  padding: 40px 30px 20px;
+  background: linear-gradient(to bottom, rgba(211, 158, 23, 0.05), transparent);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 20px 20px 0 0;
-  color: white;
+  color: #ece1d3;
 }
 
 .whatsapp-icon {
-  font-size: 48px;
-  margin-bottom: 10px;
+  font-size: 44px;
+  margin-bottom: 15px;
+  color: #d39e17;
+  text-shadow: 0 0 25px rgba(211, 158, 23, 0.3);
+  line-height: 1;
 }
 
 .modal-header h2 {
   margin: 0 0 8px;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: #d39e17;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .modal-header p {
   margin: 0;
-  opacity: 0.9;
-  font-size: 0.95rem;
+  opacity: 0.8;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
 }
 
 .modal-form {
   padding: 25px 30px 30px;
-  background: #ffffff;
-  color: #000000;
 }
 
 .modal-form .form-group {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .modal-form label {
   display: block;
-  font-weight: 600;
-  color: #000000;
-  margin-bottom: 6px;
-  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(236, 225, 211, 0.9);
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .modal-form input,
 .modal-form textarea {
   width: 100%;
   padding: 12px 14px;
-  border: 2px solid #e0e0e0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 10px;
-  font-size: 1rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
   box-sizing: border-box;
-  color: #000000;
-  background-color: #ffffff;
+  color: #ece1d3;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .modal-form input::placeholder,
 .modal-form textarea::placeholder {
-  color: #6b7280;
+  color: rgba(236, 225, 211, 0.35);
 }
 
 .modal-form input:focus,
 .modal-form textarea:focus {
   outline: none;
-  border-color: #25D366;
-  box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.15);
+  border-color: #d39e17;
+  box-shadow: 0 0 0 1px rgba(211, 158, 23, 0.3);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-form textarea {
@@ -133,11 +150,11 @@
 }
 
 .terms-section {
-  margin: 20px 0;
+  margin: 24px 0;
   padding: 15px;
-  background: #f0f0f0;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 10px;
-  color: #000000;
 }
 
 .checkbox-label {
@@ -145,40 +162,40 @@
   align-items: flex-start;
   gap: 12px;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   line-height: 1.5;
+  color: rgba(236, 225, 211, 0.8);
 }
 
 .checkbox-label input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   margin-top: 2px;
-  accent-color: #25D366;
+  accent-color: #d39e17;
   cursor: pointer;
   flex-shrink: 0;
 }
 
-.terms-text {
-  color: #000000;
-}
-
 .terms-text a {
-  color: #25D366;
-  text-decoration: underline;
+  color: #d39e17;
+  text-decoration: none;
   font-weight: 600;
+  transition: color 0.2s;
 }
 
 .terms-text a:hover {
-  color: #128C7E;
+  text-decoration: underline;
+  color: #fce8b2;
 }
 
 .error-message {
-  background: #fee2e2;
-  color: #dc2626;
+  background: rgba(220, 38, 38, 0.15);
+  color: #fca5a5;
   padding: 12px 14px;
+  border: 1px solid rgba(220, 38, 38, 0.3);
   border-radius: 8px;
-  font-size: 0.9rem;
-  margin-bottom: 15px;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -191,35 +208,45 @@
 .submit-btn {
   width: 100%;
   padding: 14px 20px;
-  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-  color: white;
+  background: #d39e17;
+  color: #211d11;
   border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 600;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.2s ease;
 }
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+  filter: brightness(1.1);
+  box-shadow: 0 8px 25px rgba(211, 158, 23, 0.3);
 }
 
 .submit-btn:disabled {
-  opacity: 0.7;
+  opacity: 0.5;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 /* Responsive */
 @media (max-width: 480px) {
   .whatsapp-modal {
-    margin: 10px;
+    margin: 15px;
     max-height: 95vh;
   }
   
   .modal-header {
-    padding: 25px 20px 15px;
+    padding: 30px 20px 15px;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.8rem;
   }
   
   .modal-form {

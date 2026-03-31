@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import useCinematicEffects from "./useCinematicEffects";
 import {
@@ -7,6 +7,7 @@ import {
   CinematicRightTab,
   CinematicSideDots,
 } from "./CinematicLayout";
+import { useSettings } from "../context/SettingsContext";
 import "./CinematicExperience.css";
 
 const dots = [
@@ -52,7 +53,9 @@ const galleryImages = [
 ];
 
 export default function CinematicHome() {
+  const { settings } = useSettings();
   useCinematicEffects();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -104,8 +107,6 @@ export default function CinematicHome() {
       const data = await res.json();
 
       if (res.ok) {
-        setSuccess("Inquiry sent successfully ✅");
-
         setFormData({
           name: "",
           email: "",
@@ -113,8 +114,8 @@ export default function CinematicHome() {
           subject: "",
           message: "",
         });
-
-        setTimeout(() => setSuccess(""), 3000);
+        
+        navigate("/thank-you");
       } else {
         setError(data.message || "Failed to send ❌");
       }
@@ -370,7 +371,7 @@ export default function CinematicHome() {
                 color: "rgba(255,255,255,0.8)",
               }}
             >
-              Founded in 1994, Advaga Holidays evolved from a small trekking
+              Founded in 1994, {settings.agencyName || "Advaga Holidays"} evolved from a small trekking
               collective into a full-scope travel design studio specializing in
               story-driven itineraries and high-touch support.
             </p>
@@ -578,10 +579,9 @@ export default function CinematicHome() {
 
         <section className="cine-home-footer" aria-label="Home footer">
           <div className="cine-container">
-            <h3>ADVAGADHOLIDAYS.INC</h3>
+            <h3 style={{ textTransform: 'uppercase' }}>{settings.agencyName || "ADVAGADHOLIDAYS.INC"}</h3>
             <p>
-              Pioneering cinematic travel and luxury expeditions since 1994.
-              Explore breathtaking landscapes with confidence.
+              {settings.tagline || "Pioneering cinematic travel and luxury expeditions since 1994. Explore breathtaking landscapes with confidence."}
             </p>
             <div className="cine-home-footer-links">
               <a href="#home">Home</a>

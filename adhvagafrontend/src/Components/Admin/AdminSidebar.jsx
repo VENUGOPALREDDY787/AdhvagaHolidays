@@ -1,14 +1,11 @@
 import React from "react";
-import { LayoutDashboard, Package, Calendar, Users, Settings, LogOut, MessageCircle } from "lucide-react";
+import { Package, Settings, LogOut, MessageCircle } from "lucide-react";
 import "./AdminSidebar.css";
 
 const AdminSidebar = ({ activeSection, onSectionChange, onLogout }) => {
   const menuItems = [
-    { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
     { id: "packages", label: "Travel Cards", icon: Package },
-    { id: "bookings", label: "Bookings", icon: Calendar },
     { id: "whatsappLeads", label: "WhatsApp Leads", icon: MessageCircle },
-    { id: "users", label: "Users", icon: Users },
     { id: "settings", label: "Settings", icon: Settings },
   ];
 

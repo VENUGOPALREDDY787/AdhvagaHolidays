@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import AdminSidebar from "../Components/Admin/AdminSidebar";
 import AdminTopBar from "../Components/Admin/AdminTopBar";
 import TravelCardsManager from "../Components/Admin/TravelCardsManager";
-import DashboardOverview from "../Components/Admin/DashboardOverview";
 import Settings from "../Components/Admin/Settings";
 import WhatsAppLeads from "../Components/Admin/WhatsAppLeads";
 import "./AdminDashboard.css";
@@ -49,20 +48,10 @@ const AdminDashboard = () => {
 
   /* ================= SECTIONS ================= */
   const sections = {
-    dashboard: {
-      title: "Dashboard Overview",
-      subtitle: "Welcome back, here's what's happening",
-      component: <DashboardOverview />,
-    },
     packages: {
       title: "Travel Cards Management",
       subtitle: "Create, edit, and manage your travel offerings",
       component: <TravelCardsManager />,
-    },
-    bookings: {
-      title: "Bookings",
-      subtitle: "Manage customer bookings and reservations",
-      component: <div className="coming-soon">Coming Soon</div>,
     },
     whatsappLeads: {
       title: "WhatsApp Leads",

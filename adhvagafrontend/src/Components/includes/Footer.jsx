@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/unnamed.jpg";
+import { useSettings } from "../../context/SettingsContext";
 import "./Footer.css";
 
 function Footer() {
+    const { settings } = useSettings();
     const quickLinks = [
         { label: "About Us", to: "/About" },
         { label: "Domestic", to: "/Domestic" },
@@ -26,15 +28,14 @@ function Footer() {
                 <div className="site-footer-grid">
                     <section className="site-footer-brand">
                         <img src={logo} alt="Adhvaga Holidays logo" className="footer-logo" />
-                        <h3>Adhvaga Holidays</h3>
+                        <h3>{settings.agencyName || "Adhvaga Holidays"}</h3>
                         <p>
-                            Curating extraordinary travel experiences with comfort, precision,
-                            and complete peace of mind.
+                            {settings.tagline || "Curating extraordinary travel experiences with comfort, precision, and complete peace of mind."}
                         </p>
                         <div className="site-footer-social" aria-label="Social media links">
-                            <a href="https://instagram.com/adhvagaholidays" target="_blank" rel="noopener noreferrer">Instagram</a>
-                            <a href="https://facebook.com/adhvagaholidays" target="_blank" rel="noopener noreferrer">Facebook</a>
-                            <a href="https://twitter.com/adhvagaholidays" target="_blank" rel="noopener noreferrer">Twitter</a>
+                            {settings.instagram && <a href={settings.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>}
+                            {settings.facebook && <a href={settings.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>}
+                            {settings.twitter && <a href={settings.twitter} target="_blank" rel="noopener noreferrer">Twitter</a>}
                         </div>
                     </section>
 
@@ -61,10 +62,10 @@ function Footer() {
                     <section>
                         <h4>Contact Us</h4>
                         <div className="site-footer-links" aria-label="Contact information">
-                            <span>JP Nagar 2nd Phase, Bangalore</span>
-                            <a href="tel:+919620421494">+91 96204 21494</a>
-                            <a href="mailto:adhvagaholidaysinc@gmail.com">adhvagaholidaysinc@gmail.com</a>
-                            <span>Mon-Sat: 09:00 - 18:00</span>
+                            <span>{settings.address || "JP Nagar 2nd Phase, Bangalore"}</span>
+                            <a href={`tel:${settings.contactNumber || "+919620421494"}`}>{settings.contactNumber || "+91 96204 21494"}</a>
+                            <a href={`mailto:${settings.email || "adhvagaholidaysinc@gmail.com"}`}>{settings.email || "adhvagaholidaysinc@gmail.com"}</a>
+                            <span>Mon-Sat: {settings.workingHoursStart || "09:00"} - {settings.workingHoursEnd || "18:00"}</span>
                         </div>
                     </section>
                 </div>
@@ -75,7 +76,7 @@ function Footer() {
                         well-organized travel experiences for travelers across India and beyond.
                     </p>
                     <p>
-                        Copyright {new Date().getFullYear()} Adhvaga Holidays. All rights reserved.
+                        Copyright {new Date().getFullYear()} {settings.agencyName || "Adhvaga Holidays"}. All rights reserved.
                     </p>
                 </div>
             </div>

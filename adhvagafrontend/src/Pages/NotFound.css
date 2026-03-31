@@ -1,6 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Bebas+Neue&family=Dancing+Script:wght@400;700&display=swap');
+
+.not-found-container {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  box-sizing: border-box;
+}
+
+.not-found-container * {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+.not-found-main {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #1a1710;
+  color: #ece1d3;
+}
+
+.not-found-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(26, 23, 16, 0.4),
+      rgba(26, 23, 16, 0.9)
+    ),
+    url("https://lh3.googleusercontent.com/aida-public/AB6AXuAv2POO0WeJVfeyxXqImWyhiKy011to39D1QsMgSbRBjE8Qkv_PraN57PLj7llZXc9lTBHRS-rilh3CkGq0fKO4w_j8pLUUQJpduLN43tf0U-g0G221fE0FJErgjdqe18zozLc5Y8rCy0q5iN25fH4YhwTfxPvzK-zxBX8ExPW8NvYEHt0dk3DkxKevH8hQ3l4_mOJx1RUQ9MoCho2B4_ZKU32NLDlVLSEm8P2Y2Ba1JmSUVReeodd7uRyE4LdjrLhbQcrydCfB1yyK");
+  background-size: cover;
+  background-position: center;
+}
+
+.not-found-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.not-found-title-wrapper {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+h1.not-found-title {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 22vw;
+  line-height: 1;
+  color: #d39e17;
+  letter-spacing: -0.05em;
+  opacity: 0.9;
+  user-select: none;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  animation: float-h1 8s ease-in-out infinite;
+  margin: 0;
+}
+
+.not-found-signature-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.not-found-signature {
+  font-family: 'Dancing Script', cursive !important;
+  font-size: 7vw;
+  color: #ffffff;
+  white-space: nowrap;
+  margin-top: 5vw;
+  margin-left: 2vw;
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+  transform: rotate(-3deg);
+  animation: dance 6s ease-in-out infinite;
+}
+
+.not-found-desc-wrapper {
+  max-width: 42rem;
+  margin: -2vw auto 0;
+}
+
+.not-found-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 1.125rem;
+  color: rgba(236, 225, 211, 0.8);
+  letter-spacing: 0.025em;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .not-found-desc {
+    font-size: 1.5rem;
+  }
+}
+
+.not-found-desc span.hidden-mobile {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .not-found-desc span.hidden-mobile {
+    display: inline;
+  }
+}
+
+.not-found-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.not-found-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 3rem;
+  overflow: hidden;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: #000000;
+  background-color: #d39e17;
+  border: none;
+  border-radius: 0 !important;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  animation: pulse-subtle 3s ease-in-out infinite;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.not-found-btn:hover {
+  transform: scale(1.05);
+  color: #000000;
+}
+
+.not-found-btn:active {
+  transform: scale(0.95);
+}
+
+.not-found-btn span {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background-color: #d39e17;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100;
+  mix-blend-mode: difference;
+  display: none;
+  transform: translate(-50%, -50%);
+}
+
+@media (min-width: 768px) {
+  .custom-cursor {
+    display: block;
+  }
+}
+
 @keyframes dance {
-  0%,
-  100% {
+  0%, 100% {
     transform: translateY(0) rotate(-3deg);
   }
   25% {
@@ -15,8 +200,7 @@
 }
 
 @keyframes float-h1 {
-  0%,
-  100% {
+  0%, 100% {
     transform: translateY(0) scale(1);
   }
   50% {
@@ -25,8 +209,7 @@
 }
 
 @keyframes pulse-subtle {
-  0%,
-  100% {
+  0%, 100% {
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(211, 158, 23, 0.4);
   }
@@ -34,39 +217,4 @@
     transform: scale(1.03);
     box-shadow: 0 0 20px 10px rgba(211, 158, 23, 0);
   }
-}
-
-.animate-dance-signature {
-  animation: dance 6s ease-in-out infinite;
-}
-
-.animate-float-404 {
-  animation: float-h1 8s ease-in-out infinite;
-}
-
-.animate-pulse-button {
-  animation: pulse-subtle 3s ease-in-out infinite;
-}
-
-.not-found-bg {
-  background-image: linear-gradient(
-      to bottom,
-      rgba(26, 23, 16, 0.4),
-      rgba(26, 23, 16, 0.9)
-    ),
-    url("https://lh3.googleusercontent.com/aida-public/AB6AXuAv2POO0WeJVfeyxXqImWyhiKy011to39D1QsMgSbRBjE8Qkv_PraN57PLj7llZXc9lTBHRS-rilh3CkGq0fKO4w_j8pLUUQJpduLN43tf0U-g0G221fE0FJErgjdqe18zozLc5Y8rCy0q5iN25fH4YhwTfxPvzK-zxBX8ExPW8NvYEHt0dk3DkxKevH8hQ3l4_mOJx1RUQ9MoCho2B4_ZKU32NLDlVLSEm8P2Y2Ba1JmSUVReeodd7uRyE4LdjrLhbQcrydCfB1yyK");
-  background-size: cover;
-  background-position: center;
-}
-
-.text-shadow-hero {
-  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.font-accent {
-  font-family: "Bebas Neue", sans-serif;
-}
-
-.font-signature {
-  font-family: "Dancing Script", cursive;
 }

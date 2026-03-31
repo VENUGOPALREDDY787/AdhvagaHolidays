@@ -90,14 +90,8 @@ const Settings = () => {
   const tabs = [
     { id: "profile", label: "Profile", icon: Users },
     { id: "general", label: "General", icon: SettingsIcon },
-    { id: "homepage", label: "Homepage", icon: Image },
     { id: "services", label: "Services", icon: Tag },
-    { id: "booking", label: "Booking", icon: CreditCard },
-    { id: "email", label: "Email & Notifications", icon: Mail },
-    { id: "security", label: "Security", icon: Shield },
-    { id: "seo", label: "SEO", icon: BarChart },
-    { id: "reviews", label: "Reviews", icon: Star },
-    { id: "team", label: "Team", icon: Users }
+    { id: "email", label: "Email & Notifications", icon: Mail }
   ];
 
   return (
@@ -297,50 +291,6 @@ const Settings = () => {
             </div>
           )}
 
-          {/* 3. HOMEPAGE SETTINGS */}
-          {activeTab === "homepage" && (
-            <div className="settings-section">
-              <h2>Homepage Settings</h2>
-              
-              <div className="form-group">
-                <label>Hero Banner</label>
-                <div className="banner-upload-zone" onClick={() => bannerInputRef.current?.click()}>
-                  <Upload size={24} />
-                  <p>Upload hero banner (1920x1080)</p>
-                  <input ref={bannerInputRef} type="file" accept="image/*" hidden />
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label>Hero Banner Text</label>
-                <input
-                  type="text"
-                  value={settings.heroText}
-                  onChange={(e) => handleInputChange("heroText", e.target.value)}
-                />
-              </div>
-
-              <h3>Promotional Banner</h3>
-              <div className="toggle-group">
-                <label>Enable Promotional Banner</label>
-                <input
-                  type="checkbox"
-                  checked={settings.promoEnabled}
-                  onChange={(e) => handleInputChange("promoEnabled", e.target.checked)}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Promotional Text</label>
-                <input
-                  type="text"
-                  value={settings.promoText}
-                  onChange={(e) => handleInputChange("promoText", e.target.value)}
-                />
-              </div>
-            </div>
-          )}
-
           {/* 4. SERVICES MANAGEMENT */}
           {activeTab === "services" && (
             <div className="settings-section">
@@ -408,45 +358,6 @@ const Settings = () => {
             </div>
           )}
 
-          {/* 5. BOOKING SETTINGS */}
-          {activeTab === "booking" && (
-            <div className="settings-section">
-              <h2>Booking Settings</h2>
-              
-              <div className="form-group">
-                <label>Booking Confirmation</label>
-                <select
-                  value={settings.bookingConfirmation}
-                  onChange={(e) => handleInputChange("bookingConfirmation", e.target.value)}
-                >
-                  <option value="auto">Automatic</option>
-                  <option value="manual">Manual Approval</option>
-                </select>
-              </div>
-
-              <div className="form-group">
-                <label>Payment Gateway</label>
-                <select
-                  value={settings.paymentGateway}
-                  onChange={(e) => handleInputChange("paymentGateway", e.target.value)}
-                >
-                  <option value="razorpay">Razorpay</option>
-                  <option value="stripe">Stripe</option>
-                  <option value="paypal">PayPal</option>
-                </select>
-              </div>
-
-              <div className="form-group">
-                <label>Cancellation Policy</label>
-                <textarea
-                  rows="4"
-                  value={settings.cancellationPolicy}
-                  onChange={(e) => handleInputChange("cancellationPolicy", e.target.value)}
-                />
-              </div>
-            </div>
-          )}
-
           {/* 6. EMAIL & NOTIFICATIONS */}
           {activeTab === "email" && (
             <div className="settings-section">
@@ -490,167 +401,7 @@ const Settings = () => {
             </div>
           )}
 
-          {/* 7. SECURITY SETTINGS */}
-          {activeTab === "security" && (
-            <div className="settings-section">
-              <h2>Security Settings</h2>
-              
-              <h3>Change Password</h3>
-              <div className="form-group">
-                <label>Current Password</label>
-                <div className="password-input">
-                  <input type={showPassword ? "text" : "password"} />
-                  <button onClick={() => setShowPassword(!showPassword)}>
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
-                </div>
-              </div>
-              <div className="form-group">
-                <label>New Password</label>
-                <input type="password" />
-              </div>
-              <div className="form-group">
-                <label>Confirm New Password</label>
-                <input type="password" />
-              </div>
 
-              <div className="toggle-group">
-                <label><Shield size={16} /> Enable Two-Factor Authentication (2FA)</label>
-                <input
-                  type="checkbox"
-                  checked={settings.twoFactorAuth}
-                  onChange={(e) => handleInputChange("twoFactorAuth", e.target.checked)}
-                />
-              </div>
-
-              <h3>Active Sessions</h3>
-              <div className="sessions-list">
-                <div className="session-item">
-                  <div>
-                    <strong>Chrome on Windows</strong>
-                    <p>Last active: 2 hours ago</p>
-                  </div>
-                  <button className="btn-danger-small">Revoke</button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* 8. SEO SETTINGS */}
-          {activeTab === "seo" && (
-            <div className="settings-section">
-              <h2>SEO Settings</h2>
-              
-              <div className="form-group">
-                <label>Meta Title</label>
-                <input
-                  type="text"
-                  value={settings.metaTitle}
-                  onChange={(e) => handleInputChange("metaTitle", e.target.value)}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Meta Description</label>
-                <textarea
-                  rows="3"
-                  value={settings.metaDescription}
-                  onChange={(e) => handleInputChange("metaDescription", e.target.value)}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Keywords (comma-separated)</label>
-                <input
-                  type="text"
-                  value={settings.keywords}
-                  onChange={(e) => handleInputChange("keywords", e.target.value)}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Google Analytics ID</label>
-                <input
-                  type="text"
-                  placeholder="UA-XXXXXXXXX-X"
-                  value={settings.googleAnalyticsId}
-                  onChange={(e) => handleInputChange("googleAnalyticsId", e.target.value)}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Facebook Pixel ID</label>
-                <input
-                  type="text"
-                  placeholder="XXXXXXXXXXXXXXXX"
-                  value={settings.facebookPixelId}
-                  onChange={(e) => handleInputChange("facebookPixelId", e.target.value)}
-                />
-              </div>
-            </div>
-          )}
-
-          {/* 9. REVIEWS SETTINGS */}
-          {activeTab === "reviews" && (
-            <div className="settings-section">
-              <h2>Testimonials & Reviews</h2>
-              
-              <div className="toggle-group">
-                <label>Auto-Approve Reviews</label>
-                <input
-                  type="checkbox"
-                  checked={settings.autoApproveReviews}
-                  onChange={(e) => handleInputChange("autoApproveReviews", e.target.checked)}
-                />
-              </div>
-
-              <div className="toggle-group">
-                <label>Show Star Ratings</label>
-                <input
-                  type="checkbox"
-                  checked={settings.showStarRatings}
-                  onChange={(e) => handleInputChange("showStarRatings", e.target.checked)}
-                />
-              </div>
-
-              <button className="btn-primary">Manage Reviews</button>
-            </div>
-          )}
-
-          {/* 10. TEAM MANAGEMENT */}
-          {activeTab === "team" && (
-            <div className="settings-section">
-              <h2>Team Management</h2>
-              
-              <button className="btn-primary mb-3">
-                <Users size={18} />
-                Add Staff Member
-              </button>
-
-              <div className="team-list">
-                <div className="team-member">
-                  <div className="member-info">
-                    <strong>John Doe</strong>
-                    <p>Admin • Last active: 1 hour ago</p>
-                  </div>
-                  <div className="member-actions">
-                    <button className="btn-secondary-small">Edit</button>
-                    <button className="btn-danger-small">Remove</button>
-                  </div>
-                </div>
-                <div className="team-member">
-                  <div className="member-info">
-                    <strong>Jane Smith</strong>
-                    <p>Manager • Last active: 3 hours ago</p>
-                  </div>
-                  <div className="member-actions">
-                    <button className="btn-secondary-small">Edit</button>
-                    <button className="btn-danger-small">Remove</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
 
           {activeTab === "services" && (
             <div className="settings-section faq-admin-section">

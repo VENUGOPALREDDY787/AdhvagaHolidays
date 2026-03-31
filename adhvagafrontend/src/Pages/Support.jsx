@@ -154,16 +154,26 @@ const handleSubmit = async (e) => {
               <div className="support-contact-lines">
                 <div>
                   <small>Headquarters</small>
-                  <strong>123 Adventure Way, Mountain View, CA 94043</strong>
+                  <strong>{settings.address || "123 Adventure Way, Mountain View, CA 94043"}</strong>
                 </div>
                 <div>
                   <small>Direct Line</small>
-                  <strong>+1 (555) 123-4567</strong>
+                  <strong>{settings.contactNumber || "+1 (555) 123-4567"}</strong>
                 </div>
                 <div>
                   <small>Electronic Mail</small>
-                  <strong>hello@advagadholidays.inc</strong>
+                  <strong>{settings.email || "hello@advagadholidays.inc"}</strong>
                 </div>
+              </div>
+
+              <div className="support-wa-trigger-container">
+                <button
+                  type="button"
+                  className="support-wa-glow-btn"
+                  onClick={() => setIsWhatsAppOpen(true)}
+                >
+                  <span>Connect via WhatsApp</span>
+                </button>
               </div>
             </div>
           </div>
@@ -262,13 +272,6 @@ const handleSubmit = async (e) => {
       {loading ? "Submitting..." : "Plan My Adventure"}
     </button>
 
-    <button
-      type="button"
-      className="support-whatsapp-btn"
-      onClick={() => setIsWhatsAppOpen(true)}
-    >
-      Chat on WhatsApp
-    </button>
   </div>
 </form>
             </div>

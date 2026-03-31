@@ -24,8 +24,8 @@ function ThankYou() {
       <div className="ty-page">
         {/* Background Canvas */}
         <div className="ty-bg-canvas">
-          <img 
-            alt="Majestic dark mountain peaks under a moody twilight sky with low hanging clouds and cinematic atmosphere" 
+          <img
+            alt="Majestic dark mountain peaks under a moody twilight sky with low hanging clouds and cinematic atmosphere"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9mRHw_MUth18njgYcHxBxyt-WTe7jzshvvhG0Rkwk2nkTh2Aq124NWLaJGJaj04HoCItrid7FAqimuZQdGrx7Li44DHG_6otPqQ7QdJ1T_CWpru_TpaowKAW5CnGVqUtpWJgohOd1UnYUZD1bD4laHZa50EGSZ3_1qfFZOnkw8h9-9f6-Wa_VBV6DCbhKyGiYY8C4cKGLJZXdhK-EfUS5Jb2WJLsDY021XvVeAUj4TzE3YEwyalD4Gm9OKEexZDmpbq0c71AsaeqG"
           />
           <div className="ty-bg-overlay"></div>
@@ -44,7 +44,7 @@ function ThankYou() {
 
         {/* Main Modal Overlay */}
         <div className="ty-modal-wrapper">
-          <motion.div 
+          <motion.div
             className="ty-modal-card"
             initial={{ opacity: 0, scale: 0.98, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -55,7 +55,7 @@ function ThankYou() {
             <div className="ty-corner-br"></div>
 
             {/* Success Indicator */}
-            <motion.div 
+            <motion.div
               className="ty-success-indicator"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -74,7 +74,7 @@ function ThankYou() {
             </motion.div>
 
             {/* Header Section */}
-            <motion.div 
+            <motion.div
               className="ty-header-section"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -90,7 +90,7 @@ function ThankYou() {
             </motion.div>
 
             {/* Status Badge */}
-            <motion.div 
+            <motion.div
               className="ty-status-badge"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -103,7 +103,7 @@ function ThankYou() {
             </motion.div>
 
             {/* Subtext & Package Info */}
-            <motion.div 
+            <motion.div
               className="ty-subtext-section"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -112,17 +112,11 @@ function ThankYou() {
               <p className="ty-quote">
                 "Our dedicated travel experts are already on it. Expect a personalized call within 24 hours to craft every detail of your journey."
               </p>
-              <div className="ty-gold-rule"></div>
-              <div className="ty-itinerary-box">
-                <p className="ty-itinerary-label">Current Itinerary</p>
-                <p className="ty-itinerary-val">
-                  Golden Rajasthan Escape — 7 Days
-                </p>
-              </div>
+
             </motion.div>
 
             {/* Actions */}
-            <motion.div 
+            <motion.div
               className="ty-actions-wrapper"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}

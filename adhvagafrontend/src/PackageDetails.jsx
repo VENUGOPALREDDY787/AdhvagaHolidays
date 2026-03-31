@@ -7,21 +7,18 @@ import {
   generateBreadcrumbSchema,
   generateTourPackageSchema,
 } from "./utils/seoHelpers";
+import { useSettings } from "./context/SettingsContext";
+import WhatsAppModal from "./Components/Support/WhatsAppModal";
 import "./PackageDetails.css";
 
 const PackageDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { settings } = useSettings();
 
   const [pkg, setPkg] = useState(null);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    date: "",
-    guests: 1,
-  });
-
   const [expandedDay, setExpandedDay] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   /* ================= FETCH ================= */
   useEffect(() => {
     const fetchPackage = async () => {
@@ -95,12 +92,6 @@ const PackageDetails = () => {
     image: pkg.image,
     price: pkg.price,
   });
-
-  /* ================= FORM ================= */
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate("/thank-you");
-  };
 
   /* ================= UI ================= */
   return (
@@ -237,33 +228,23 @@ const PackageDetails = () => {
           </div>
         </section>
 
-        {/* FORM */}
-        <section className="pd-booking-section">
-          <form onSubmit={handleSubmit}>
-            <input
-              placeholder="Full Name"
-              required
-              onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
-              }
-            />
-
-            <input
-              type="email"
-              placeholder="Email"
-              required
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
-            />
-
-            <button type="submit" className="pd-primary-btn">
-              Book Now
-            </button>
-          </form>
+        {/* WHATSAPP CTA */}
+        <section className="pd-booking-section" style={{ textAlign: "center", padding: "2rem" }}>
+          <p style={{ marginBottom: "1.5rem", fontSize: "1.1rem", color: "var(--text-color, #EAEAEA)" }}>
+            Call or WhatsApp us for further info & booking details!
+          </p>
+          <button
+            type="button"
+            onClick={() => setIsModalOpen(true)}
+            className="pd-primary-btn"
+            style={{ display: "inline-block", textDecoration: "none", cursor: "pointer" }}
+          >
+            Contact on WhatsApp
+          </button>
         </section>
       </div>
 
+      <WhatsAppModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 };
