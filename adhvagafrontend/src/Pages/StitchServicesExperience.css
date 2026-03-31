@@ -186,12 +186,12 @@
 
 .svc-script-left {
   top: -2.9rem;
-  left: 1rem;
+  left: 0;
 }
 
 .svc-script-right {
   top: -2.9rem;
-  right: 1rem;
+  right: 0;
 }
 
 .svc-script-center {
@@ -292,15 +292,15 @@
 }
 
 .svc-text {
-  max-width: 580px;
-  font-size: 0.95rem;
+  max-width: 680px;
+  font-size: 1.15rem;
   line-height: 1.8;
-  color: rgba(236, 225, 211, 0.85);
+  color: rgba(236, 225, 211, 0.9);
 }
 
 .svc-text-large {
-  font-size: 1.08rem;
-  color: rgba(255, 255, 255, 0.92);
+  font-size: 1.25rem;
+  color: #fff;
 }
 
 .svc-btn {
@@ -356,10 +356,10 @@
 
 .svc-metric-grid p {
   margin: 0.45rem 0 0;
-  color: rgba(255, 255, 255, 0.52);
-  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.2rem;
 }
 
 .svc-glass-panel {
@@ -383,10 +383,10 @@
 }
 
 .svc-panel-row span {
-  font-size: 0.62rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.38em;
-  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .svc-panel-row strong {
@@ -431,10 +431,10 @@
 
 .svc-card p {
   margin: 0.4rem 0 0;
-  color: rgba(255, 255, 255, 0.52);
-  font-size: 0.64rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
   line-height: 1.65;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
@@ -466,10 +466,10 @@
 
 .svc-feature-stack p {
   margin: 0.35rem 0 0;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.75);
   text-transform: uppercase;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
 }
 
 .svc-rental-panel {
@@ -495,20 +495,20 @@
 
 .svc-rental-panel p {
   margin: 0.7rem 0 0;
-  color: rgba(236, 225, 211, 0.82);
+  color: rgba(236, 225, 211, 0.9);
   text-transform: uppercase;
   line-height: 1.65;
-  letter-spacing: 0.08em;
-  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  font-size: 0.95rem;
 }
 
 .svc-rental-panel ul {
   margin: 1rem 0 0;
   padding: 0;
   list-style: none;
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 0.68rem;
-  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   display: grid;
   gap: 0.45rem;
@@ -517,7 +517,7 @@
 .svc-rental-cta {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: center;
 }
 
@@ -557,9 +557,9 @@
   position: absolute;
   inset: auto 0 0;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 0.6rem;
-  letter-spacing: 0.28em;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   padding: 1rem;
 }

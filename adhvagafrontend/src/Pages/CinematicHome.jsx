@@ -471,6 +471,16 @@ export default function CinematicHome() {
                 <strong>Julian West</strong>
                 <span>Patagonia Trek 2023</span>
               </article>
+
+              <article className="cine-glass">
+                <p className="cine-quote">
+                  "From navigating remote paths to the seamless luxury of our stays, 
+                  every moment was perfected. Advaga gave us an adventure we will 
+                  never forget."
+                </p>
+                <strong>Sarah &amp; David</strong>
+                <span>Sahara Star Gazing</span>
+              </article>
             </div>
           </div>
         </section>

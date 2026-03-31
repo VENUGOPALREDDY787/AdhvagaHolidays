@@ -244,8 +244,8 @@ export default function StitchServicesExperience() {
         <section id="services-car-rentals" className="svc-section">
           <div className="svc-bg" style={{ backgroundImage: `url('${sectionBackgrounds.carRentals}')` }} />
           <div className="svc-overlay" />
-          <div className="svc-container svc-center" data-reveal>
-            <span className="svc-script svc-script-center">Your Ride, Your Schedule</span>
+          <div className="svc-container svc-block" data-reveal>
+            <span className="svc-script svc-script-left">Your Ride, Your Schedule</span>
             <h2 className="svc-heading">Car Rentals</h2>
             <div className="svc-rental-panel">
               <div>
@@ -276,7 +276,7 @@ export default function StitchServicesExperience() {
             <h2 className="svc-heading">Domestic</h2>
             <div className="svc-grid-two svc-grid-two-wide">
               <div>
-                <p className="svc-text svc-text-large">
+                <p className="svc-text">
                   Unveiling the hidden soul of the subcontinent. From the palaces of Rajasthan to the
                   serene backwaters of Kerala.
                 </p>
@@ -308,6 +308,10 @@ export default function StitchServicesExperience() {
           <div className="svc-container svc-center" data-reveal>
             <span className="svc-script svc-script-center">The World is Closer</span>
             <h2 className="svc-heading">International</h2>
+            <p className="svc-text" style={{ margin: "0 auto 2.4rem", textAlign: "center" }}>
+              Our curated international packages open borders safely, with seamless global flights, 
+              local hosts, and handpicked premium properties spanning across the continents.
+            </p>
             <div className="svc-intl-grid">
               {internationalCards.map((card) => (
                 <article key={card.region}>

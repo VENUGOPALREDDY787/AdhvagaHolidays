@@ -28,6 +28,7 @@ import PackageDetails from "./PackageDetails.jsx";
 import AdminDashboard from "./Pages/AdminDashboard";
 import ExploreGlobe from "./Pages/ExploreGlobe.jsx";
 import IndiaGlobe from "./Pages/IndiaGlobe.jsx";
+import NotFound from "./Pages/NotFound";
 import ScrollToTop from "./Components/SEO/ScrollToTop.jsx";
 import { ScrollProgress } from "./Components/includes/ScrollAnimations.jsx";
 import "./Components/includes/ScrollAnimations.css";
@@ -105,6 +106,9 @@ function Layout() {
               </ProtectedRoute>
             }
           />
+
+          {/* ================= 404 NOT FOUND ================= */}
+          <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>
       </AnimatePresence>
 
