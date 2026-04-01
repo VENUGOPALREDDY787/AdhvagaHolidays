@@ -6,8 +6,6 @@ import Navbar from "./Components/includes/Navbar";
 import Footer from "./Components/includes/Footer";
 import LoadingScreen from "./Components/includes/LoadingScreen";
 import AboutPage from "./Pages/AboutPage";
-import Blogs from "./Pages/Blogs";
-import CostomPackages from "./Pages/CostomPackages";
 import Home from "./Pages/Home";
 import Support from "./Pages/Support";
 import International from "./Pages/InternationalPackages.jsx";
@@ -81,8 +79,6 @@ function Layout() {
 
           {/* ================= PUBLIC ROUTES ================= */}
           <Route path="/About" element={<PageTransition><AboutPage /></PageTransition>} />
-          <Route path="/Blogs" element={<PageTransition><Blogs /></PageTransition>} />
-          <Route path="/Coustom" element={<PageTransition><CostomPackages /></PageTransition>} />
           <Route path="/Home" element={<PageTransition><Home /></PageTransition>} />
           <Route path="/Support" element={<PageTransition><Support /></PageTransition>} />
           <Route path="/International" element={<PageTransition><International /></PageTransition>} />

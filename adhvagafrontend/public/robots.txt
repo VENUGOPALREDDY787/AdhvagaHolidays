@@ -21,7 +21,6 @@ Allow: /services/car-rentals
 Allow: /services/corporate-services
 Allow: /services/custom-services
 Allow: /support
-Allow: /blogs
 Allow: /terms
 Allow: /privacy
 Allow: /explore-globe
