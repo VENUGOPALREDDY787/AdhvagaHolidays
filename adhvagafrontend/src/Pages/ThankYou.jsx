@@ -26,7 +26,7 @@ function ThankYou() {
         <div className="ty-bg-canvas">
           <img
             alt="Majestic dark mountain peaks under a moody twilight sky with low hanging clouds and cinematic atmosphere"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9mRHw_MUth18njgYcHxBxyt-WTe7jzshvvhG0Rkwk2nkTh2Aq124NWLaJGJaj04HoCItrid7FAqimuZQdGrx7Li44DHG_6otPqQ7QdJ1T_CWpru_TpaowKAW5CnGVqUtpWJgohOd1UnYUZD1bD4laHZa50EGSZ3_1qfFZOnkw8h9-9f6-Wa_VBV6DCbhKyGiYY8C4cKGLJZXdhK-EfUS5Jb2WJLsDY021XvVeAUj4TzE3YEwyalD4Gm9OKEexZDmpbq0c71AsaeqG"
+            src="/aida-images/aida_025.jpg"
           />
           <div className="ty-bg-overlay"></div>
         </div>

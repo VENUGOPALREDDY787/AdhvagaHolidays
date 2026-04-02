@@ -36,7 +36,7 @@ export default function CinematicInternational() {
             className="cine-hero-bg"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(20,16,10,0.45), rgba(20,16,10,0.88)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBa2SXYWUhz5EV0nDoGx2HxKdVryPeb7LXeD3bXmnLk_mRdBeDPt4U7c3N3LBufqPoLvODctQYS96JCvl04XeNjIG5zG8RKt9_I5iX29QbsuOzdqPDhSqzKuIWkPU4E_jM-xsNhT9XYG1nhiZO_6keVf-SCS-rWbrG8dcnALYK-X0fT8sD6lnmeaqbadK7CWatZ5bOtPGV069FLTNuo-RXH4VO0BdRqwg7SMUTRVk2SodYIrHyES9KifzwSkh3CG6DxujlLZ_LTC2sv')",
+                "linear-gradient(rgba(20,16,10,0.45), rgba(20,16,10,0.88)), url('/aida-images/aida_019.jpg')",
             }}
           />
           <div className="cine-overlay" />

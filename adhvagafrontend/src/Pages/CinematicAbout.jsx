@@ -32,7 +32,7 @@ export default function CinematicAbout() {
             className="cine-hero-bg"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(33, 29, 17, 0.4), rgba(33, 29, 17, 0.76)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuDmjzQHN0cKTRUW3fHldYa9bKWZC00PgCWcOmlMXOCLXR7PQJgV82eFIfMXW8-kosxTrhkNLXqZ0x05lFnZ35EMOhopFruN_cNBaeUOS9YUnlnzFXSaVuVtx4avr_iD1u5eanNhDSj-nZGebb7R5ggibNuk9J8xPWE5E04ylVzzuZn-t8cSGffI0Hggd9Z4rywS4zXAt5pLLYKhIgy7b2Cj8ms1okb5A3HIz3TtsPlTsrI3i1fZUkgx1fvseGFX3SOo1vtXIcxGMZ6J')",
+                "linear-gradient(rgba(33, 29, 17, 0.4), rgba(33, 29, 17, 0.76)), url('/aida-images/aida_042.jpg')",
             }}
           />
           <div className="cine-overlay" />
@@ -51,7 +51,7 @@ export default function CinematicAbout() {
         <section id="story" className="cine-section cine-section-light">
           <div className="cine-container cine-split" data-reveal>
             <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSBYhsmiDJ4OM1ywsdiYROrvRn575g7oQ1MWeLegn3pz1lTOwxBJ0aDI8-QHuFqaYb37VrNlYTER5xX1UTWaAw6ADp634mncPLwFiyAxP_N3HPp5vry5hphNV4dKpdPaziBz-9c9uFBtW5u3sXKuGG3io7825mrPv2AaB_FBQ_QLELWulto8RpHH2FrPfE5b1n37ntFNZtoyx3ycES___Vq8ab1gyUOuza5wBl1eoE3wz22BiUEMtDEcz-SWILqBlQkU78ildC-z52"
+              src="/aida-images/aida_028.jpg"
               alt="Advaga travel team"
             />
 

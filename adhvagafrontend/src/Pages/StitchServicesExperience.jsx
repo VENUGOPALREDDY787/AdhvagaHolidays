@@ -15,37 +15,37 @@ const dotItems = [
 ];
 
 const sectionBackgrounds = {
-  hero: "https://lh3.googleusercontent.com/aida-public/AB6AXuDlgZLFf5payvzEnN2vzZD3t3z1PZ9bcyjqjsp1BlnNW0wI7w3ADKBNM9WCKp_-GPMgKfy0SVmX9Cl6r1JbyturLisu32B3Y0eQtJnpNgWjDy2DZCLT8WG0S6Xxqfcq-aLG5_OOYQoODMf2DyC48qg3mZK5VZ6_Ozse6d4vTxgiz8EANoIcFb_SKjH1cT4bYR3qX5C9XqnC4j4ba57pSzAZOPyM-SJ9vGuHl2Tv1H2dDoi_v_iFmAWq74Ifv3V3gtaMZQOXako1gJ61",
-  airTickets: "https://lh3.googleusercontent.com/aida-public/AB6AXuDtW0Faa2bxo4c7WzKrJ3sq_AZjpotrJdB7ZxLW6jo8z8F36sD_gyZ728eDDX-72U04usHaSR6wMB6KKwyAO1x1X58uCNzBeFGu6BazVfuwZmgSC-_6woJ6sWnseXEjjYY5wYewZXQ3OCwXizqcOO1IQEm-9vY3qs2D9f8p7W7qIhYnGYNqFyFnyqAiNeRK4oa1ooSF1-zs14MCE0b0Txk66FBiOSrdZwmaAb-b-fk0crEFXKZIuBMXTd5XoRtVCKTjDJkaRVxcEPfV",
-  visa: "https://lh3.googleusercontent.com/aida-public/AB6AXuB73OIJwNxtFZGnXeYi-qt7VYDoGOkE8kfKKlNEo7hzhnxmlbvcqFtwMFbSaU-VtWVmUu_5LhDtNU_x7a_5YGMHg9qZWltJT6ufExPCDAMpN_o45Jkv3Z2DDcFIj4EsJEn3-AC7NLXEpSnBwm_oThlR9iUdL3Lo2hWraJ10HAV8865-jCnzVyh-agvny4_BzmvH35qoqqDKSedMa2-XQwh3QXdm3PajkIKxOc6Ss0L7PZlS6b3gNQYbrNq704S5maAPxnF2mWyUv_JJ",
-  insurance: "https://lh3.googleusercontent.com/aida-public/AB6AXuAih4Bkqgfe42FBFHOkQr0in1svOwQjDK4sT9Vk9dbaBpL8d4Ffl2ZqfihNwIZWoQI5tg6_ZWw-XtmKYLLep8UduLCGsPt_kRTMa3PRnAAW3Y8mBTRkvuhFI5E450JU-dL6xYRtIo5eIceTWH5aLWhxE-PpJXAUfZz570_uNSaSuBr8ub03R9Al09LK6tZrt9ruyJFjpMS83f7p0rHvNmxW7LLsOkFXuzjkCul06UqTquByHhDr2fYPR4cjBpnAqAVUEk3STWfJBoiC",
-  corporate: "https://lh3.googleusercontent.com/aida-public/AB6AXuDM4mFWe54J7RW2_FyoRsfBboyr7-615ZxCGwQVTh4itWoZW_Nw-ixSfJczbYt5iLcOXtb2Qi2Knn6VOYZfm8-J-QYhIunSHq9oGx5OzIrVugYnjpGms9D0NOhPHdrOnMd5mtAI_v7dWAGPRIiHv7UztHstWeSsu71Em_8Z5CmbouzArv-g8TGxgGQrKxpTxaCB5v_FyZClGjcZL5MBhS5Xz8M4IozHj87G5E3AQbSDLsMGxMAl--F4kQ8HDJN4n0pBgP5YJ-nSSBsK",
-  customs: "https://lh3.googleusercontent.com/aida-public/AB6AXuCM274Rk5aJPZFqfvvpmsp6SdvAIDEuTmzrqXWlQ0Se5wQakxiXkDcnBA2HDZ8sKKw3DQne7LUhZZNPVubNCaA1JOz_ufUBGa_iPCUT1Y9yiRFKbY0TZIG3tRRPbHQmsur1NRAJMCh16piyKcRwGYSj-hl3bQOT7kGmqLLeOp8IXKoQYK5kG5uwEtA9tnBf_xfMq2dF1mx7-7HBbbxPqPqT0uf4p3Eb80af32iIuWWLHR2Cd-XLZn9ZfnQkG5KY14vP5x1cW6Plz7lU",
-  carRentals: "https://lh3.googleusercontent.com/aida-public/AB6AXuDFRX9YHgbv8G8ch355XwSEd42QF7Iby7-KalD9Yieas8TVjXlPXY9r_wF5_31yn7ZLgPuQSx3cukc-Im7-L4L2R0Hs3AxoO1749E2pCLY3gEOesG3_v1SzedVlkk7lc_6S3sSZW5-llHhx1ESuM-F6SM8DeHZp5GzAkzu0a_Z6pIcqQc8NMg7aDjQyE1P3bu4R5j_HW4BnIu-LkTQKzsup9nMyiRFnmoynnNV50URZ29DGKxAqs06vj3KElW9ENhDDPIhQm7KurR67",
-  domestic: "https://lh3.googleusercontent.com/aida-public/AB6AXuBEgtRHaeImRJCyUtRdxeZk1r3EvBBealZdOiGVsWfpeCHEl_R0VtWorQ1Y1W1MqgF_5dkqLvdfZmTRZzlYqPTFoDXzN6esJ2qTuvVjWVzuk3gcibTfJxKX5h-ymkA37Sjpc_XgFL4jj336qToRgAA1W_ZdWy_cpFpXfF12gEqyecTDIJGzfEA9XG4oo_9NjNHQ_hSV1HpsT97PneAPBizKC6GjKXKT9EesxSVzm4OfeDeHbBGpghRapxOlhIGymVmNn6R3FsJgXRl7",
-  international: "https://lh3.googleusercontent.com/aida-public/AB6AXuAw5dsdUNiCQV_4XhXlxAVSIS925sEOBpxn4aE_uODpANt0PzTmv29IbmDsZDG3jzY7FZsXR3x92PIs6T3PzoJG8wDQ1Hb8GJ2nrxSbGSQYD2sKq-U9bPVsStPIHn3lCC1HYnrIvoASQv_QMXmOQJVwZeNVl6YEtKNkvA13wVzqT4ZSHyw8NQ7oKWMzEkPZu9XGBPJOIXXQUa6X4jaMwGSp4W3LCoGD_8Ie4FNXsg3Go4PbnVYGLBd-6fIgEf6xBEGMAIAx06cys1TW",
+  hero: "/aida-images/aida_041.jpg",
+  airTickets: "/aida-images/aida_045.jpg",
+  visa: "/aida-images/aida_012.jpg",
+  insurance: "/aida-images/aida_009.jpg",
+  corporate: "/aida-images/aida_035.jpg",
+  customs: "/aida-images/aida_027.jpg",
+  carRentals: "/aida-images/aida_033.jpg",
+  domestic: "/aida-images/aida_014.jpg",
+  international: "/aida-images/aida_011.jpg",
 };
 
 const internationalCards = [
   {
     region: "Europe",
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBvONaf2zmtiXwWZGXvYe7ohnkMXjsDvpsYUdS_xYCANd-kZx2WHSsIVda0dXy_mdCmb6VaCn5MGZS_Xrhs0QlhBErvgosWHDANWKDwPXQhmGYx2_4tziJ__ZaQ8lXYjTfIAE8bJnLTKNCKeGHKbLGfplmGdsuAVpjsWejAI4JqtK0Xd_nNZ0aQ1bqnlihXhN8a3DmGH9lmiqydjFTDmpDyqTum2I4mPyA4XK9rWyXMpfgNPaqGZLDEj4Pk044pdl4o7MKP4HkZ5a44",
+      "/aida-images/aida_023.jpg",
   },
   {
     region: "Tropics",
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDNzlInN63LYRClqlk-bRO-rEg4HJHfJwaEcamytB6ogFEydq3rgXeLetXeiqtP_fmaD45n7RK8682nlFicMdZoo0JWc5u6JeQ8unuKk8u4_HZw-nkWDf12Ird_Xn9jLvMG9qVHpJa-lrZ-cp8ITa1A6Wi3iL3GDB_GDKcgYnR6qYVRCa7VGIVYcaqtjmZ5NRmXmidudSW5lxa2X3nfc093ZLtbzX7gyLVEX7fH28uTLzOCBACrnZacoM55hTYBGxzVENEIYjZu0svc",
+      "/aida-images/aida_036.jpg",
   },
   {
     region: "Metropolis",
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDOfm6qkudTJXfgCbEFd2iTYh2QAAA61p4QJ-78wMcasjDQcSjG-hIKeatFe60PNOT-hVOcnAWYNnBvpN14Zk4rak9tg4dtN2ieEuzcNe6P9gbMmVQGGLE-_-nj-7FBgcowPI05IRHJ5MD1hDd5GBEqzjLbnbkRSAnQH_wWldOpFX3NUU6f85a1-EEuwLeWKf0dnvvivFDJsza7OdVJTo3YPdy2CSVHh7ytgNQaGcMqRnbghdcgPG9XVsav5YNrswoum04BTDKnYr4Q",
+      "/aida-images/aida_037.jpg",
   },
   {
     region: "Wilderness",
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCW2b3wynr6sbf9q9OUUHWQK1ySs60DH5bzhs8TWml8SKb6RdQhtjjBSAPgjHVuqlri4LVrzRumiAi3OKW18dD4peuxt7_WdJui5h_TQcKd34bD4YHgqBlN6BLj4Rj0SgAlBgtjmYcOnvTnjBFrLZB_SLYWg_01TPj_j-Y469apIiKp2xg5c-8lIeReOu_duNiwKzWbLrlS5a5KpiVcGQiBvgeNvwWBGB3CxDQdyY2wE_GbUmIb293x1fZE4AxnscIRyfLUDQQmK4cC",
+      "/aida-images/aida_029.jpg",
   },
 ];
 
@@ -288,14 +288,14 @@ export default function StitchServicesExperience() {
               <div className="svc-image-stack">
                 <article>
                   <img
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_2U150PRfl12h88t2rzmkdwCsOghwnWIxha7WMLMCtYp45m61oyMRvXochj3PGwdMsZuHj5eeX0ubXb6VV1l048uO7hCyDA0BrAAe5OCw2M3kJ2eu1j4MPil8Rp3NOUVMCDKxNDqSWSeKdogJ15--44vF0GGIuCbVqnsCGR3SPXMZP1jj66dnMUDktxiwv9pV_2KTO4z88LvYkSEhNE1Fs-VRb4T4qCgtJmSETssfHnynfL0ey2rpEmLTlsG5H8MtQh0b6vTCJATQ"
+                    src="/aida-images/aida_006.jpg"
                     alt="Heritage Trails"
                   />
                   <span>Heritage Trails</span>
                 </article>
                 <article>
                   <img
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuChXBPKdBsQSO_UQvMMTf9-jLCSyqO85TI1NqIsY_5vStgV9oD6o2exRGWnm7mTnjrlDTSfn_xRuC4Gow5BTyzij_Rfo39eVG_zq5NZw_zr7rAEu9mPZ5j6aLH-1eGo4QleiZD11ER-Q1GbicXTBZge9BhbrqduRP4fpRgce8RrAVbNmYKmUfz9X-IxXWpgDBBxCs58gG1Mq5wuWh1YmMqFG_n5OMT9j2wndxB8onr1_Y5NASgOdwn3prQcLy85wc3-2AAeE0Z0wI-k"
+                    src="/aida-images/aida_030.jpg"
                     alt="Nature Retreats"
                   />
                   <span>Nature Retreats</span>

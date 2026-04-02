@@ -1,0 +1,81 @@
+AIDA Public URLs By Main Website Page Order
+Generated on: 2026-04-02 11:43:25
+
+1) Home (/Home)
+Source: src/Pages/CinematicHome.jsx
+- /aida-images/aida_047.jpg
+- /aida-images/aida_015.jpg
+- /aida-images/aida_046.jpg
+- /aida-images/aida_007.jpg
+- /aida-images/aida_005.jpg
+- /aida-images/aida_038.jpg
+- /aida-images/aida_020.jpg
+- /aida-images/aida_040.jpg
+- /aida-images/aida_043.jpg
+- /aida-images/aida_031.jpg
+- /aida-images/aida_018.jpg
+- /aida-images/aida_022.jpg
+- /aida-images/aida_044.jpg
+- /aida-images/aida_039.jpg
+- /aida-images/aida_002.jpg
+- /aida-images/aida_003.jpg
+- /aida-images/aida_008.jpg
+- /aida-images/aida_017.jpg
+- /aida-images/aida_024.jpg
+
+2) About (/About)
+Source: src/Pages/CinematicAbout.jsx
+- /aida-images/aida_042.jpg
+- /aida-images/aida_028.jpg
+
+3) Domestic (/Domestic)
+Source: src/Pages/CinematicDomestic.jsx
+Active URLs:
+- /aida-images/aida_032.jpg
+Commented URLs:
+- /aida-images/aida_001.jpg
+- /aida-images/aida_016.jpg
+- /aida-images/aida_021.jpg
+- /aida-images/aida_034.jpg
+- /aida-images/aida_026.jpg
+- /aida-images/aida_032.jpg
+
+4) International (/International)
+Source: src/Pages/CinematicInternational.jsx
+- /aida-images/aida_019.jpg
+
+5) Services (/Services)
+Sources:
+- src/Pages/StitchServicesExperience.jsx
+- src/Pages/CinematicServices.jsx
+- /aida-images/aida_041.jpg
+- /aida-images/aida_045.jpg
+- /aida-images/aida_012.jpg
+- /aida-images/aida_009.jpg
+- /aida-images/aida_035.jpg
+- /aida-images/aida_027.jpg
+- /aida-images/aida_033.jpg
+- /aida-images/aida_014.jpg
+- /aida-images/aida_011.jpg
+- /aida-images/aida_023.jpg
+- /aida-images/aida_036.jpg
+- /aida-images/aida_037.jpg
+- /aida-images/aida_029.jpg
+- /aida-images/aida_006.jpg
+- /aida-images/aida_030.jpg
+- /aida-images/aida_013.jpg
+
+6) Support (/Support)
+Source: src/Pages/Support.css
+- /aida-images/aida_004.jpg
+
+7) Thank You (/thank-you)
+Sources:
+- src/Pages/ThankYou.jsx
+- public/stitch-gate/thank-you.html
+- /aida-images/aida_025.jpg
+- /aida-images/aida_025.jpg
+
+8) Not Found (404)
+Source: src/Pages/NotFound.css
+- /aida-images/aida_010.jpg

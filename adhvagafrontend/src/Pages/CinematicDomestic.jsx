@@ -26,7 +26,7 @@
 //     tag: "Best Seller",
 //     summary: "7D/6N mountain circuit with scenic stays, guided local experiences, and smooth transfers.",
 //     image:
-//       "https://lh3.googleusercontent.com/aida-public/AB6AXuA0ieb-XYWO-g3iKFqhIic_Wos1-6q2GC1U0xFB41QB4hVAijuiMBxXh-cTolRoRNdn3wZ_YHvma2KQRJLe-908Bxe_Cc3dsbTP6lhJJO5fthgR74BOU1n66U1mPzpzuGm5xu8acq7ibQK6lr1tuppJAVDCSTmD0jLSlETnPuNnJlVYF7Tmg5PFvpw6PwjurPgvr-zssmmb6Y61DykwBggo-fxP5furpUUWX7qqWQ9o5m3CrEgV91y5hsVeXf1fMU-TvEf44YYfxO6x",
+//       "/aida-images/aida_001.jpg",
 //   },
 //   {
 //     id: "whispering-pines",
@@ -35,7 +35,7 @@
 //     price: "$649",
 //     summary: "Relaxed forest getaway with nature trails, boutique cottages, and easy-paced sightseeing.",
 //     image:
-//       "https://lh3.googleusercontent.com/aida-public/AB6AXuBOsL-dX6ZNlB7v8iSfMv2_b1cnJdBOfK14vN8Ys5qaOm0ah7nOD2wADxjxXLTiQFum99WpKxrN5xE_EO09URDyOObPQxwXVqoOzV1k5Y_6IJCsviRzsiqFJ78YqMwmrsXGa6NsT_MbfBc73GF4laacOovPhF7m1zVNXXdB5EIYxswQyrh2mGQNWctRJdyjhxlU8CwQ3nAY4bIV0j98LdzRpj_X8XxW3HiLRYZvQrd9-QQR5B43poM_USlWIHaq4-ypOXZxwwkwCj8v",
+//       "/aida-images/aida_016.jpg",
 //   },
 //   {
 //     id: "riverbed-soul",
@@ -45,7 +45,7 @@
 //     tag: "Trending",
 //     summary: "Signature valley retreat featuring river-view stays, soft adventure add-ons, and local cuisine.",
 //     image:
-//       "https://lh3.googleusercontent.com/aida-public/AB6AXuBpv4Roi117tZf992_8hFGO8IsOAP7k0pQ4XLvYvtkSuQpOerort1SD93ZZDSzJkSH2ZyC1ldm45VldZ1IfvmZ0HcLNbgGPWLCACYygTKHXmGTF846qgQfHs6j0CvWc7vOSprbxLIXF8ho6NZ5W78_vYYcSk39KgODK03NCyhAYahDjgYhZmyeFUtxlxzZJc3vKkOYTwAFMj-lQ07V9qyRvTdZcjhMUldVZC2L6isEhuM6AlPnNiYj_DFhffDX4o4stjdzdIpRD3SeZ",
+//       "/aida-images/aida_021.jpg",
 //   },
 //   {
 //     id: "azure-coast",
@@ -55,7 +55,7 @@
 //     tag: "Limited Deal",
 //     summary: "Coastal premium escape with curated beach activities, sunset cruises, and handpicked resorts.",
 //     image:
-//       "https://lh3.googleusercontent.com/aida-public/AB6AXuDIaGanKCJZLfoSDyxSVSud2DkqE7pu-amfElO-zQYJ32XEq2EE4Vrkj9q4v58vT8cKnH_zALSzpvdafpOjV9BhjCNPCYuf7dht7VVOv_wXFm0RNwafcGYBvmexi3BTF1eurqXtV6eQdxhHwgFLNihNrAQRlYa5nj44c0IMqlRUFJ-CHB3eaZEcR0tlhA0Djbcip0ut8kDGEkLGkT9Rb4tzefmslTaiz9AuKt0EBs9XyLj_VGXeDh2gXzdMlygZgw5QaxHPPnWzernt",
+//       "/aida-images/aida_034.jpg",
 //   },
 //   {
 //     id: "verdant-highlands",
@@ -64,7 +64,7 @@
 //     price: "$675",
 //     summary: "Comfort-first highland package with panoramic routes, tea estates, and family-friendly plans.",
 //     image:
-//       "https://lh3.googleusercontent.com/aida-public/AB6AXuCDAh-0pM29xVO4Gqs0ZJPHdsGm9Kxqjqik7CVsTYHn08tDSkE30Vll8dQcTXt93OPESesaVf6OwQpi--BC6Mf9_GYS9x-RYbQHA6q9e0Zr60UcITZnLt3aABb4tBm-6OjNQi3HbE3x_a7ouM2G1KBX4Dgm4oUn8BOq31ZQ_rkj5namo1HkBk-N1-FvHBNW7o6Xh4wOg5Z2PlX3dblAYIhT_5KK6ylPYuvuF7fKOAfy7uR0siyX3-W9t6iQSWclYJoB_g4luscp6SbO",
+//       "/aida-images/aida_026.jpg",
 //   },
 // ];
 
@@ -101,7 +101,7 @@
 //             className="cine-hero-bg"
 //             style={{
 //               backgroundImage:
-//                 "linear-gradient(rgba(0,0,0,0.52), rgba(33,29,17,0.9)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuCybq3g7HC-X9BjVOvpApct3MXuq4RSyZLVwZyYDi6SyHD8nLi0IAZakmDnpX9V1DQlln8rg5C_2ooVlqawzv_79noMe9ul-w-UrprLlSIUimX5SQCDif9O2TNzqTFY9F_HhAj1W9S9uDbIRdlQfZOALhPFiqTg2u8tUTuF7Zr5mqm7GRG7SKkhCi8v8HfoWhTRBgPX0n46e19JCIsAOFtjgKoT7g9zJ2AO99ovdh5Aa5DSWuJPB-M_LapFWWi5F2pqaViHztDyFmif')",
+//                 "linear-gradient(rgba(0,0,0,0.52), rgba(33,29,17,0.9)), url('/aida-images/aida_032.jpg')",
 //             }}
 //           />
 //           <div className="cine-overlay" />
@@ -256,7 +256,7 @@ export default function CinematicDomestic() {
             className="cine-hero-bg"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(0,0,0,0.52), rgba(33,29,17,0.9)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuCybq3g7HC-X9BjVOvpApct3MXuq4RSyZLVwZyYDi6SyHD8nLi0IAZakmDnpX9V1DQlln8rg5C_2ooVlqawzv_79noMe9ul-w-UrprLlSIUimX5SQCDif9O2TNzqTFY9F_HhAj1W9S9uDbIRdlQfZOALhPFiqTg2u8tUTuF7Zr5mqm7GRG7SKkhCi8v8HfoWhTRBgPX0n46e19JCIsAOFtjgKoT7g9zJ2AO99ovdh5Aa5DSWuJPB-M_LapFWWi5F2pqaViHztDyFmif')",
+                "linear-gradient(rgba(0,0,0,0.52), rgba(33,29,17,0.9)), url('/aida-images/aida_032.jpg')",
             }}
           />
           <div className="cine-overlay" />
