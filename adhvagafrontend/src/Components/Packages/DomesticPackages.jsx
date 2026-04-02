@@ -18,17 +18,7 @@ const compactText = (value, fallback, limit = 110) => {
 
 const getDurationLabel = (pkg) => {
   if (pkg.duration) return pkg.duration;
-  if (pkg.durationDays || pkg.durationNights) {
-    return `${pkg.durationNights || 0}N / ${pkg.durationDays || 0}D`;
-  }
   return "Flexible Duration";
-};
-
-const getGuestLabel = (pkg) => {
-  const min = Number(pkg.minGuests);
-  const max = Number(pkg.maxGuests);
-  if (min > 0 && max > 0) return `${min}-${max} Guests`;
-  return "Custom Group Size";
 };
 
 const getCategoryTag = (pkg) => {
@@ -160,8 +150,8 @@ const DomesticPackages = () => {
 
                   <div className="cine-live-card-info">
                     <span>{getDurationLabel(pkg)}</span>
-                    <span>{pkg.travelSeason || "All Season"}</span>
-                    <span>{getGuestLabel(pkg)}</span>
+                    <span>{pkg.type || "Domestic"}</span>
+                    <span>{pkg.availableSeats ? `${pkg.availableSeats} Seats` : "Open Seats"}</span>
                   </div>
 
                   <div className="cine-live-card-footer">

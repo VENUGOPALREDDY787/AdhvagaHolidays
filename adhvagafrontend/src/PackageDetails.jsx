@@ -209,12 +209,13 @@ const PackageDetails = () => {
 
   /* ================= SEO ================= */
   const metadata = generatePackageMetadata(pkg);
+  const isDomesticPackage = normalizedType.toLowerCase() === "domestic";
 
   const breadcrumbs = [
     { name: "Home", url: "/home" },
     {
-      name: pkg.category === "domestic" ? "Domestic" : "International",
-      url: pkg.category === "domestic" ? "/domestic" : "/international",
+      name: isDomesticPackage ? "Domestic" : "International",
+      url: isDomesticPackage ? "/domestic" : "/international",
     },
     { name: pkg.title, url: `/packages/${pkg._id}` },
   ];

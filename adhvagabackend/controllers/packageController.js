@@ -1,13 +1,110 @@
 import cloudinary from "../config/cloudinary.js";
 import streamifier from "streamifier";
 import Package from "../models/packagesModels.js";
-import bcrypt from "bcrypt";
-import crypto from "crypto";
+
+const parseMaybeJson = (value) => {
+  if (typeof value !== "string") return value;
+
+  const trimmed = value.trim();
+  if (!trimmed) return value;
+
+  try {
+    return JSON.parse(trimmed);
+  } catch {
+    return value;
+  }
+};
+
+const parseStringArray = (value) => {
+  const parsed = parseMaybeJson(value);
+
+  if (Array.isArray(parsed)) {
+    return parsed
+      .map((item) => String(item ?? "").trim())
+      .filter(Boolean);
+  }
+
+  if (typeof parsed === "string") {
+    return parsed
+      .split(",")
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+
+  return [];
+};
+
+const parseItinerary = (value) => {
+  const parsed = parseMaybeJson(value);
+  if (!Array.isArray(parsed)) return [];
+
+  return parsed
+    .map((day, index) => ({
+      day: Number(day?.day) || index + 1,
+      title: String(day?.title ?? "").trim(),
+      description: String(day?.description ?? "").trim(),
+    }))
+    .filter((day) => day.title || day.description);
+};
+
+const buildPackagePayload = (rawBody) => {
+  const payload = {};
+
+  const stringFields = [
+    "title",
+    "location",
+    "destination",
+    "tag",
+    "description",
+    "duration",
+    "category",
+    "type",
+    "packageId",
+  ];
+
+  stringFields.forEach((field) => {
+    if (rawBody[field] !== undefined) {
+      payload[field] = String(rawBody[field] ?? "").trim();
+    }
+  });
+
+  const numericFields = ["price", "rating", "availableSeats"];
+  numericFields.forEach((field) => {
+    if (rawBody[field] !== undefined && rawBody[field] !== "") {
+      const value = Number(rawBody[field]);
+      if (Number.isFinite(value)) {
+        payload[field] = value;
+      }
+    }
+  });
+
+  ["highlights", "includes", "excludes"].forEach((field) => {
+    if (rawBody[field] !== undefined) {
+      payload[field] = parseStringArray(rawBody[field]);
+    }
+  });
+
+  if (rawBody.itinerary !== undefined) {
+    payload.itinerary = parseItinerary(rawBody.itinerary);
+  }
+
+  return payload;
+};
 
 /* ================= GET ALL PACKAGES ================= */
 export const getAllPackages = async (req, res) => {
   try {
-    const packages = await Package.find();
+    const filters = {};
+
+    if (req.query.type) {
+      filters.type = req.query.type;
+    }
+
+    if (req.query.category) {
+      filters.category = req.query.category;
+    }
+
+    const packages = await Package.find(filters).sort({ createdAt: -1 });
     res.status(200).json(packages);
   } catch (error) {
     console.error("Error fetching packages:", error);
@@ -18,15 +115,13 @@ export const getAllPackages = async (req, res) => {
 /* ================= CREATE PACKAGE ================= */
 export const createPackage = async (req, res) => {
   try {
-    const {
-      title,
-      destination,
-      price,
-      duration,
-      rating,
-      category,
-      tag,
-    } = req.body;
+    const payload = buildPackagePayload(req.body);
+
+    if (!payload.destination || !payload.category || !payload.type) {
+      return res.status(400).json({
+        message: "Destination, category, and type are required",
+      });
+    }
 
     if (!req.file) {
       return res.status(400).json({ message: "Image required" });
@@ -47,20 +142,10 @@ export const createPackage = async (req, res) => {
 
     const uploaded = await uploadImage();
 
-    const tagHash = tag ? await bcrypt.hash(tag, 10) : null;
-    const refId = crypto.randomBytes(8).toString("hex");
-
     const newPackage = await Package.create({
-      title,
-      destination,
-      price,
-      duration,
-      rating,
-      category,
+      ...payload,
       image: uploaded.secure_url,
       imageId: uploaded.public_id,
-      tagHash,
-      refId,
     });
 
     res.status(201).json(newPackage);
@@ -111,21 +196,7 @@ export const getPackageById = async (req, res) => {
 /* ================= UPDATE PACKAGE ================= */
 export const updatePackage = async (req, res) => {
   try {
-    const updatedData = { ...req.body };
-
-    // ✅ itinerary parse
-    if (updatedData.itinerary) {
-      updatedData.itinerary = JSON.parse(updatedData.itinerary);
-    }
-
-    // ✅ FIX arrays
-    ["highlights", "includes", "excludes"].forEach((field) => {
-      if (updatedData[field]) {
-        updatedData[field] = Array.isArray(updatedData[field])
-          ? updatedData[field]
-          : updatedData[field].split(",").map((s) => s.trim());
-      }
-    });
+    const updatedData = buildPackagePayload(req.body);
 
     const pkg = await Package.findById(req.params.id);
     if (!pkg) {
@@ -156,11 +227,14 @@ export const updatePackage = async (req, res) => {
       updatedData.imageId = uploaded.public_id;
     }
 
-    // 🔥 MAIN FIX
+    if (Object.keys(updatedData).length === 0) {
+      return res.status(400).json({ message: "No fields provided to update" });
+    }
+
     const updatedPackage = await Package.findByIdAndUpdate(
       req.params.id,
-      { $set: updatedData },   // ✅ THIS FIXES RESET ISSUE
-      { new: true }
+      { $set: updatedData },
+      { new: true, runValidators: true }
     );
 
     res.status(200).json({

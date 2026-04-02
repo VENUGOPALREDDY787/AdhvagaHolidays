@@ -3,6 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { generateDestinationAlt } from "../../utils/seoHelpers";
 import { BASE_URL } from "../../config/api";
 
+const formatInrPrice = (value) => {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return value ? `Rs ${value}` : "On Request";
+  return `Rs ${parsed.toLocaleString("en-IN")}`;
+};
+
 const PackagesSection = () => {
   const navigate = useNavigate();
   const [packages, setPackages] = useState([]);
@@ -117,11 +123,11 @@ const PackagesSection = () => {
 
                   <div className="cine-live-card-info">
                     <span>{pkg.duration || "Flexible"}</span>
-                    <span>{pkg.travelSeason || "All Season"}</span>
+                    <span>{pkg.type || "International"}</span>
                   </div>
 
                   <div className="cine-live-card-footer">
-                    <strong>₹{pkg.price}</strong>
+                    <strong>{formatInrPrice(pkg.price)}</strong>
                     <button className="cine-explore-btn">
                       Explore
                     </button>
