@@ -54,14 +54,6 @@ export const SEO_METADATA = {
     url: "https://adhvagaholidays.com/terms",
     image: "https://adhvagaholidays.com/images/og-terms.jpg"
   },
-  blogs: {
-    title: "Travel Blogs & Tips | Adhvaga Holidays Inc",
-    description: "Read travel blogs, tips, and destination guides from Adhvaga Holidays Inc. Get inspired for your next adventure with insider travel insights.",
-    h1: "Travel Blogs & Inspiration",
-    keywords: "travel blogs, travel tips, destination guides, travel inspiration, holiday planning",
-    url: "https://adhvagaholidays.com/blogs",
-    image: "https://adhvagaholidays.com/images/og-blogs.jpg"
-  },
   support: {
     title: "Customer Support & Help Center | Adhvaga Holidays Inc",
     description: "Get help with your bookings, travel queries, and customer support from Adhvaga Holidays Inc. Contact us for assistance with your travel plans.",
@@ -69,14 +61,6 @@ export const SEO_METADATA = {
     keywords: "customer support, help center, contact us, travel support, booking assistance",
     url: "https://adhvagaholidays.com/support",
     image: "https://adhvagaholidays.com/images/og-support.jpg"
-  },
-  customPackages: {
-    title: "Custom Travel Packages | Design Your Own Trip | Adhvaga Holidays Inc",
-    description: "Create your personalized travel experience with Adhvaga Holidays Inc. Design custom holiday packages tailored to your preferences and budget.",
-    h1: "Design Your Custom Travel Package",
-    keywords: "custom travel packages, personalized tours, bespoke travel, tailor-made holidays",
-    url: "https://adhvagaholidays.com/coustom",
-    image: "https://adhvagaholidays.com/images/og-custom.jpg"
   },
   exploreGlobe: {
     title: "Explore International Destinations | Adhvaga Holidays",
