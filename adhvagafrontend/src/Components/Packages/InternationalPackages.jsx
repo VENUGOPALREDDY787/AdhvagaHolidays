@@ -9,6 +9,11 @@ const formatInrPrice = (value) => {
   return `Rs ${parsed.toLocaleString("en-IN")}`;
 };
 
+const getPackageTag = (pkg) => {
+  const tag = String(pkg?.tag ?? "").trim();
+  return tag;
+};
+
 const PackagesSection = () => {
   const navigate = useNavigate();
   const [packages, setPackages] = useState([]);
@@ -97,12 +102,20 @@ const PackagesSection = () => {
                 className="cine-live-card"
                 onClick={() => openPackageDetails(pkg)}
               >
-                <img
-                  src={pkg.image}
-                  loading="lazy" // ✅ PERFORMANCE BOOST
-                  alt={generateDestinationAlt(pkg.destination || pkg.title)}
-                  className="cine-live-card-image"
-                />
+                <div className="cine-live-card-media">
+                  {getPackageTag(pkg) && (
+                    <span className="cine-live-card-glass-tag">
+                      {getPackageTag(pkg)}
+                    </span>
+                  )}
+
+                  <img
+                    src={pkg.image}
+                    loading="lazy" // ✅ PERFORMANCE BOOST
+                    alt={generateDestinationAlt(pkg.destination || pkg.title)}
+                    className="cine-live-card-image"
+                  />
+                </div>
 
                 <div className="cine-live-card-body">
                   <div className="cine-live-card-top">

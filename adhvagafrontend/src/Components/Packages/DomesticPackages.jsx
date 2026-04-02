@@ -25,6 +25,11 @@ const getCategoryTag = (pkg) => {
   return pkg.category || "Signature Route";
 };
 
+const getPackageTag = (pkg) => {
+  const tag = String(pkg?.tag ?? "").trim();
+  return tag;
+};
+
 const DomesticPackages = () => {
   const [packages, setPackages] = useState([]);
   const [filter, setFilter] = useState("All");
@@ -114,15 +119,23 @@ const DomesticPackages = () => {
                 className="cine-live-card"
                 onClick={() => openPackageDetails(pkg)}
               >
-                <img
-                  src={pkg.image}
-                  loading="lazy" // ✅ performance boost
-                  alt={generateDestinationAlt(
-                    pkg.destination || pkg.title,
-                    "domestic holiday package"
+                <div className="cine-live-card-media">
+                  {getPackageTag(pkg) && (
+                    <span className="cine-live-card-glass-tag">
+                      {getPackageTag(pkg)}
+                    </span>
                   )}
-                  className="cine-live-card-image"
-                />
+
+                  <img
+                    src={pkg.image}
+                    loading="lazy" // ✅ performance boost
+                    alt={generateDestinationAlt(
+                      pkg.destination || pkg.title,
+                      "domestic holiday package"
+                    )}
+                    className="cine-live-card-image"
+                  />
+                </div>
 
                 <div className="cine-live-card-body">
                   <div className="cine-live-card-top">
