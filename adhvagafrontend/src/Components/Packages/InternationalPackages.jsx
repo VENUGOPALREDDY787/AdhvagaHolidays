@@ -10,21 +10,27 @@ const PackagesSection = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // ✅ FIXED: pass pkg and use its _id
   const openPackageDetails = (pkg) => {
     navigate(`/packages/${pkg._id}`);
   };
 
-  // ✅ SIMPLE FETCH (ONLY ONE ROUTE)
   useEffect(() => {
     const fetchPackages = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/api/packages`);
+        const response = await fetch(
+          `${BASE_URL}/api/packages?type=International`
+        );
 
         if (!response.ok) throw new Error("Failed");
 
         const data = await response.json();
-        setPackages(data);
+
+        // ✅ extra safety filter (in case backend fails)
+        const internationalOnly = data.filter(
+          (pkg) => pkg.type === "International"
+        );
+
+        setPackages(internationalOnly);
       } catch (err) {
         setError("PACKAGE_FEED_UNAVAILABLE");
       } finally {
@@ -35,7 +41,7 @@ const PackagesSection = () => {
     fetchPackages();
   }, []);
 
-  // ✅ CATEGORY FILTER (UI SAME)
+  // ✅ CATEGORY FILTER (UNCHANGED UI)
   const categories = useMemo(() => {
     const set = new Set();
     packages.forEach((pkg) => {
@@ -44,14 +50,20 @@ const PackagesSection = () => {
     return ["All", ...Array.from(set)];
   }, [packages]);
 
+  // ✅ FILTERED PACKAGES
   const filteredPackages = useMemo(() => {
     if (filter === "All") return packages;
+
     return packages.filter(
-      (pkg) => pkg.category?.toLowerCase() === filter.toLowerCase()
+      (pkg) =>
+        pkg.category?.toLowerCase() === filter.toLowerCase()
     );
   }, [packages, filter]);
 
-  const hasLivePackages = !loading && !error && filteredPackages.length > 0;
+  // ✅ MEMOIZED CHECK
+  const hasLivePackages = useMemo(() => {
+    return !loading && !error && filteredPackages.length > 0;
+  }, [loading, error, filteredPackages]);
 
   return (
     <section id="packages" className="cine-live-packages">
@@ -77,10 +89,11 @@ const PackagesSection = () => {
               <article
                 key={pkg._id}
                 className="cine-live-card"
-                onClick={() => openPackageDetails(pkg)} // ✅ works now
+                onClick={() => openPackageDetails(pkg)}
               >
                 <img
                   src={pkg.image}
+                  loading="lazy" // ✅ PERFORMANCE BOOST
                   alt={generateDestinationAlt(pkg.destination || pkg.title)}
                   className="cine-live-card-image"
                 />

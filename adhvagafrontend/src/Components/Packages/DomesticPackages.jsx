@@ -42,20 +42,28 @@ const DomesticPackages = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // ✅ FIXED (ONLY CHANGE)
   const openPackageDetails = (pkg) => {
     navigate(`/packages/${pkg._id}`);
   };
 
-  // ✅ ONLY ONE CLEAN API CALL
+  // ✅ OPTIMIZED FETCH (ONLY DOMESTIC)
   useEffect(() => {
     const fetchPackages = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/api/packages`);
+        const res = await fetch(
+          `${BASE_URL}/api/packages?type=Domestic`
+        );
+
         if (!res.ok) throw new Error();
 
         const data = await res.json();
-        setPackages(data);
+
+        // ✅ safety filter
+        const domesticOnly = data.filter(
+          (pkg) => pkg.type === "Domestic"
+        );
+
+        setPackages(domesticOnly);
       } catch {
         setError("PACKAGE_FEED_UNAVAILABLE");
       } finally {
@@ -66,7 +74,7 @@ const DomesticPackages = () => {
     fetchPackages();
   }, []);
 
-  // ✅ SIMPLE CATEGORY FILTER (UI SAME)
+  // ✅ CATEGORY FILTER
   const categories = useMemo(() => {
     const set = new Set();
     packages.forEach((pkg) => {
@@ -77,6 +85,7 @@ const DomesticPackages = () => {
 
   const filteredPackages = useMemo(() => {
     if (filter === "All") return packages;
+
     return packages.filter(
       (pkg) =>
         pkg.category &&
@@ -84,13 +93,15 @@ const DomesticPackages = () => {
     );
   }, [packages, filter]);
 
-  const hasLivePackages = !loading && !error && filteredPackages.length > 0;
+  // ✅ MEMOIZED CHECK
+  const hasLivePackages = useMemo(() => {
+    return !loading && !error && filteredPackages.length > 0;
+  }, [loading, error, filteredPackages]);
 
   return (
     <section id="domestic-packages" className="cine-live-packages">
       <div className="cine-container" data-reveal>
 
-        {/* FILTER UI (UNCHANGED) */}
         {hasLivePackages && (
           <div className="cine-home-filters">
             {categories.map((cat) => (
@@ -105,17 +116,17 @@ const DomesticPackages = () => {
           </div>
         )}
 
-        {/* CARDS (UNCHANGED UI) */}
         {hasLivePackages && (
           <div className="cine-live-card-grid">
             {filteredPackages.map((pkg) => (
               <article
                 key={pkg._id}
                 className="cine-live-card"
-                onClick={() => openPackageDetails(pkg)} // ✅ SAME UI, WORKING NAV
+                onClick={() => openPackageDetails(pkg)}
               >
                 <img
                   src={pkg.image}
+                  loading="lazy" // ✅ performance boost
                   alt={generateDestinationAlt(
                     pkg.destination || pkg.title,
                     "domestic holiday package"

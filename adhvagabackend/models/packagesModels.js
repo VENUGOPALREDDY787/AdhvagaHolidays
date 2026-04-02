@@ -60,6 +60,8 @@ const PackageSchema = new mongoose.Schema({
   },
   type:{
     type: String,
+    enum: ["Domestic", "International"],
+    required: true
   },
 
  image: {
