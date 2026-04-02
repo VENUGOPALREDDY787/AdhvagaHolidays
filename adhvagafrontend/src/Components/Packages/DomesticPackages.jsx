@@ -151,7 +151,7 @@ const DomesticPackages = () => {
                   <div className="cine-live-card-info">
                     <span>{getDurationLabel(pkg)}</span>
                     <span>{pkg.type || "Domestic"}</span>
-                    <span>{pkg.availableSeats ? `${pkg.availableSeats} Seats` : "Open Seats"}</span>
+                    <span>{pkg.tag || "Featured"}</span>
                   </div>
 
                   <div className="cine-live-card-footer">

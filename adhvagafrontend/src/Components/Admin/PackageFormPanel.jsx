@@ -40,7 +40,6 @@ const ensureItinerary = (value) => {
 };
 
 const createInitialFormData = (pkg) => ({
-  packageId: pkg?.packageId || "",
   title: pkg?.title || "",
   location: pkg?.location || "",
   destination: pkg?.destination || "",
@@ -51,7 +50,6 @@ const createInitialFormData = (pkg) => ({
   rating: pkg?.rating ?? 0,
   category: pkg?.category || categoryOptions[0],
   type: pkg?.type || typeOptions[0],
-  availableSeats: pkg?.availableSeats ?? "",
   highlights: ensureStringArray(pkg?.highlights),
   includes: ensureStringArray(pkg?.includes),
   excludes: ensureStringArray(pkg?.excludes),
@@ -76,7 +74,7 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    const numericFields = ["price", "rating", "availableSeats"];
+    const numericFields = ["price", "rating"];
 
     setFormData((prev) => ({
       ...prev,
@@ -323,15 +321,9 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
                 {errors.image && <span className="error-text">{errors.image}</span>}
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Package ID</label>
-                  <input type="text" name="packageId" value={formData.packageId} onChange={handleChange} placeholder="e.g., GOA-2026-01" />
-                </div>
-                <div className="form-group">
-                  <label>Tag</label>
-                  <input type="text" name="tag" value={formData.tag} onChange={handleChange} placeholder="e.g., Bestseller" />
-                </div>
+              <div className="form-group">
+                <label>Tag</label>
+                <input type="text" name="tag" value={formData.tag} onChange={handleChange} placeholder="e.g., Bestseller" />
               </div>
 
               <div className="form-group">
@@ -404,10 +396,6 @@ const PackageFormPanel = ({ package: pkg, onClose, onSave }) => {
                 <div className="form-group">
                   <label>Rating</label>
                   <input type="number" name="rating" value={formData.rating} onChange={handleChange} step="0.1" min="0" max="5" />
-                </div>
-                <div className="form-group">
-                  <label>Available Seats</label>
-                  <input type="number" name="availableSeats" value={formData.availableSeats} onChange={handleChange} min="0" />
                 </div>
               </div>
 

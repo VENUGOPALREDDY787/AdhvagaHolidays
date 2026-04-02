@@ -72,22 +72,12 @@ imageId: {
   type: String,
 },
 
-  availableSeats: {
-    type: Number,
-  },
-
   createdAt: {
     type: Date,
     default: Date.now
   },
 
   /* ===== NEW FIELDS (SAFE ADDITIONS) ===== */
-
-  packageId: {
-    type: String,
-    unique: true,
-    sparse: true // allows old documents without this field
-  },
 
   itinerary: {
     type: [itinerarySchema],

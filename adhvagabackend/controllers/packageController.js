@@ -59,7 +59,6 @@ const buildPackagePayload = (rawBody) => {
     "duration",
     "category",
     "type",
-    "packageId",
   ];
 
   stringFields.forEach((field) => {
@@ -68,7 +67,7 @@ const buildPackagePayload = (rawBody) => {
     }
   });
 
-  const numericFields = ["price", "rating", "availableSeats"];
+  const numericFields = ["price", "rating"];
   numericFields.forEach((field) => {
     if (rawBody[field] !== undefined && rawBody[field] !== "") {
       const value = Number(rawBody[field]);
