@@ -5,6 +5,7 @@ import connectDB from "./config/database.js";
 import packageRoutes from "./routes/packageRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import inquiryRoutes from "./routes/inquiryRoutes.js";
+import settingsRoutes from "./routes/settingsRoutes.js";
 
 import whatsappLeadRoutes from "./routes/whatsappLeadRoutes.js";
 
@@ -18,6 +19,7 @@ connectDB();
 app.use("/api/admin", adminRoutes);
 app.use("/api/packages", packageRoutes);  
 app.use("/api/inquiries", inquiryRoutes);
+app.use("/api/settings", settingsRoutes);
 
 app.use("/api/whatsapp-leads", whatsappLeadRoutes);
 

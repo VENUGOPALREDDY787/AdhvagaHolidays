@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import { BASE_URL } from "../config/api";
 
@@ -12,7 +13,7 @@ export const useSettings = () => {
 };
 
 export const SettingsProvider = ({ children }) => {
-  const [settings, setSettings] = useState({
+  const defaultSettings = {
     agencyName: "Adhvaga Holidays Inc",
     tagline: "Your Trusted Travel Partner",
     contactNumber: "+91 96204 21494",
@@ -90,8 +91,9 @@ export const SettingsProvider = ({ children }) => {
         answer: "Cancellation and refund terms vary by destination and supplier. We share all policies before confirmation so you have full clarity."
       }
     ]
-  });
+  };
 
+  const [settings, setSettings] = useState(defaultSettings);
   const [loading, setLoading] = useState(true);
   const hasFetchedSettings = useRef(false);
 
@@ -104,16 +106,49 @@ export const SettingsProvider = ({ children }) => {
   const fetchSettings = async () => {
     try {
       const res = await fetch(`${BASE_URL}/api/settings`);
-      if (res.ok) {
-        const data = await res.json();
-        // Ensure whatsappNumber exists
-        if (!data.whatsappNumber) {
-          data.whatsappNumber = data.contactNumber || "+91 96204 21494";
-        }
-        setSettings(prev => ({ ...prev, ...data }));
+
+      if (!res.ok) throw new Error("Failed to fetch settings");
+
+      const data = await res.json();
+
+      // 👉 If no data from backend → keep defaults
+      if (!data || Object.keys(data).length === 0) {
+        console.warn("No settings in DB → using default settings");
+        return;
       }
+
+      const updatedData = {
+        ...data,
+
+        // ✅ Ensure whatsapp fallback
+        whatsappNumber:
+          data.whatsappNumber ||
+          data.contactNumber ||
+          defaultSettings.whatsappNumber,
+
+        // ✅ Deep merge services
+        services: {
+          ...settings.services,
+          ...(data.services || {})
+        },
+
+        // ✅ FAQ fallback
+        faqItems:
+          data.faqItems && data.faqItems.length > 0
+            ? data.faqItems
+            : defaultSettings.faqItems
+      };
+
+      // ✅ Merge backend + defaults
+      setSettings(prev => ({
+        ...prev,
+        ...updatedData
+      }));
+
+      console.log("✅ Settings loaded from backend");
+
     } catch (error) {
-      console.warn("Failed to fetch settings. Verify backend is running and VITE_API_URL is correct.");
+      console.warn("⚠️ Backend not reachable → using default settings");
     } finally {
       setLoading(false);
     }
@@ -122,6 +157,7 @@ export const SettingsProvider = ({ children }) => {
   const updateSettings = async (newSettings) => {
     try {
       const token = localStorage.getItem("token");
+
       const res = await fetch(`${BASE_URL}/api/settings`, {
         method: "PUT",
         headers: {
@@ -133,9 +169,15 @@ export const SettingsProvider = ({ children }) => {
 
       if (res.ok) {
         const data = await res.json();
-        setSettings(data.data);
+
+        setSettings(prev => ({
+          ...prev,
+          ...data.data
+        }));
+
         return { success: true };
       }
+
       return { success: false };
     } catch (error) {
       console.error("Failed to update settings:", error);
@@ -144,7 +186,14 @@ export const SettingsProvider = ({ children }) => {
   };
 
   return (
-    <SettingsContext.Provider value={{ settings, updateSettings, loading, refetch: fetchSettings }}>
+    <SettingsContext.Provider
+      value={{
+        settings,
+        updateSettings,
+        loading,
+        refetch: fetchSettings
+      }}
+    >
       {children}
     </SettingsContext.Provider>
   );
