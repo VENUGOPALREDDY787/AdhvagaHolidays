@@ -93,7 +93,7 @@ const handleSubmit = async (e) => {
   setError("");
 
   try {
-    const res = await fetch("http://localhost:8080/api/inquiries", {
+    const res = await fetch(`${BASE_URL}/api/inquiries`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import useCinematicEffects from "./useCinematicEffects";
+import { BASE_URL } from "../config/api";
 import {
   CinematicCursor,
   CinematicHeader,
@@ -96,7 +97,8 @@ export default function CinematicHome() {
     }
 
     try {
-      const res = await fetch("http://localhost:8080/api/inquiries", {
+      
+      const res = await fetch(`${BASE_URL}/api/inquiries`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
