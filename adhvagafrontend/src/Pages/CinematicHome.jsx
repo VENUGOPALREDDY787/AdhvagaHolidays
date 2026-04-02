@@ -288,7 +288,7 @@ export default function CinematicHome() {
                   <span>Luxury Tents</span>
                 </div>
                 <div className="cine-price">
-                  <strong>$4,250</strong>
+                  <strong>₹4,250</strong>
                   <a href="#contact" className="cine-btn" style={{ textDecoration: 'none' }}>
                     Book Now
                   </a>
@@ -322,7 +322,7 @@ export default function CinematicHome() {
                   <span>Wine Tasting</span>
                 </div>
                 <div className="cine-price">
-                  <strong>$3,800</strong>
+                  <strong>₹3,800</strong>
                   <a href="#contact" className="cine-btn" style={{ textDecoration: 'none' }}>
                     Book Now
                   </a>

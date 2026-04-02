@@ -94,7 +94,7 @@ export default function StitchServicesExperience() {
               <h1 className="svc-title">SERVICES</h1>
               <span className="svc-script">Curated Excellence</span>
             </div>
-            <p className="svc-hero-subtext">Bespoke Journeys Crafted for the Discerning Explorer</p>
+            <p className="svc-hero-subtext">Bespoke Journeys for the Bold Explorer</p>
           </div>
           <a className="svc-scroll-indicator" href="#services-air-tickets" aria-label="Scroll to next section">
             <span>Scroll to Discover</span>
@@ -111,19 +111,20 @@ export default function StitchServicesExperience() {
             <div className="svc-grid-two">
               <div>
                 <p className="svc-text">
-                  Elevating the journey before you even leave the ground. Our global network ensures
-                  access to premier cabins and exclusive flight paths tailored to your itinerary.
+                  Your journey begins the moment you book. We unlock premium
+                  cabins, rare routes, and seamless departures - tailored
+                  entirely to you.
                 </p>
                 <button type="button" className="svc-btn" onClick={() => handleServiceBooking("Air Tickets")}>Book This Service</button>
               </div>
               <div className="svc-metric-grid svc-metric-grid-left">
                 <div>
                   <h4>Global Reach</h4>
-                  <p>Connecting 180+ Hubs</p>
+                  <p>180+ Connected Hubs</p>
                 </div>
                 <div>
                   <h4>First Class</h4>
-                  <p>Curated In-flight Care</p>
+                  <p>Elite In-flight Experience</p>
                 </div>
               </div>
             </div>
@@ -134,7 +135,7 @@ export default function StitchServicesExperience() {
           <div className="svc-bg" style={{ backgroundImage: `url('${sectionBackgrounds.visa}')` }} />
           <div className="svc-overlay" />
           <div className="svc-container svc-block svc-right" data-reveal>
-            <span className="svc-script svc-script-right">Hassle-Free Processing</span>
+            <span className="svc-script svc-script-right">Effortless Entry</span>
             <h2 className="svc-heading">Visa Assistance</h2>
             <div className="svc-grid-two">
               <div className="svc-metric-grid svc-metric-grid-right">
@@ -149,8 +150,9 @@ export default function StitchServicesExperience() {
               </div>
               <div>
                 <p className="svc-text">
-                  Navigating complex international borders with ease. Our legal team simplifies
-                  documentation, ensuring your entry into over 150 countries is seamless.
+                  Borders shouldn't slow you down. Our visa experts handle every
+                  document, approval, and detail - for seamless entry into 150+
+                  countries.
                 </p>
                 <button type="button" className="svc-btn" onClick={() => handleServiceBooking("Visa Assistance")}>Book This Service</button>
               </div>
@@ -162,24 +164,25 @@ export default function StitchServicesExperience() {
           <div className="svc-bg" style={{ backgroundImage: `url('${sectionBackgrounds.insurance}')` }} />
           <div className="svc-overlay" />
           <div className="svc-container svc-block" data-reveal>
-            <span className="svc-script svc-script-left">Travel with Confidence</span>
+            <span className="svc-script svc-script-left">Travel Without Worry</span>
             <h2 className="svc-heading">Insurance</h2>
             <div className="svc-grid-two">
               <div>
                 <p className="svc-text">
-                  Beyond the basics. We provide comprehensive protection that covers elite medical
-                  emergencies, luxury item loss, and high-stakes cancellations.
+                  Real protection for real adventures. From medical emergencies
+                  abroad to luxury item coverage - we've got every scenario
+                  handled.
                 </p>
                 <button type="button" className="svc-btn" onClick={() => handleServiceBooking("Travel Insurance")}>Book This Service</button>
               </div>
               <div className="svc-glass-panel">
                 <div className="svc-panel-row">
                   <span>Coverage</span>
-                  <strong>$2M+ Premium</strong>
+                  <strong>$2M+ Premium Protection</strong>
                 </div>
                 <div className="svc-panel-row">
                   <span>Global Support</span>
-                  <strong>24/7 Hotline</strong>
+                  <strong>24/7 Emergency Hotline</strong>
                 </div>
               </div>
             </div>
@@ -190,23 +193,23 @@ export default function StitchServicesExperience() {
           <div className="svc-bg" style={{ backgroundImage: `url('${sectionBackgrounds.corporate}')` }} />
           <div className="svc-overlay" />
           <div className="svc-container svc-center" data-reveal>
-            <span className="svc-script svc-script-center">Smart Business Solutions</span>
+            <span className="svc-script svc-script-center">Built for Business</span>
             <h2 className="svc-heading">Corporate</h2>
             <div className="svc-card-grid">
               <article className="svc-card">
                 <span className="material-symbols-outlined">analytics</span>
                 <h3>Policy Optimization</h3>
-                <p>Maximize efficiency with data-driven travel logistics.</p>
+                <p>Smarter travel spend with data-backed logistics.</p>
               </article>
               <article className="svc-card">
                 <span className="material-symbols-outlined">group</span>
                 <h3>MICE Events</h3>
-                <p>Bespoke conferences and incentive tours globally.</p>
+                <p>World-class conferences and incentive journeys.</p>
               </article>
               <article className="svc-card">
                 <span className="material-symbols-outlined">receipt_long</span>
                 <h3>Expense Mgmt</h3>
-                <p>Unified billing for global corporate enterprises.</p>
+                <p>Unified billing across your global enterprise.</p>
               </article>
             </div>
             <button type="button" className="svc-btn svc-btn-center" onClick={() => handleServiceBooking("Corporate Services")}>Book This Service</button>
@@ -219,22 +222,22 @@ export default function StitchServicesExperience() {
           <div className="svc-container svc-block" data-reveal>
             <div className="svc-grid-two svc-grid-two-wide">
               <div>
-                <span className="svc-script svc-script-left">Smooth Clearance</span>
+                <span className="svc-script svc-script-left">Clear. Fast. Compliant.</span>
                 <h2 className="svc-heading svc-heading-customs">Customs</h2>
                 <p className="svc-text">
-                  Elite cargo and personal goods logistics. We manage the delicate complexities of
-                  international import and export laws for your valuables.
+                  From fine art to personal treasures - we navigate every
+                  import and export law so your valuables move without friction.
                 </p>
                 <button type="button" className="svc-btn" onClick={() => handleServiceBooking("Customs Services")}>Book This Service</button>
               </div>
               <div className="svc-feature-stack">
                 <article>
                   <h4>White-Glove Handling</h4>
-                  <p>For fine art and luxury assets.</p>
+                  <p>Luxury assets treated with precision care.</p>
                 </article>
                 <article>
                   <h4>Duty Optimization</h4>
-                  <p>Strategic tax and tariff management.</p>
+                  <p>Smart tariff and tax management.</p>
                 </article>
               </div>
             </div>
@@ -245,14 +248,14 @@ export default function StitchServicesExperience() {
           <div className="svc-bg" style={{ backgroundImage: `url('${sectionBackgrounds.carRentals}')` }} />
           <div className="svc-overlay" />
           <div className="svc-container svc-block" data-reveal>
-            <span className="svc-script svc-script-left">Your Ride, Your Schedule</span>
+            <span className="svc-script svc-script-left">Your Road, Your Rules</span>
             <h2 className="svc-heading">Car Rentals</h2>
             <div className="svc-rental-panel">
               <div>
                 <h4>Luxury Fleet</h4>
                 <p>
-                  Access to the world's most prestigious marques: Bentley, Rolls-Royce, and
-                  high-performance supercars in every major city.
+                  Bentley. Rolls-Royce. Supercar. Every city, every occasion -
+                  your perfect ride is already waiting.
                 </p>
                 <ul>
                   <li>+ Chauffeur Options</li>
@@ -272,13 +275,13 @@ export default function StitchServicesExperience() {
           <div className="svc-bg" style={{ backgroundImage: `url('${sectionBackgrounds.domestic}')` }} />
           <div className="svc-overlay" />
           <div className="svc-container svc-block" data-reveal>
-            <span className="svc-script svc-script-left">Discover India</span>
+            <span className="svc-script svc-script-left svc-script-domestic">Discover India</span>
             <h2 className="svc-heading">Domestic</h2>
             <div className="svc-grid-two svc-grid-two-wide">
               <div>
                 <p className="svc-text">
-                  Unveiling the hidden soul of the subcontinent. From the palaces of Rajasthan to the
-                  serene backwaters of Kerala.
+                  From Rajasthan's golden palaces to Kerala's silent backwaters
+                  - we reveal the India most travelers never find.
                 </p>
                 <button type="button" className="svc-btn" onClick={() => handleServiceBooking("Domestic Holidays")}>Book This Service</button>
               </div>
@@ -306,11 +309,11 @@ export default function StitchServicesExperience() {
           <div className="svc-bg" style={{ backgroundImage: `url('${sectionBackgrounds.international}')` }} />
           <div className="svc-overlay" />
           <div className="svc-container svc-center" data-reveal>
-            <span className="svc-script svc-script-center">The World is Closer</span>
+            <span className="svc-script svc-script-center">The World Awaits</span>
             <h2 className="svc-heading">International</h2>
             <p className="svc-text" style={{ margin: "0 auto 2.4rem", textAlign: "center" }}>
-              Our curated international packages open borders safely, with seamless global flights, 
-              local hosts, and handpicked premium properties spanning across the continents.
+              Every continent, curated. Premium stays, local experts, and
+              seamless global flights - so all you carry is wonder.
             </p>
             <div className="svc-intl-grid">
               {internationalCards.map((card) => (

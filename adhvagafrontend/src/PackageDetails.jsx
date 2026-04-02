@@ -42,29 +42,162 @@ const PackageDetails = () => {
     return <div className="pd-shell">Loading...</div>;
   }
 
+  const cleanToken = (input) => {
+    if (input == null) return "";
+    return String(input)
+      .trim()
+      .replace(/^[\[\]\{\}\"']+/, "")
+      .replace(/[\[\]\{\}\"']+$/, "")
+      .replace(/\\"/g, '"')
+      .trim();
+  };
+
+  const normalizeDisplayValue = (value, fallback = "") => {
+    if (Array.isArray(value)) {
+      const cleaned = value
+        .flatMap((item) =>
+          typeof item === "string"
+            ? item
+                .split(",")
+                .map((part) => cleanToken(part))
+                .filter(Boolean)
+            : [cleanToken(item)]
+        )
+        .filter(Boolean);
+      return cleaned.length ? cleaned.join(", ") : fallback;
+    }
+
+    if (typeof value === "string") {
+      const trimmed = value.trim();
+      if (!trimmed) return fallback;
+
+      if (
+        (trimmed.startsWith("[") && trimmed.endsWith("]")) ||
+        (trimmed.startsWith("{") && trimmed.endsWith("}"))
+      ) {
+        try {
+          const parsed = JSON.parse(trimmed);
+          if (Array.isArray(parsed)) {
+            return normalizeDisplayValue(parsed, fallback);
+          }
+          if (parsed && typeof parsed === "object") {
+            const objectValues = Object.values(parsed)
+              .map((v) => String(v ?? "").trim())
+              .filter(Boolean);
+            return objectValues.length ? objectValues.join(", ") : fallback;
+          }
+        } catch {
+          // Keep original string when it is not valid JSON.
+        }
+      }
+
+      return cleanToken(trimmed) || fallback;
+    }
+
+    if (value == null) return fallback;
+    return cleanToken(value) || fallback;
+  };
+
+  const normalizeList = (value, fallback = []) => {
+    if (Array.isArray(value)) {
+      const list = value
+        .flatMap((item) => {
+          if (typeof item === "string") {
+            return item
+              .split(",")
+              .map((part) => cleanToken(part))
+              .filter(Boolean);
+          }
+
+          if (item == null) return [];
+          return [cleanToken(item)].filter(Boolean);
+        })
+        .filter(Boolean);
+      return list.length ? list : fallback;
+    }
+
+    if (typeof value === "string") {
+      const trimmed = value.trim();
+      if (!trimmed) return fallback;
+
+      if (trimmed.startsWith("[") && trimmed.endsWith("]")) {
+        try {
+          const parsed = JSON.parse(trimmed);
+          if (Array.isArray(parsed)) {
+            return normalizeList(parsed, fallback);
+          }
+        } catch {
+          // Keep plain string parsing below.
+        }
+      }
+
+      const splitList = trimmed
+        .split(",")
+        .map((part) => cleanToken(part))
+        .filter(Boolean);
+      const cleanedSingle = cleanToken(trimmed);
+      return splitList.length ? splitList : cleanedSingle ? [cleanedSingle] : fallback;
+    }
+
+    if (value == null) return fallback;
+    return [cleanToken(value)].filter(Boolean);
+  };
+
+  const normalizedDestination = normalizeDisplayValue(
+    pkg.destination || pkg.location,
+    "Destination TBD"
+  );
+  const normalizedCategory = normalizeDisplayValue(pkg.category, "General");
+  const normalizedType = normalizeDisplayValue(pkg.type, "Standard");
+  const normalizedDescription = normalizeDisplayValue(
+    pkg.description,
+    "Package details will be shared on request."
+  );
+  const normalizedTag = normalizeDisplayValue(pkg.tag, "Featured");
+  const normalizedTitle = normalizeDisplayValue(pkg.title, "Travel Package");
+
   /* ================= SAFE DATA ================= */
-  const highlights = pkg.highlights?.length
-    ? pkg.highlights
-    : [
-        "Smooth travel experience",
-        "Curated destinations",
-        "Comfortable stays",
-      ];
+  const highlights = normalizeList(pkg.highlights,
+    [
+      "Smooth travel experience",
+      "Curated destinations",
+      "Comfortable stays",
+    ]
+  );
 
-  const includes = pkg.includes?.length
-    ? pkg.includes
-    : ["Hotel stay", "Transport", "Basic support"];
+  const includes = normalizeList(pkg.includes,
+    ["Hotel stay", "Transport", "Basic support"]
+  );
 
-  const excludes = pkg.excludes?.length
-    ? pkg.excludes
-    : ["Personal expenses", "Insurance"];
+  const excludes = normalizeList(pkg.excludes,
+    ["Personal expenses", "Insurance"]
+  );
+
+  const itinerarySource = Array.isArray(pkg.itinerary)
+    ? pkg.itinerary
+    : typeof pkg.itinerary === "string"
+      ? (() => {
+          try {
+            const parsed = JSON.parse(pkg.itinerary);
+            return Array.isArray(parsed) ? parsed : [];
+          } catch {
+            return [];
+          }
+        })()
+      : [];
 
   const itinerary =
-    pkg.itinerary?.length > 0
-      ? [...pkg.itinerary].sort((a, b) => a.day - b.day)
-      : [
-          { day: 1, title: "Arrival", description: "Check-in and relax" },
-        ];
+    itinerarySource.length > 0
+      ? itinerarySource
+          .map((day, index) => ({
+            day: Number(day?.day) || index + 1,
+            title: normalizeDisplayValue(day?.title, `Day ${index + 1}`),
+            description: normalizeDisplayValue(day?.description, "Details coming soon"),
+          }))
+          .sort((a, b) => a.day - b.day)
+    : [
+        { day: 1, title: "Arrival", description: "Check-in and relax" },
+      ];
 
   const formatPrice = (price) => {
     const numericPrice = Number(price);
@@ -123,20 +256,19 @@ const PackageDetails = () => {
           <div className="pd-hero-content">
             <div className="pd-tags">
               <span className="pd-tag pd-tag-primary">
-                {pkg.tag || "Featured"}
+                {normalizedTag}
               </span>
               <span className="pd-tag">
-                {pkg.type || pkg.category || "Tour"}
+                {normalizedType || normalizedCategory || "Tour"}
               </span>
             </div>
 
             <h1>
-              {pkg.title?.toUpperCase()}{" "}
-              <span>{pkg.destination?.toUpperCase()}</span>
+              {normalizedTitle.toUpperCase()} <span>{normalizedDestination.toUpperCase()}</span>
             </h1>
 
             <div className="pd-hero-meta">
-              <p>{pkg.destination || pkg.location}</p>
+              <p>{normalizedDestination}</p>
               {pkg.rating && <p>{pkg.rating} Rating</p>}
             </div>
           </div>
@@ -150,15 +282,15 @@ const PackageDetails = () => {
           </article>
           <article>
             <span>Destination</span>
-            <strong>{pkg.destination}</strong>
+            <strong>{normalizedDestination}</strong>
           </article>
           <article>
             <span>Category</span>
-            <strong>{pkg.category}</strong>
+            <strong>{normalizedCategory}</strong>
           </article>
           <article>
             <span>Type</span>
-            <strong>{pkg.type || "Standard"}</strong>
+            <strong>{normalizedType}</strong>
           </article>
         </section>
 
@@ -166,7 +298,7 @@ const PackageDetails = () => {
         <section className="pd-overview">
           <p className="pd-script">A Cinematic Journey</p>
           <h2>Where The Story Unfolds</h2>
-          <p>{pkg.description}</p>
+          <p>{normalizedDescription}</p>
         </section>
 
         {/* HIGHLIGHTS */}
