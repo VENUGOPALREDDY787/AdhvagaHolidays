@@ -266,31 +266,31 @@ export default function CinematicHome() {
           <div className="cine-container" data-reveal>
             <div className="cine-split">
               <img
-                src="/aida-images/aida_039.jpg"
-                alt="Patagonia Peaks"
+                src="/aida-images/kerala.jpeg"
+                alt="Kerala Backwaters"
               />
 
               <div>
-                <p className="cine-heading-eyebrow">Premium Expedition</p>
+                <p className="cine-heading-eyebrow">Backwater Retreat</p>
                 <h3
                   className="cine-heading"
                   style={{ fontSize: "clamp(2rem, 3.8vw, 3.2rem)" }}
                 >
-                  Patagonia Peaks
+                  Kerala Backwaters
                 </h3>
                 <p>
-                  Experience the raw beauty of South America with curated luxury
-                  camps, private ground transfers, and photographers for summit
-                  moments.
+                  Drift through Alleppey and Kumarakom on a handpicked houseboat
+                  journey with premium stays, private transfers, and local
+                  experiences woven into every stop.
                 </p>
                 <div className="cine-feature-list">
-                  <span>12 Days Journey</span>
-                  <span>Private Guide</span>
-                  <span>All Equipment</span>
-                  <span>Luxury Tents</span>
+                  <span>4 Days Journey</span>
+                  <span>Private Houseboat</span>
+                  <span>Village Walks</span>
+                  <span>Full Board</span>
                 </div>
                 <div className="cine-price">
-                  <strong>₹4,250</strong>
+                  <strong>₹18,500</strong>
                   <a href="#contact" className="cine-btn" style={{ textDecoration: 'none' }}>
                     Book Now
                   </a>
@@ -300,31 +300,31 @@ export default function CinematicHome() {
 
             <div className="cine-split cine-split-reverse">
               <img
-                src="/aida-images/aida_002.jpg"
-                alt="Mediterranean Odyssey"
+                src="/aida-images/raja.jpeg"
+                alt="Rajasthan Royal Trail"
               />
 
               <div>
-                <p className="cine-heading-eyebrow">Coastal Escape</p>
+                <p className="cine-heading-eyebrow">Royal Heritage Escape</p>
                 <h3
                   className="cine-heading"
                   style={{ fontSize: "clamp(2rem, 3.8vw, 3.2rem)" }}
                 >
-                  Mediterranean Odyssey
+                  Rajasthan Royal Trail
                 </h3>
                 <p>
-                  Sail through sapphire waters and hidden limestone caves. A
-                  refined blend of exploration and Mediterranean ease with
-                  premium on-ground support.
+                  Explore Jaipur, Jodhpur, and Udaipur with heritage stays,
+                  curated sightseeing, and seamless comfort across India&apos;s
+                  most iconic desert cities.
                 </p>
                 <div className="cine-feature-list">
-                  <span>8 Days Cruise</span>
-                  <span>Yacht Access</span>
-                  <span>Island Hopping</span>
-                  <span>Wine Tasting</span>
+                  <span>7 Days Circuit</span>
+                  <span>Heritage Havelis</span>
+                  <span>City Tours</span>
+                  <span>Camel Safari</span>
                 </div>
                 <div className="cine-price">
-                  <strong>₹3,800</strong>
+                  <strong>₹24,900</strong>
                   <a href="#contact" className="cine-btn" style={{ textDecoration: 'none' }}>
                     Book Now
                   </a>
