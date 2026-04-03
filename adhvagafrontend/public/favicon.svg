@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="circleClip">
+      <circle cx="32" cy="32" r="32" />
+    </clipPath>
+  </defs>
+  <circle cx="32" cy="32" r="32" fill="#ffffff" />
+  <image href="/logo.png" x="4" y="4" width="56" height="56" clip-path="url(#circleClip)" preserveAspectRatio="xMidYMid slice" />
+</svg>

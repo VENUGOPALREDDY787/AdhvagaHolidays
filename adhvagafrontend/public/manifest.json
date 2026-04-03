@@ -8,9 +8,9 @@
   "description": "Adhvaga Holidays travel experiences and booking portal.",
   "icons": [
     {
-      "src": "/vite.svg",
+      "src": "/logo.png",
       "sizes": "any",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any"
     }
   ]
