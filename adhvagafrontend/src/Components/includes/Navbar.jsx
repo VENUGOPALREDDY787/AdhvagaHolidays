@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useSettings } from "../../context/SettingsContext";
-import logo from "../../assets/unnamed.jpg";
+import logo from "../../../public/logo.png";
 import StaggeredMenu from "./StaggeredMenu";
 import "./Navbar.css";
 

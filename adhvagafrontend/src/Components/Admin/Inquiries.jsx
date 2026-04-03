@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BASE_URL } from "../../config/api";
-import "./WhatsAppLeads.css"; // reuse same CSS
+import "./WhatsAppLeads.css"; 
 
 const Inquiries = () => {
   const [inquiries, setInquiries] = useState([]);
