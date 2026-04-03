@@ -5,8 +5,8 @@
   align-items: flex-start;
   justify-content: center;
   padding: 6rem 1.5rem 5rem;
-  color: #0f172a;
-  background-image: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1920&q=80");
+  color: #f8fafc;
+  background-image: url("/aida-images/terms.jpeg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -15,18 +15,19 @@
 .terms-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(8, 12, 24, 0.52);
 }
 
 .terms-container {
   position: relative;
   z-index: 1;
   width: min(1000px, 100%);
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(8, 12, 24, 0.58);
   border-radius: 18px;
   padding: 2.75rem clamp(1.5rem, 3vw, 3rem);
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
-  backdrop-filter: blur(6px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .terms-header h1 {
@@ -40,13 +41,13 @@
   letter-spacing: 0.2em;
   font-weight: 600;
   font-size: 0.85rem;
-  color: #1f2937;
+  color: #e2e8f0;
   margin: 0;
 }
 
 .terms-effective {
   font-weight: 600;
-  color: #1f2937;
+  color: #e2e8f0;
   margin: 0 0 1.5rem;
 }
 
@@ -54,12 +55,12 @@
   font-size: 1.05rem;
   line-height: 1.7;
   margin-bottom: 2.25rem;
-  color: #0f172a;
+  color: #f8fafc;
 }
 
 .terms-section {
   padding: 1.75rem 0;
-  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .terms-section:first-of-type {
@@ -70,13 +71,13 @@
 .terms-section h2 {
   font-size: clamp(1.25rem, 2.2vw, 1.75rem);
   margin-bottom: 0.75rem;
-  color: #0b1120;
+  color: #f8fafc;
 }
 
 .terms-section p {
   margin: 0.5rem 0 1rem;
   line-height: 1.7;
-  color: #111827;
+  color: #e2e8f0;
 }
 
 .terms-section ul {
@@ -84,7 +85,7 @@
   margin: 0.75rem 0 1rem;
   display: grid;
   gap: 0.4rem;
-  color: #111827;
+  color: #e2e8f0;
 }
 
 .terms-section li {

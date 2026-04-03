@@ -12,6 +12,7 @@ function Footer() {
         { label: "International", to: "/International" },
         { label: "Services", to: "/Services" },
         { label: "Support", to: "/Support" },
+        { label: "Terms & Conditions", to: "/terms" },
     ];
 
     const topDestinations = [
