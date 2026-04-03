@@ -6,6 +6,7 @@ import { CinematicHeader } from "./CinematicLayout";
 import WhatsAppModal from "../Components/Support/WhatsAppModal";
 import { useSettings } from "../context/SettingsContext";
 import "./Support.css";
+import { BASE_URL } from "../config/api";
 
 const defaultFaqItems = [
   {

@@ -34,4 +34,4 @@ function normalizeBaseUrl(url) {
 const normalizedApiUrl = normalizeBaseUrl(rawApiUrl);
 
 // Default to same-origin API path when VITE_API_URL is not provided.
-export const BASE_URL = normalizedApiUrl || "";
+export const BASE_URL = normalizedApiUrl;
