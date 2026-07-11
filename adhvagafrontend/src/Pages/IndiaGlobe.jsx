@@ -65,7 +65,7 @@ export default function IndiaGlobe() {
         image={metadata.image}
         structuredData={generateBreadcrumbSchema(breadcrumbs)}
       />
-      <div style={{ width: '100vw', height: '100vh', backgroundColor: '#050505' }}>
+      <div style={{ width: '100vw', height: '100vh', backgroundColor: '#041629' }}>
         <DomeGallery
           images={INDIA_IMAGES}
           fit={0.8}

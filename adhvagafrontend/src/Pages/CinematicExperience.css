@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bebas+Neue&family=Dancing+Script:wght@700&display=swap');
 
 .cinematic-page {
-  --cine-primary: #d39e17;
-  --cine-dark: #211d11;
-  --cine-charcoal: #1a1710;
+  --cine-primary: #FFD662;
+  --cine-dark: #041629;
+  --cine-charcoal: #08213a;
   --cine-light: #f8f7f6;
   --cine-muted: #c2b696;
-  --cine-border: rgba(211, 158, 23, 0.24);
+  --cine-border: rgba(255, 214, 98, 0.24);
   --cine-glass: rgba(255, 255, 255, 0.06);
   font-family: 'Plus Jakarta Sans', sans-serif;
   background: var(--cine-dark);
@@ -36,7 +36,7 @@
   justify-content: space-between;
   padding: 1rem 2.5rem;
   border-bottom: 1px solid var(--cine-border);
-  background: linear-gradient(180deg, rgba(17, 14, 7, 0.93) 0%, rgba(17, 14, 7, 0.82) 60%, rgba(17, 14, 7, 0.35) 100%);
+  background: linear-gradient(180deg, rgba(4, 22, 41, 0.93) 0%, rgba(4, 22, 41, 0.82) 60%, rgba(4, 22, 41, 0.35) 100%);
   backdrop-filter: blur(8px);
 }
 
@@ -120,7 +120,7 @@
   width: 9px;
   height: 9px;
   border-radius: 999px;
-  background: rgba(211, 158, 23, 0.35);
+  background: rgba(255, 214, 98, 0.35);
   transition: transform 0.25s ease, background-color 0.25s ease;
 }
 
@@ -687,10 +687,14 @@
 }
 
 .cinematic-page .cine-home-hero-title {
-  font-size: clamp(2.6rem, 8.2vw, 6.8rem);
-  line-height: 0.88;
-  white-space: nowrap;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
   margin-inline: auto;
+  font-size: clamp(1.9rem, 5vw, 4rem);
+  line-height: 0.95;
+  white-space: normal;
+  text-align: center;
 }
 
 .cinematic-page .cine-home-hero-script {

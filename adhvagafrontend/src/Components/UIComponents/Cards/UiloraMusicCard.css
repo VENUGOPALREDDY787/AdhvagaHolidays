@@ -1,0 +1,78 @@
+.uilora-music-card {
+  width: 100%;
+  max-width: 20rem;
+  background: rgba(24, 24, 27, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.uilora-music-card:hover {
+  transform: translateY(-3px);
+  background: rgba(24, 24, 27, 0.8);
+}
+
+.uilora-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  margin-bottom: 1.45rem;
+}
+
+.uilora-card-subtitle {
+  color: #a1a1aa;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.uilora-card-tracks {
+  color: #d4d4d8;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.uilora-card-title {
+  color: #ffffff;
+  font-size: 1.82rem;
+  line-height: 1.15;
+  font-weight: 700;
+  margin: 0.3rem 0 0;
+  letter-spacing: -0.01em;
+  transition: color 0.25s ease;
+}
+
+.uilora-music-card:hover .uilora-card-title {
+  color: #7dd3fc;
+}
+
+.uilora-card-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.uilora-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.uilora-music-card:hover .uilora-card-image {
+  transform: scale(1.08);
+}
+
+.uilora-card-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.22), transparent);
+}

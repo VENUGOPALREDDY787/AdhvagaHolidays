@@ -145,16 +145,16 @@
 .scroll-progress-bar {
   height: 100%;
   background: linear-gradient(90deg,
-      #10b981 0%,
-      #3b82f6 25%,
-      #8b5cf6 50%,
-      #ec4899 75%,
-      #f59e0b 100%);
+      #FFD662 0%,
+      #d9b44c 25%,
+      #8fc5f0 50%,
+      #4d9fe0 75%,
+      #00539C 100%);
   background-size: 200% 100%;
   animation: gradientShift 3s ease infinite;
   transition: width 0.1s ease-out;
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5),
-    0 0 20px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 10px rgba(0, 83, 156, 0.5),
+    0 0 20px rgba(255, 214, 98, 0.26);
 }
 
 @keyframes gradientShift {

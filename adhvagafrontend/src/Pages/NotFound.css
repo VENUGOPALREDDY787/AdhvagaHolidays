@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: #1a1710;
+  background-color: #041629;
   color: #ece1d3;
 }
 
@@ -29,8 +29,8 @@
   bottom: 0;
   background-image: linear-gradient(
       to bottom,
-      rgba(26, 23, 16, 0.4),
-      rgba(26, 23, 16, 0.9)
+      rgba(4, 22, 41, 0.4),
+      rgba(4, 22, 41, 0.92)
     ),
     url("/aida-images/aida_010.jpg");
   background-size: cover;
@@ -56,7 +56,7 @@ h1.not-found-title {
   font-family: 'Bebas Neue', sans-serif !important;
   font-size: 22vw;
   line-height: 1;
-  color: #d39e17;
+  color: #FFD662;
   letter-spacing: -0.05em;
   opacity: 0.9;
   user-select: none;
@@ -134,8 +134,8 @@ h1.not-found-title {
   overflow: hidden;
   font-weight: 700;
   letter-spacing: 0.3em;
-  color: #000000;
-  background-color: #d39e17;
+  color: #041629;
+  background: linear-gradient(135deg, #FFD662, #00539C);
   border: none;
   border-radius: 0 !important;
   text-transform: uppercase;
@@ -169,7 +169,7 @@ h1.not-found-title {
   left: 0;
   width: 12px;
   height: 12px;
-  background-color: #d39e17;
+  background-color: #FFD662;
   border-radius: 50%;
   pointer-events: none;
   z-index: 100;
@@ -211,10 +211,10 @@ h1.not-found-title {
 @keyframes pulse-subtle {
   0%, 100% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(211, 158, 23, 0.4);
+    box-shadow: 0 0 0 0 rgba(255, 214, 98, 0.4);
   }
   50% {
     transform: scale(1.03);
-    box-shadow: 0 0 20px 10px rgba(211, 158, 23, 0);
+    box-shadow: 0 0 20px 10px rgba(255, 214, 98, 0);
   }
 }

@@ -22,10 +22,10 @@
 }
 
 .topbar-title {
+  margin: 0;
   font-size: 1.5rem;
   font-weight: 600;
   color: #fff;
-  margin: 0;
 }
 
 .topbar-subtitle {
@@ -42,18 +42,17 @@
 
 .search-container {
   display: flex;
-  align-items: center;
   gap: 0.75rem;
   background: rgba(255, 255, 255, 0.05);
   padding: 0.625rem 1rem;
   border-radius: 8px;
-  border: 1px solid rgba(210, 180, 140, 0.1);
+  border: 1px solid rgba(210, 180, 140, 0.06);
   transition: all 0.2s ease;
 }
 
 .search-container:focus-within {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(210, 180, 140, 0.3);
+  border-color: rgba(210, 180, 140, 0.12);
 }
 
 .search-container svg {
@@ -74,10 +73,8 @@
 }
 
 .icon-button {
-  position: relative;
   width: 40px;
   height: 40px;
-  display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.05);
@@ -86,11 +83,12 @@
   color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   transition: all 0.2s ease;
+  display: inline-flex;
 }
 
 .icon-button:hover {
-  background: rgba(210, 180, 140, 0.1);
-  color: #d2b48c;
+  background: rgba(255, 214, 98, 0.06);
+  color: #FFD662;
 }
 
 .notification-badge {
@@ -99,8 +97,8 @@
   right: -4px;
   width: 18px;
   height: 18px;
-  background: #d2b48c;
-  color: #0a0a0a;
+  background: #FFD662;
+  color: #041629;
   font-size: 0.7rem;
   font-weight: 600;
   border-radius: 50%;
@@ -120,18 +118,18 @@
 }
 
 .admin-profile:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .avatar {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #d2b48c 0%, #b8956a 100%);
+  background: linear-gradient(135deg, #FFD662 0%, #00539C 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0a0a0a;
+  color: #041629;
 }
 
 .profile-info {

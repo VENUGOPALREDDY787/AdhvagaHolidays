@@ -58,12 +58,12 @@ main.sphere-main {
 }
 
 .overlay {
-  background-image: radial-gradient(rgba(235, 235, 235, 0) 65%, var(--overlay-blur-color, #060010) 100%);
+  background-image: radial-gradient(rgba(235, 235, 235, 0) 65%, var(--overlay-blur-color, #041629) 100%);
 }
 
 .overlay--blur {
-  -webkit-mask-image: radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, #060010) 90%);
-  mask-image: radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, #060010) 90%);
+  -webkit-mask-image: radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, #041629) 90%);
+  mask-image: radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, #041629) 90%);
   backdrop-filter: blur(3px);
 }
 
@@ -105,7 +105,7 @@ main.sphere-main {
 .item__image.active {
   transform: translateZ(80px) scale(1.25);
   z-index: 100;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(250, 204, 21, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 214, 98, 0.3);
 }
 
 .item__image:focus {
@@ -142,7 +142,7 @@ main.sphere-main {
   margin: 0 0 5px 0;
   font-size: 16px;
   font-weight: 700;
-  color: #facc15;
+  color: #FFD662;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
   letter-spacing: 0.5px;
 }
@@ -170,7 +170,7 @@ main.sphere-main {
   position: absolute;
   inset: -3px;
   border-radius: inherit;
-  background: linear-gradient(135deg, #facc15 0%, #f59e0b 50%, #facc15 100%);
+  background: linear-gradient(135deg, #FFD662 0%, #00539C 50%, #FFD662 100%);
   z-index: -1;
   animation: borderGlow 2s ease-in-out infinite;
 }
@@ -180,11 +180,11 @@ main.sphere-main {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  border: 3px solid #facc15;
+  border: 3px solid #FFD662;
   box-shadow: 
-    0 0 20px rgba(250, 204, 21, 0.5),
-    0 0 40px rgba(250, 204, 21, 0.3),
-    inset 0 0 30px rgba(250, 204, 21, 0.15);
+    0 0 20px rgba(255, 214, 98, 0.5),
+    0 0 40px rgba(0, 83, 156, 0.3),
+    inset 0 0 30px rgba(255, 214, 98, 0.15);
   pointer-events: none;
   z-index: 3;
 }
@@ -269,7 +269,7 @@ main.sphere-main {
   height: 120px;
   z-index: 5;
   pointer-events: none;
-  background: linear-gradient(to bottom, transparent, var(--overlay-blur-color, #060010));
+  background: linear-gradient(to bottom, transparent, var(--overlay-blur-color, #041629));
 }
 
 .edge-fade--top {

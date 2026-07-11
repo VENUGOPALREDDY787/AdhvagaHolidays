@@ -1,14 +1,6 @@
 import { Link } from "react-router-dom";
 
-const routeItems = [
-  { label: "Home", to: "/Home", key: "home" },
-  { label: "About", to: "/About", key: "about" },
-  { label: "Domestic", to: "/Domestic", key: "domestic" },
-  { label: "International", to: "/International", key: "international" },
-  { label: "Services", to: "/Services", key: "services" },
-];
-
-export function CinematicHeader({ activeKey }) {
+export function CinematicHeader() {
   return null;
 }
 

@@ -73,7 +73,7 @@ export default function TouristGlobe() {
         image={metadata.image}
         structuredData={generateBreadcrumbSchema(breadcrumbs)}
       />
-      <div style={{ width: '100vw', height: '100vh', backgroundColor: '#060010' }}>
+      <div style={{ width: '100vw', height: '100vh', backgroundColor: '#041629' }}>
         <DomeGallery
           images={INTERNATIONAL_IMAGES}
           fit={0.8}

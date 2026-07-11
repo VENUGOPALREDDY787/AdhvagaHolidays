@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import helmet from "helmet";
 import connectDB from "./config/database.js";  
 
 import packageRoutes from "./routes/packageRoutes.js";
@@ -8,10 +9,14 @@ import adminRoutes from "./routes/adminRoutes.js";
 import inquiryRoutes from "./routes/inquiryRoutes.js";
 import settingsRoutes from "./routes/settingsRoutes.js";
 import whatsappLeadRoutes from "./routes/whatsappLeadRoutes.js";
+import visaCountryRoutes from "./routes/visaCountryRoutes.js";
 
 dotenv.config();
 
 const app = express();
+
+// ✅ Security Headers
+app.use(helmet());
 
 // ✅ CORS (safe for production)
 app.use(cors({
@@ -39,6 +44,7 @@ app.use("/api/packages", packageRoutes);
 app.use("/api/inquiries", inquiryRoutes);
 app.use("/api/settings", settingsRoutes);
 app.use("/api/whatsapp-leads", whatsappLeadRoutes);
+app.use("/api/visas", visaCountryRoutes);
 
 // ✅ Error handling middleware
 app.use((err, req, res, next) => {

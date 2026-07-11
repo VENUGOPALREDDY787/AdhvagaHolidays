@@ -142,17 +142,17 @@ export default function CinematicHome() {
             className="cine-hero-bg"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.72)), url('/aida-images/aida_022.jpg')",
+                "url('/aida-images/download (4).jpg')",
             }}
           />
           <div className="cine-overlay" />
 
           <div className="cine-hero-copy cine-home-scroll-copy cine-home-intro-block">
             <h1 className="cine-title-main cine-home-signature-1 cine-home-hero-title">
-              Ancient Ruins
+              Adhvaga Holidays
             </h1>
             <p className="cine-title-script cine-home-signature-2 cine-home-hero-script">
-              Cinematic Adventure
+              The Art of the Journey.
             </p>
             <p className="cine-subtext">
               Hand-crafted cinematic itineraries through heritage landscapes,
@@ -169,26 +169,6 @@ export default function CinematicHome() {
             </div>
           </div>
 
-          <div className="cine-stats-strip">
-            <div className="cine-stats">
-              <div className="cine-stat">
-                <small>Expeditions</small>
-                <strong>150+</strong>
-              </div>
-              <div className="cine-stat">
-                <small>Destinations</small>
-                <strong>40+</strong>
-              </div>
-              <div className="cine-stat">
-                <small>Happy Travelers</small>
-                <strong>2.5k+</strong>
-              </div>
-              <div className="cine-stat">
-                <small>Support</small>
-                <strong>24/7</strong>
-              </div>
-            </div>
-          </div>
         </section>
 
         <section
@@ -373,24 +353,21 @@ export default function CinematicHome() {
                 color: "rgba(255,255,255,0.8)",
               }}
             >
-              Founded in 1994, {settings.agencyName || "Advaga Holidays"} evolved from a small trekking
+              Founded in 2005, {settings.agencyName || "Advaga Holidays"} evolved from a small trekking
               collective into a full-scope travel design studio specializing in
               story-driven itineraries and high-touch support.
             </p>
 
             <div className="cine-grid-4">
               <div className="cine-glass" data-reveal>
-                <h3>28+</h3>
+                <h3>19+</h3>
                 <p>Years of Heritage</p>
               </div>
               <div className="cine-glass" data-reveal>
                 <h3>500k</h3>
                 <p>Miles Explored</p>
               </div>
-              <div className="cine-glass" data-reveal>
-                <h3>120</h3>
-                <p>Expert Guides</p>
-              </div>
+             
               <div className="cine-glass" data-reveal>
                 <h3>100%</h3>
                 <p>Satisfaction Focus</p>
@@ -457,32 +434,28 @@ export default function CinematicHome() {
             <div className="cine-home-testimonial-grid">
               <article className="cine-glass">
                 <p className="cine-quote">
-                  "The attention to detail was beyond anything I've experienced.
-                  It felt like I was inside a cinematic masterpiece from start
-                  to finish."
+                  "Impeccably organised, tastefully crafted and executed in perfection. Thank you Adhvaga holidays for being our partner in making our Georgia trip even more memorable. You made our vacation very relaxed and fun filled one. Will surely recommend one and all to try Adhvaga as your trip planner"
                 </p>
-                <strong>Elena Marek</strong>
-                <span>Swiss Alps Expedition</span>
+                <strong>Rethi Rajeevan</strong>
+                <span>Georgia trip</span>
               </article>
 
               <article className="cine-glass cine-home-testimonial-featured">
                 <p className="cine-quote">
-                  "Advaga does not just plan trips; they curate life-changing
-                  moments. Standing on that ridge at sunrise was the highlight
-                  of my decade."
+                  "I recently booked Singapore travel from Advaga Holiday Inc. Right from booking my tickets to getting visa and seamless travel the team was extremely helpful and made my journey a memorable one. Special thanks to Nandish he is a go to person for any last minute changes too very accommodating and customer centric approach. Thank you team for making my trip memorable"
                 </p>
-                <strong>Julian West</strong>
-                <span>Patagonia Trek 2023</span>
+                <strong>Trishna H</strong>
+                <span>Trishna H</span>
               </article>
 
               <article className="cine-glass">
                 <p className="cine-quote">
-                  "From navigating remote paths to the seamless luxury of our stays, 
-                  every moment was perfected. Advaga gave us an adventure we will 
-                  never forget."
+                  "Thank you Mr. Nandhisha
+Adhvaga organised the Maha Kumbh trip for us. It was flawless starting from the travel to the accommodation.
+We are very thankful for the arrangements and wholeheartedly recommend Adhvaga.."
                 </p>
-                <strong>Sarah &amp; David</strong>
-                <span>Sahara Star Gazing</span>
+                <strong>Narayanan Subramanian</strong>
+                <span>Maha Kumbh trip</span>
               </article>
             </div>
           </div>

@@ -4,6 +4,7 @@ import { BASE_URL } from "../config/api";
 
 const SettingsContext = createContext();
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useSettings = () => {
   const context = useContext(SettingsContext);
   if (!context) {
@@ -101,6 +102,7 @@ export const SettingsProvider = ({ children }) => {
     if (hasFetchedSettings.current) return;
     hasFetchedSettings.current = true;
     fetchSettings();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchSettings = async () => {
@@ -147,7 +149,7 @@ export const SettingsProvider = ({ children }) => {
 
       console.log("✅ Settings loaded from backend");
 
-    } catch (error) {
+    } catch (_error) {
       console.warn("⚠️ Backend not reachable → using default settings");
     } finally {
       setLoading(false);

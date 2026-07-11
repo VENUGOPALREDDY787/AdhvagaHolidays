@@ -1,9 +1,9 @@
 .site-footer {
     background:
-        radial-gradient(circle at 8% 0%, rgba(211, 158, 23, 0.14), transparent 42%),
-        #1a1710;
+        radial-gradient(circle at 8% 0%, rgba(224, 255, 255, 0.16), transparent 42%),
+        linear-gradient(180deg, #00539C 0%, #041629 100%);
     color: rgba(236, 225, 211, 0.92);
-    border-top: 1px solid rgba(211, 158, 23, 0.2);
+    border-top: 1px solid rgba(255, 214, 98, 0.22);
 }
 
 .site-footer-inner {
@@ -21,7 +21,7 @@
 .site-footer h3,
 .site-footer h4 {
     margin: 0;
-    color: #d39e17;
+    color: #E0FFFF;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-family: "Plus Jakarta Sans", sans-serif;
@@ -75,9 +75,9 @@
 }
 
 .site-footer-social a:hover {
-    color: #211d11;
-    background: #d39e17;
-    border-color: #d39e17;
+    color: #041629;
+    background: #E0FFFF;
+    border-color: #E0FFFF;
 }
 
 .site-footer-links {
@@ -95,7 +95,7 @@
 }
 
 .site-footer-links a:hover {
-    color: #d39e17;
+    color: #E0FFFF;
 }
 
 .site-footer-bottom {

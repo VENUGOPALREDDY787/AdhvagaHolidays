@@ -5,12 +5,15 @@ import { SettingsProvider } from "./context/SettingsContext";
 import Navbar from "./Components/includes/Navbar";
 import Footer from "./Components/includes/Footer";
 import LoadingScreen from "./Components/includes/LoadingScreen";
+import FlyersSplash from "./Components/includes/FlyersSplash";
 import AboutPage from "./Pages/AboutPage";
 import Home from "./Pages/Home";
 import Support from "./Pages/Support";
 import International from "./Pages/InternationalPackages.jsx";
 import Domestic from "./Pages/DomesticPackages.jsx";
 import ServicesPage from "./Pages/Servicespage.jsx";
+import VisaPage from "./Pages/VisaPage.jsx";
+import VisaDetails from "./Pages/VisaDetails.jsx";
 import TermsPage from "./Pages/Terms";
 import ThankYou from "./Pages/ThankYou";
 import {
@@ -85,6 +88,8 @@ function Layout() {
           <Route path="/packages/:id" element={<PageTransition><PackageDetails /></PageTransition>} />
           <Route path="/Domestic" element={<PageTransition><Domestic /></PageTransition>} />
           <Route path="/Services" element={<PageTransition><ServicesPage /></PageTransition>} />
+          <Route path="/visa" element={<PageTransition><VisaPage /></PageTransition>} />
+          <Route path="/visa/:id" element={<PageTransition><VisaDetails /></PageTransition>} />
           <Route path="/terms" element={<PageTransition><TermsPage /></PageTransition>} />
           <Route path="/thank-you" element={<PageTransition><ThankYou /></PageTransition>} />
           <Route path="/explore-globe" element={<PageTransition><ExploreGlobe /></PageTransition>} />
@@ -113,21 +118,32 @@ function Layout() {
   );
 }
 
-function AppContent({ loading }) {
-  if (loading) {
-    return <LoadingScreen />;
-  }
-
-  return <Layout />;
-}
+// AppContent removed, logic moved to App
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [appState, setAppState] = useState("LOADING"); // 'LOADING' | 'FLYERS' | 'READY'
 
   useEffect(() => {
     // Keep loading sequence.
     const timer = setTimeout(() => {
-      setLoading(false);
+      try {
+        if (window.location.pathname.toLowerCase().startsWith("/admin")) {
+          setAppState("READY");
+          return;
+        }
+
+        const enabled = localStorage.getItem("admin_flyers_enabled");
+        const raw = localStorage.getItem("admin_flyers");
+        const list = raw ? JSON.parse(raw) : [];
+        const active = Array.isArray(list) ? list.filter((f) => f && f.url && f.active !== false) : [];
+        if ((enabled === null ? true : enabled === "true") && active.length > 0) {
+          setAppState("FLYERS");
+        } else {
+          setAppState("READY");
+        }
+      } catch (e) {
+        setAppState("READY");
+      }
     }, 5000);
 
     return () => clearTimeout(timer);
@@ -137,9 +153,14 @@ function App() {
     <HelmetProvider>
       <SettingsProvider>
         <BrowserRouter>
-          <AppContent
-            loading={loading}
-          />
+          {appState === "LOADING" && <LoadingScreen />}
+          {appState === "FLYERS" && (
+            <FlyersSplash
+              duration={4000}
+              onDone={() => setAppState("READY")}
+            />
+          )}
+          {appState === "READY" && <Layout />}
         </BrowserRouter>
       </SettingsProvider>
     </HelmetProvider>

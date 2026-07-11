@@ -14,10 +14,7 @@ import "./PackageDetails.css";
 const PackageDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { settings } = useSettings();
-
   const [pkg, setPkg] = useState(null);
-  const [expandedDay, setExpandedDay] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   /* ================= FETCH ================= */
   useEffect(() => {
@@ -46,8 +43,8 @@ const PackageDetails = () => {
     if (input == null) return "";
     return String(input)
       .trim()
-      .replace(/^[\[\]\{\}\"']+/, "")
-      .replace(/[\[\]\{\}\"']+$/, "")
+      .replace(/^[[\]{}"']+/, "")
+      .replace(/[[\]{}"']+$/, "")
       .replace(/\\"/g, '"')
       .trim();
   };

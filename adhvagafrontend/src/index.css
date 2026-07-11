@@ -16,6 +16,16 @@
 
 :root {
   --site-font: "Merriweather Custom", "Merriweather", serif;
+  --brand-yellow: #ce9c2b;
+  --brand-blue: #00539C;
+  --brand-yellow-rgb: 206, 156, 43;
+  --brand-blue-rgb: 0, 83, 156;
+  --site-bg: #041629;
+  --site-surface: rgba(8, 33, 58, 0.7);
+  --site-surface-2: rgba(13, 52, 93, 0.7);
+  --site-text: #EAEAEA;
+  --glass-bg: rgba(4, 22, 41, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
 }
 
 html, body {
@@ -26,6 +36,10 @@ html, body {
   scroll-behavior: smooth;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
+  background:
+    radial-gradient(circle at top, rgba(206, 156, 43, 0.1), transparent 34%),
+    linear-gradient(180deg, #00539C 0%, #062341 40%, #041629 100%);
+  color: var(--site-text);
 }
 
 *,
@@ -91,13 +105,13 @@ textarea {
 
 /* Selection styling */
 ::selection {
-  background: rgba(99, 102, 241, 0.3);
-  color: inherit;
+  background: rgba(206, 156, 43, 0.4);
+  color: #fff;
 }
 
 ::-moz-selection {
-  background: rgba(99, 102, 241, 0.3);
-  color: inherit;
+  background: rgba(206, 156, 43, 0.4);
+  color: #fff;
 }
 
 /* Bounce animation for scroll indicators */

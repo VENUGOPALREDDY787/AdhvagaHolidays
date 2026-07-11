@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import AdminSidebar from "../Components/Admin/AdminSidebar";
 import AdminTopBar from "../Components/Admin/AdminTopBar";
 import TravelCardsManager from "../Components/Admin/TravelCardsManager";
+import FlyersManager from "../Components/Admin/FlyersManager";
 import Settings from "../Components/Admin/Settings";
 import WhatsAppLeads from "../Components/Admin/WhatsAppLeads";
 import Inquiries from "../Components/Admin/Inquiries";
+import VisaCountriesManager from "../Components/Admin/VisaCountriesManager";
 import "./AdminDashboard.css";
 
 const getAdminEmailFromToken = () => {
@@ -30,7 +32,9 @@ const getAdminEmailFromToken = () => {
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState("packages");
+  const [initialEditId, setInitialEditId] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
   const adminEmail = getAdminEmailFromToken();
 
   /* ================= AUTH CHECK ================= */
@@ -40,6 +44,21 @@ const AdminDashboard = () => {
       navigate("/admin/login", { replace: true });
     }
   }, [navigate]);
+
+  useEffect(() => {
+    // Parse ?panel=visas&edit=<id>
+    try {
+      const params = new URLSearchParams(location.search || "");
+      const panel = params.get("panel");
+      const edit = params.get("edit");
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      if (panel) setActiveSection(panel);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      if (edit) setInitialEditId(edit);
+    } catch (_e) {
+      // ignore
+    }
+  }, [location.search]);
 
   /* ================= LOGOUT ================= */
   const handleLogout = () => {
@@ -53,6 +72,16 @@ const AdminDashboard = () => {
     title: "Travel Cards Management",
     subtitle: "Create, edit, and manage your travel offerings",
     component: <TravelCardsManager />,
+  },
+  flyers: {
+    title: "Flyers",
+    subtitle: "Upload, remove and enable/disable flyer banners",
+    component: <FlyersManager />,
+  },
+  visas: {
+    title: "Visa Countries Management",
+    subtitle: "Add, edit, and control all visa country cards",
+    component: <VisaCountriesManager openEditId={initialEditId} />,
   },
   whatsappLeads: {
     title: "WhatsApp Leads",

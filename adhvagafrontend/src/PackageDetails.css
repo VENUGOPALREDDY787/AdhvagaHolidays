@@ -1,14 +1,14 @@
 :root {
-  --pd-bg: #211d11;
-  --pd-surface: #1a1710;
-  --pd-surface-2: #2a2418;
+  --pd-bg: #041629;
+  --pd-surface: #08213a;
+  --pd-surface-2: #0d345d;
   --pd-text: #f2eadb;
   --pd-muted: rgba(242, 234, 219, 0.62);
-  --pd-accent: #d39e17;
+  --pd-accent: #FFD662;
 }
 
 .pd-shell {
-  background: radial-gradient(circle at 10% 0%, #2e281b 0%, #211d11 42%, #16130d 100%);
+  background: radial-gradient(circle at 10% 0%, rgba(255, 214, 98, 0.12) 0%, #041629 42%, #03111d 100%);
   color: var(--pd-text);
   width: 100%;
   max-width: none;
@@ -57,7 +57,7 @@
 .pd-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(12, 10, 7, 0.95), rgba(0, 0, 0, 0.3));
+  background: linear-gradient(to top, rgba(4, 22, 41, 0.95), rgba(0, 0, 0, 0.32));
 }
 
 .pd-hero-content {
@@ -84,7 +84,7 @@
 
 .pd-tag-primary {
   background: var(--pd-accent);
-  color: #1e1500;
+  color: #041629;
   border-color: transparent;
 }
 

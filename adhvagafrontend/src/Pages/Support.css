@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;900&family=Bebas+Neue&family=Dancing+Script:wght@400;700&family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@400;700&display=swap');
 
 .support-cinematic-page {
-  --support-primary: #d39e17;
-  --support-dark: #1a1710;
+  --support-primary: #FFD662;
+  --support-dark: #041629;
   --support-ink: #f1e9dc;
   --support-paper: #f5f0e8;
   --support-muted: #6d6457;
-  background: linear-gradient(180deg, #15110a 0%, #1f180d 34%, #1a1710 100%);
+  background: linear-gradient(180deg, #00539C 0%, #041629 42%, #03111d 100%);
   color: var(--support-ink);
   padding-top: 80px;
 }
@@ -81,7 +81,7 @@
   text-transform: uppercase;
   letter-spacing: 0.2em;
   font-size: 0.66rem;
-  color: rgba(211, 158, 23, 0.88);
+  color: rgba(255, 214, 98, 0.9);
 }
 
 .support-contact-lines strong {
@@ -98,8 +98,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(211, 158, 23, 0.08);
-  border: 1px solid rgba(211, 158, 23, 0.4);
+  background: rgba(255, 214, 98, 0.1);
+  border: 1px solid rgba(255, 214, 98, 0.42);
   color: #fff;
   font-family: 'Barlow Condensed', sans-serif;
   text-transform: uppercase;
@@ -124,15 +124,15 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(211, 158, 23, 0.35), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 214, 98, 0.38), transparent);
   transition: left 0.7s ease;
 }
 
 .support-wa-glow-btn:hover {
-  background: rgba(211, 158, 23, 0.18);
-  border-color: rgba(211, 158, 23, 0.9);
+  background: rgba(255, 214, 98, 0.18);
+  border-color: rgba(255, 214, 98, 0.95);
   color: #fff;
-  box-shadow: 0 8px 32px rgba(211, 158, 23, 0.35);
+  box-shadow: 0 8px 32px rgba(0, 83, 156, 0.35);
   transform: translateY(-4px) scale(1.02);
 }
 
@@ -157,7 +157,7 @@
   aspect-ratio: 1;
   top: -36%;
   right: -28%;
-  background: radial-gradient(circle, rgba(211, 158, 23, 0.16), rgba(211, 158, 23, 0));
+  background: radial-gradient(circle, rgba(255, 214, 98, 0.18), rgba(255, 214, 98, 0));
 }
 
 .support-form-shell {

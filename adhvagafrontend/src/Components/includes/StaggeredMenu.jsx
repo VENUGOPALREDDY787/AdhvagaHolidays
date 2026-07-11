@@ -52,8 +52,10 @@ export const StaggeredMenu = ({
   useEffect(() => {
     if (open) {
       if (setIsOpenProp) setIsOpenProp(false);
-      else closeMenu();
+      // We don't call closeMenu() here directly to avoid cyclic dependencies.
+      // The parent component should handle setIsOpenProp and it will trickle down via isOpenProp effect.
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   useLayoutEffect(() => {

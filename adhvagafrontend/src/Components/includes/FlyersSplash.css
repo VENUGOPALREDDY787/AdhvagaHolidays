@@ -1,0 +1,60 @@
+.flyers-splash {
+  position: fixed;
+  inset: 0;
+  background: var(--site-bg, #041629);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.flyers-splash-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 30%, rgba(4, 22, 41, 0.8) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.flyers-splash img {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.skip-btn {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.skip-btn span {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .skip-btn {
+    top: 20px;
+    right: 20px;
+    padding: 0.5rem 1rem;
+  }
+}

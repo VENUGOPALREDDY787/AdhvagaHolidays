@@ -26,11 +26,11 @@
   padding: 0.75rem 1rem;
   border-radius: 10px;
   border: 1px solid rgba(210, 180, 140, 0.1);
-  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 214, 98, 0.1);
 }
 
 .search-box:focus-within {
-  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 214, 98, 0.3);
   border-color: rgba(210, 180, 140, 0.3);
 }
 
@@ -39,14 +39,12 @@
 }
 
 .search-box input {
-  flex: 1;
   background: none;
   border: none;
   outline: none;
   color: #fff;
   font-size: 0.95rem;
 }
-
 .search-box input::placeholder {
   color: rgba(255, 255, 255, 0.3);
 }
@@ -69,9 +67,9 @@
   background: none;
   border: none;
   outline: none;
-  color: #fff;
-  font-size: 0.95rem;
-  cursor: pointer;
+  color: #FFD662;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .filter-dropdown select option {
@@ -83,15 +81,15 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.875rem 1.5rem;
-  background: linear-gradient(135deg, #d2b48c 0%, #b8956a 100%);
+  box-shadow: 0 8px 24px rgba(0, 83, 156, 0.15);
+  border-color: rgba(255, 214, 98, 0.3);
   color: #0a0a0a;
   border: none;
   border-radius: 10px;
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  background: rgba(255, 214, 98, 0.95);
   box-shadow: 0 4px 12px rgba(210, 180, 140, 0.2);
 }
 
@@ -124,7 +122,7 @@
 }
 
 .stat-label {
-  font-size: 0.875rem;
+  color: #FFD662;
   color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
   letter-spacing: 1px;

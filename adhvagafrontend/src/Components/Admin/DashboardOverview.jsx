@@ -5,10 +5,10 @@ import "./DashboardOverview.css";
 
 const DashboardOverview = () => {
   const stats = [
-    { icon: Package, label: "Total Packages", value: "42", change: "+12%", color: "#d2b48c" },
-    { icon: Users, label: "Active Users", value: "1,248", change: "+23%", color: "#6366f1" },
-    { icon: DollarSign, label: "Revenue", value: "$89,420", change: "+18%", color: "#10b981" },
-    { icon: TrendingUp, label: "Growth", value: "24%", change: "+5%", color: "#f59e0b" },
+    { icon: Package, label: "Total Packages", value: "42", change: "+12%", color: "#FFD662" },
+    { icon: Users, label: "Active Users", value: "1,248", change: "+23%", color: "#7bb8e8" },
+    { icon: DollarSign, label: "Revenue", value: "$89,420", change: "+18%", color: "#00539C" },
+    { icon: TrendingUp, label: "Growth", value: "24%", change: "+5%", color: "#FFD662" },
   ];
 
   return (

@@ -52,7 +52,7 @@ const ProtectedRoute = ({ children }) => {
   }, [token]);
 
   if (isChecking) {
-    return <div style={{ minHeight: "100vh", background: "#050505" }} />;
+    return <div style={{ minHeight: "100vh", background: "#041629" }} />;
   }
 
   if (!token || !isAuthorized) {

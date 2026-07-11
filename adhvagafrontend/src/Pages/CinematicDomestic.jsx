@@ -18,7 +18,7 @@ const dots = [
 ];
 
 export default function CinematicDomestic() {
-  const navigate = useNavigate();
+  // Removed unused navigate
 
   useCinematicEffects();
 

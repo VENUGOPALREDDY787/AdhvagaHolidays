@@ -119,7 +119,7 @@ const handleSubmit = async (e) => {
     } else {
       setError(data.message || "Failed to submit inquiry ❌");
     }
-  } catch (err) {
+  } catch (_err) {
     setError("Server error. Please try again ❌");
   }
 

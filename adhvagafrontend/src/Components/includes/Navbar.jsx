@@ -73,11 +73,12 @@ function Navbar() {
     { to: "/About", label: "About" },
     { to: "/Domestic", label: "Domestic" },
     { to: "/International", label: "International" },
+    { to: "/visa", label: "Visas" },
   ];
 
   const serviceItems = [
     { label: "Air Tickets", to: "/Services" },
-    { label: "Visa Assistance", to: "/Services" },
+    { label: "Visa Assistance", to: "/visa" },
     { label: "Travel Assistance", to: "/Services" },
     { label: "Corpraet Services", to: "/Services" },
     { label: "Coustom Services", to: "/Services" },
@@ -91,7 +92,7 @@ function Navbar() {
     { label: 'About', ariaLabel: 'Learn about us', link: '/About' },
     { label: 'Domestic', ariaLabel: 'Domestic Holidays', link: '/Domestic' },
     { label: 'International', ariaLabel: 'International Holidays', link: '/International' },
-    { label: 'Services', ariaLabel: 'Our services', link: '/Services' },
+    { label: 'Visas', ariaLabel: 'Visa assistance services', link: '/visa' },
     { label: 'Contact', ariaLabel: 'Contact us', link: '/Support' }
   ];
 

@@ -16,8 +16,8 @@
 }
 
 .whatsapp-modal {
-  background: #211d11;
-  border: 1px solid rgba(211, 158, 23, 0.2);
+  background: #041629;
+  border: 1px solid rgba(255, 214, 98, 0.22);
   border-radius: 20px;
   max-width: 450px;
   width: 100%;
@@ -61,15 +61,15 @@
 }
 
 .modal-close:hover {
-  background-color: rgba(211, 158, 23, 0.15);
-  color: #d39e17;
-  border-color: rgba(211, 158, 23, 0.4);
+  background-color: rgba(255, 214, 98, 0.15);
+  color: #FFD662;
+  border-color: rgba(255, 214, 98, 0.4);
 }
 
 .modal-header {
   text-align: center;
   padding: 40px 30px 20px;
-  background: linear-gradient(to bottom, rgba(211, 158, 23, 0.05), transparent);
+  background: linear-gradient(to bottom, rgba(255, 214, 98, 0.08), transparent);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 20px 20px 0 0;
   color: #ece1d3;
@@ -78,8 +78,8 @@
 .whatsapp-icon {
   font-size: 44px;
   margin-bottom: 15px;
-  color: #d39e17;
-  text-shadow: 0 0 25px rgba(211, 158, 23, 0.3);
+  color: #FFD662;
+  text-shadow: 0 0 25px rgba(255, 214, 98, 0.32);
   line-height: 1;
 }
 
@@ -88,7 +88,7 @@
   font-family: 'Bebas Neue', sans-serif;
   font-size: 2.2rem;
   font-weight: 400;
-  color: #d39e17;
+  color: #FFD662;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -140,8 +140,8 @@
 .modal-form input:focus,
 .modal-form textarea:focus {
   outline: none;
-  border-color: #d39e17;
-  box-shadow: 0 0 0 1px rgba(211, 158, 23, 0.3);
+  border-color: #FFD662;
+  box-shadow: 0 0 0 1px rgba(255, 214, 98, 0.3);
   background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -171,13 +171,13 @@
   width: 18px;
   height: 18px;
   margin-top: 2px;
-  accent-color: #d39e17;
+  accent-color: #FFD662;
   cursor: pointer;
   flex-shrink: 0;
 }
 
 .terms-text a {
-  color: #d39e17;
+  color: #FFD662;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s;
@@ -185,7 +185,7 @@
 
 .terms-text a:hover {
   text-decoration: underline;
-  color: #fce8b2;
+  color: #ffffff;
 }
 
 .error-message {
@@ -208,8 +208,8 @@
 .submit-btn {
   width: 100%;
   padding: 14px 20px;
-  background: #d39e17;
-  color: #211d11;
+  background: linear-gradient(135deg, #FFD662, #00539C);
+  color: #041629;
   border: none;
   border-radius: 8px;
   font-family: inherit;
@@ -224,7 +224,7 @@
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
   filter: brightness(1.1);
-  box-shadow: 0 8px 25px rgba(211, 158, 23, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 83, 156, 0.32);
 }
 
 .submit-btn:disabled {

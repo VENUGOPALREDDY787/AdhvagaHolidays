@@ -18,7 +18,7 @@ const dots = [
 ];
 
 export default function CinematicInternational() {
-  const navigate = useNavigate();
+  // Removed unused navigate
 
   useCinematicEffects();
 

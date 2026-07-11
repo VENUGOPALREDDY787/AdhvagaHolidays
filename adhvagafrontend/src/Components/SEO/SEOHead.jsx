@@ -32,7 +32,7 @@ export default function SEOHead({
       <title>{title}</title>
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
-      <meta name="theme-color" content="#1a1a1a" />
+      <meta name="theme-color" content="#00539C" />
 
       {/* Canonical URL */}
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
