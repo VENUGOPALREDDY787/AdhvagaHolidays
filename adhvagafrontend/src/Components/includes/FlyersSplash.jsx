@@ -1,26 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { BASE_URL } from "../../config/api";
 import "./FlyersSplash.css";
 
-const STORAGE_KEY = "admin_flyers";
-
 const FlyersSplash = ({ duration = 4000, onDone }) => {
-  const [flyers] = useState(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      const list = raw ? JSON.parse(raw) : [];
-      return list.filter((f) => f && f.url && f.active !== false);
-    } catch {
-      return [];
-    }
-  });
+  const [flyers, setFlyers] = useState([]);
   const [index, setIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!flyers.length) {
-      onDone?.();
-      return;
-    }
+    let isMounted = true;
+    const loadFlyers = async () => {
+      try {
+        const [settingsRes, flyersRes] = await Promise.all([
+          fetch(`${BASE_URL}/api/settings`),
+          fetch(`${BASE_URL}/api/flyers`)
+        ]);
+        
+        const settings = await settingsRes.json();
+        
+        if (settings.flyersEnabled === false) {
+          if (isMounted) onDone?.();
+          return;
+        }
+
+        const data = await flyersRes.json();
+        const activeFlyers = Array.isArray(data) ? data.filter(f => f && f.url && f.active) : [];
+        
+        if (activeFlyers.length === 0) {
+          if (isMounted) onDone?.();
+        } else {
+          if (isMounted) {
+            setFlyers(activeFlyers);
+            setLoading(false);
+          }
+        }
+      } catch (err) {
+        console.error("Flyer fetch error:", err);
+        if (isMounted) onDone?.();
+      }
+    };
+    loadFlyers();
+
+    return () => { isMounted = false; };
+  }, [onDone]);
+
+  useEffect(() => {
+    if (loading || !flyers.length) return;
 
     const timer = setTimeout(() => {
       if (index < flyers.length - 1) {
@@ -31,9 +57,11 @@ const FlyersSplash = ({ duration = 4000, onDone }) => {
     }, duration);
 
     return () => clearTimeout(timer);
-  }, [flyers, index, duration, onDone]);
+  }, [flyers, index, duration, loading]);
 
-  if (!flyers.length) return null;
+  if (loading || !flyers.length) {
+    return <div className="flyers-splash"><div className="flyers-splash-overlay" /></div>;
+  }
 
   const current = flyers[index];
 

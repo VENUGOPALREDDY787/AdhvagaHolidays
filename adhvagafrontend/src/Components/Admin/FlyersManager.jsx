@@ -1,60 +1,108 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Upload, Trash2, ToggleLeft, Plus } from "lucide-react";
+import { Upload, Trash2, ToggleLeft } from "lucide-react";
+import { BASE_URL } from "../../config/api";
 import "./FlyersManager.css";
-
-const STORAGE_KEY = "admin_flyers";
-const STORAGE_ENABLED = "admin_flyers_enabled";
 
 const FlyersManager = () => {
   const [flyers, setFlyers] = useState([]);
   const [enabled, setEnabled] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const fileRef = useRef(null);
+  const token = localStorage.getItem("token");
+
+  const fetchFlyers = async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/api/flyers?admin=true`);
+      const data = await res.json();
+      setFlyers(Array.isArray(data) ? data : []);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const fetchSettings = async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/api/settings`);
+      const data = await res.json();
+      if (data && data.flyersEnabled !== undefined) {
+        setEnabled(data.flyersEnabled);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   useEffect(() => {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    const list = raw ? JSON.parse(raw) : [];
-    setFlyers(list);
-    const en = localStorage.getItem(STORAGE_ENABLED);
-    setEnabled(en === null ? true : en === "true");
+    Promise.all([fetchFlyers(), fetchSettings()]).finally(() => setLoading(false));
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(flyers));
-  }, [flyers]);
+  const toggleGlobalEnabled = async () => {
+    const nextState = !enabled;
+    setEnabled(nextState);
+    try {
+      await fetch(`${BASE_URL}/api/settings`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ flyersEnabled: nextState }),
+      });
+    } catch (e) {
+      console.error("Failed to update global flyers setting");
+      setEnabled(!nextState); // revert on error
+    }
+  };
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_ENABLED, enabled ? "true" : "false");
-  }, [enabled]);
-
-  const handleUpload = (e) => {
+  const handleUpload = async (e) => {
     const input = e.target;
     const file = input?.files?.[0];
     if (!file) return;
 
     const reader = new FileReader();
-    reader.onload = () => {
+    reader.onload = async () => {
       const url = reader.result;
-      const item = {
-        id: Date.now().toString(),
-        name: file.name,
-        url,
-        active: true,
-      };
-      setFlyers((s) => [item, ...s]);
-      // clear input so same file can be selected again
+      try {
+        const res = await fetch(`${BASE_URL}/api/flyers`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ name: file.name, url, active: true }),
+        });
+        const data = await res.json();
+        setFlyers((s) => [data, ...s]);
+      } catch (err) {
+        alert("Failed to upload flyer.");
+      }
       try { input.value = null; } catch (e) { /* ignore */ }
     };
     reader.readAsDataURL(file);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (!window.confirm("Remove this flyer?")) return;
-    setFlyers((s) => s.filter((f) => f.id !== id));
+    try {
+      await fetch(`${BASE_URL}/api/flyers/${id}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setFlyers((s) => s.filter((f) => f._id !== id));
+    } catch (e) {
+      alert("Failed to delete flyer");
+    }
   };
 
-  const toggleActive = (id) => {
-    setFlyers((s) => s.map((f) => (f.id === id ? { ...f, active: !f.active } : f)));
+  const toggleActive = async (id, currentStatus) => {
+    const nextStatus = !currentStatus;
+    // Optimistic UI update
+    setFlyers((s) => s.map((f) => (f._id === id ? { ...f, active: nextStatus } : f)));
+    try {
+      await fetch(`${BASE_URL}/api/flyers/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ active: nextStatus }),
+      });
+    } catch (e) {
+      // Revert on failure
+      setFlyers((s) => s.map((f) => (f._id === id ? { ...f, active: currentStatus } : f)));
+    }
   };
 
   return (
@@ -71,7 +119,7 @@ const FlyersManager = () => {
 
           <button
             className={`btn toggle ${enabled ? "on" : "off"}`}
-            onClick={() => setEnabled((v) => !v)}
+            onClick={toggleGlobalEnabled}
           >
             <ToggleLeft size={16} /> {enabled ? "Enabled" : "Disabled"}
           </button>
@@ -79,22 +127,23 @@ const FlyersManager = () => {
       </div>
 
       <div className="flyers-list">
-        {flyers.length === 0 && (
+        {loading && <div className="flyers-empty">Loading...</div>}
+        {!loading && flyers.length === 0 && (
           <div className="flyers-empty">No flyers uploaded yet.</div>
         )}
 
         {flyers.map((f) => (
-          <div key={f.id} className={`flyer-item ${f.active ? "active" : "inactive"}`}>
+          <div key={f._id} className={`flyer-item ${f.active ? "active" : "inactive"}`}>
             <div className="thumb">
               <img src={f.url} alt={f.name} />
             </div>
             <div className="meta">
               <div className="name">{f.name}</div>
               <div className="controls">
-                <button className="icon" onClick={() => toggleActive(f.id)}>
+                <button className="icon" onClick={() => toggleActive(f._id, f.active)}>
                   <ToggleLeft size={14} /> {f.active ? "On" : "Off"}
                 </button>
-                <button className="icon delete" onClick={() => handleDelete(f.id)}>
+                <button className="icon delete" onClick={() => handleDelete(f._id)}>
                   <Trash2 size={14} /> Remove
                 </button>
               </div>

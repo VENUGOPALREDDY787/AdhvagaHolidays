@@ -10,6 +10,7 @@ import inquiryRoutes from "./routes/inquiryRoutes.js";
 import settingsRoutes from "./routes/settingsRoutes.js";
 import whatsappLeadRoutes from "./routes/whatsappLeadRoutes.js";
 import visaCountryRoutes from "./routes/visaCountryRoutes.js";
+import flyerRoutes from "./routes/flyerRoutes.js";
 
 dotenv.config();
 
@@ -45,6 +46,7 @@ app.use("/api/inquiries", inquiryRoutes);
 app.use("/api/settings", settingsRoutes);
 app.use("/api/whatsapp-leads", whatsappLeadRoutes);
 app.use("/api/visas", visaCountryRoutes);
+app.use("/api/flyers", flyerRoutes);
 
 // ✅ Error handling middleware
 app.use((err, req, res, next) => {

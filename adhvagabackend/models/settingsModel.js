@@ -40,6 +40,8 @@ const settingsSchema = new mongoose.Schema({
   promoText: String,
   promoEnabled: Boolean,
 
+  flyersEnabled: { type: Boolean, default: true },
+
   services: servicesSchema,
 
   showPricing: Boolean,

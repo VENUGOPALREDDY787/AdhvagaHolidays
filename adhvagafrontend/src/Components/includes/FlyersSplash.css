@@ -53,8 +53,19 @@
 
 @media (max-width: 768px) {
   .skip-btn {
-    top: 20px;
-    right: 20px;
-    padding: 0.5rem 1rem;
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .skip-btn span {
+    font-size: 1.2rem;
+  }
+
+  .flyers-splash img {
+    max-width: 95vw;
+    max-height: 90vh;
+    border-radius: 8px;
   }
 }

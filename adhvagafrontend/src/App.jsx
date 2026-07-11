@@ -126,23 +126,10 @@ function App() {
   useEffect(() => {
     // Keep loading sequence.
     const timer = setTimeout(() => {
-      try {
-        if (window.location.pathname.toLowerCase().startsWith("/admin")) {
-          setAppState("READY");
-          return;
-        }
-
-        const enabled = localStorage.getItem("admin_flyers_enabled");
-        const raw = localStorage.getItem("admin_flyers");
-        const list = raw ? JSON.parse(raw) : [];
-        const active = Array.isArray(list) ? list.filter((f) => f && f.url && f.active !== false) : [];
-        if ((enabled === null ? true : enabled === "true") && active.length > 0) {
-          setAppState("FLYERS");
-        } else {
-          setAppState("READY");
-        }
-      } catch (e) {
+      if (window.location.pathname.toLowerCase().startsWith("/admin")) {
         setAppState("READY");
+      } else {
+        setAppState("FLYERS");
       }
     }, 5000);
 
