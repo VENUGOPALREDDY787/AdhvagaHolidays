@@ -30,15 +30,15 @@ const destinationCards = [
   },
   {
     label: "Deep Green",
-    title: "Amazon Basin Trek",
+    title: "Explore the COORG",
     image:
       "/aida-images/aida_015.jpg",
   },
   {
     label: "Arid Sands",
-    title: "Sahara Star Gazing",
+    title: "Beauty of Maldives",
     image:
-      "/aida-images/aida_046.jpg",
+      "/aida-images/cosmos_1623436937.jpeg",
   },
 ];
 
@@ -344,7 +344,7 @@ export default function CinematicHome() {
 
           <div className="cine-container" data-reveal>
             <p className="cine-heading-eyebrow">Our Legacy</p>
-            <h2 className="cine-heading">Decades Of Adventure</h2>
+            <h2 className="cine-heading">A Legacy of Exploration</h2>
             <p
               className="cine-subtext"
               style={{
@@ -353,14 +353,14 @@ export default function CinematicHome() {
                 color: "rgba(255,255,255,0.8)",
               }}
             >
-              Founded in 2005, {settings.agencyName || "Advaga Holidays"} evolved from a small trekking
+              Founded in 2012, {settings.agencyName || "Advaga Holidays"} evolved from a small trekking
               collective into a full-scope travel design studio specializing in
               story-driven itineraries and high-touch support.
             </p>
 
             <div className="cine-grid-4">
               <div className="cine-glass" data-reveal>
-                <h3>19+</h3>
+                <h3>14+</h3>
                 <p>Years of Heritage</p>
               </div>
               <div className="cine-glass" data-reveal>
