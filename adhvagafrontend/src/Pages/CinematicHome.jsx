@@ -26,7 +26,7 @@ const destinationCards = [
     label: "High Altitude",
     title: "Swiss Alps Traverse",
     image:
-      "/aida-images/aida_047.jpg",
+      "/aida-images/element-142194199-1784860886228.jpg",
   },
   {
     label: "Deep Green",
