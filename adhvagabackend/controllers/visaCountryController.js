@@ -1,4 +1,5 @@
 import VisaCountry from "../models/visaCountryModel.js";
+import cloudinary from "../config/cloudinary.js";
 
 const normalizePayload = (body) => {
   const payload = {};
@@ -93,6 +94,13 @@ export const createVisaCountry = async (req, res) => {
       return res.status(400).json({ message: "Country and image are required" });
     }
 
+    if (payload.image.startsWith("data:image")) {
+      const uploadRes = await cloudinary.uploader.upload(payload.image, {
+        folder: "visas",
+      });
+      payload.image = uploadRes.secure_url;
+    }
+
     const created = await VisaCountry.create(payload);
     res.status(201).json(created);
   } catch (error) {
@@ -106,6 +114,13 @@ export const updateVisaCountry = async (req, res) => {
     const payload = normalizePayload(req.body);
     if (Object.keys(payload).length === 0) {
       return res.status(400).json({ message: "No fields provided to update" });
+    }
+
+    if (payload.image && payload.image.startsWith("data:image")) {
+      const uploadRes = await cloudinary.uploader.upload(payload.image, {
+        folder: "visas",
+      });
+      payload.image = uploadRes.secure_url;
     }
 
     const updated = await VisaCountry.findByIdAndUpdate(

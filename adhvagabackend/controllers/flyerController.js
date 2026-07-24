@@ -1,4 +1,5 @@
 import Flyer from "../models/flyerModel.js";
+import cloudinary from "../config/cloudinary.js";
 
 export const getFlyers = async (req, res) => {
   try {
@@ -14,9 +15,16 @@ export const getFlyers = async (req, res) => {
 
 export const createFlyer = async (req, res) => {
   try {
-    const { name, url, active, sortOrder } = req.body;
+    let { name, url, active, sortOrder } = req.body;
     if (!url) {
       return res.status(400).json({ message: "URL is required" });
+    }
+
+    if (url.startsWith("data:image")) {
+      const uploadRes = await cloudinary.uploader.upload(url, {
+        folder: "flyers",
+      });
+      url = uploadRes.secure_url;
     }
 
     const flyer = await Flyer.create({
@@ -34,11 +42,22 @@ export const createFlyer = async (req, res) => {
 
 export const updateFlyer = async (req, res) => {
   try {
-    const { active, sortOrder, name } = req.body;
+    let { active, sortOrder, name, url } = req.body;
     const payload = {};
     if (active !== undefined) payload.active = active;
     if (sortOrder !== undefined) payload.sortOrder = Number(sortOrder);
     if (name !== undefined) payload.name = name;
+
+    if (url !== undefined) {
+      if (url.startsWith("data:image")) {
+        const uploadRes = await cloudinary.uploader.upload(url, {
+          folder: "flyers",
+        });
+        payload.url = uploadRes.secure_url;
+      } else {
+        payload.url = url;
+      }
+    }
 
     const updated = await Flyer.findByIdAndUpdate(
       req.params.id,
