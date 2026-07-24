@@ -43,14 +43,14 @@ const destinationCards = [
 ];
 
 const galleryImages = [
-  "/aida-images/aida_007.jpg",
+  "/aida-images/element-1327053622-1784861002710.jpg",
   "/aida-images/aida_005.jpg",
   "/aida-images/aida_038.jpg",
   "/aida-images/aida_020.jpg",
   "/aida-images/aida_040.jpg",
-  "/aida-images/aida_043.jpg",
+  "/aida-images/element-204134637-1784860925592.jpg",
   "/aida-images/aida_031.jpg",
-  "/aida-images/aida_018.jpg",
+  "/aida-images/element-2049304923-1784860752377.jpg",
 ];
 
 export default function CinematicHome() {
