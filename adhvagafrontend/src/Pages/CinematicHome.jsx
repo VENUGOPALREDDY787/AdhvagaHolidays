@@ -30,9 +30,9 @@ const destinationCards = [
   },
   {
     label: "Deep Green",
-    title: "Explore the COORG",
+    title: "Explore the Philippines",
     image:
-      "/aida-images/aida_015.jpg",
+      "/aida-images/element-1356981739-1784860686998.jpg",
   },
   {
     label: "Arid Sands",
